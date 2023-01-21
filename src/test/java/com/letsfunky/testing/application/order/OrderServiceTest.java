@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.letsfunky.testing.application.store.StoreService;
 import com.letsfunky.testing.domain.member.Member;
 import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.Order;
 import com.letsfunky.testing.domain.order.OrderRepository;
-import com.letsfunky.testing.infrastructure.message.SmsApiClient;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -20,15 +20,15 @@ class OrderServiceTest {
 
     private OrderRepository orderRepository;
     private MemberRepository memberRepository;
-    private SmsApiClient smsApiClient;
+    private StoreService storeService;
     private OrderService orderService;
 
     @BeforeEach
     void init() {
         orderRepository = mock(OrderRepository.class);
         memberRepository = mock(MemberRepository.class);
-        smsApiClient = mock(SmsApiClient.class);
-        orderService = new OrderService(orderRepository, memberRepository, smsApiClient);
+        storeService = mock(StoreService.class);
+        orderService = new OrderService(orderRepository, memberRepository, storeService);
     }
 
     @Test

@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    embedded-database-connection: hsqldb
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate.dialect: org.hibernate.dialect.HSQLDialect
+      hibernate.format_sql: true
+      hibernate.show_sql: true
+      hibernate.use_sql_comments: false
+      hibernate.jdbc.time_zone: Asia/Seoul
+      hibernate.jdbc.batch_size: 10
+      hibernate.globally_quoted_identifiers: true # back quote(`) 로 테이블과 컬럼을 감싸준다
+    show-sql: true

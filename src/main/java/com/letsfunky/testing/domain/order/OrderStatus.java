@@ -15,7 +15,7 @@ public enum OrderStatus {
             case DRAFT:
                 return Set.of(ORDERED, PAYMENT_COMPLETED).contains(nextStatus);
             case ORDERED:
-                return DRAFT == nextStatus;
+                return Set.of(PAYMENT_COMPLETED, SHIPPED).contains(nextStatus);
             case PAYMENT_COMPLETED:
             case SHIPPED:
             default:

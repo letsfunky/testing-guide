@@ -34,7 +34,7 @@ class RevisitedSmsApiServiceTest {
 
         assertThat(response.isSuccess()).isTrue();
         assertThat(response.getStatusCode()).isEqualTo("statusCode");
-        // and so on..
+        // assert goes on..
     }
 
     @Test

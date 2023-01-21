@@ -2,7 +2,10 @@ package com.letsfunky.testing.infrastructure.message;
 
 import com.letsfunky.testing.infrastructure.message.SmsApiDto.SmsRequest;
 import com.letsfunky.testing.infrastructure.message.SmsApiDto.SmsResponse;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SmsApiService {
 
     private final SmsApiClient smsApiClient;
@@ -11,6 +14,7 @@ public class SmsApiService {
         this.smsApiClient = smsApiClient;
     }
 
+    @Async
     public SmsResponse send(String phoneNumber, String message) {
         var response = smsApiClient.send(new SmsRequest(phoneNumber, message));
 

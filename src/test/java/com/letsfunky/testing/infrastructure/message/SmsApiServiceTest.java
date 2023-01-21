@@ -3,6 +3,8 @@ package com.letsfunky.testing.infrastructure.message;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.letsfunky.testing.infrastructure.message.SmsApiDto.SmsRequest;
@@ -29,7 +31,8 @@ class SmsApiServiceTest {
     void sms발송이_성공한다() {
         var phoneNumber = "phone-number";
         var smsMessage = "sms-message";
-        when(smsApiClient.send(new SmsRequest(phoneNumber, smsMessage))).thenReturn(
+        var request = new SmsRequest(phoneNumber, smsMessage);
+        when(smsApiClient.send(request)).thenReturn(
             new SmsResponse(
                 true,
                 "resultMessage",
@@ -47,14 +50,16 @@ class SmsApiServiceTest {
 
         assertThat(response.isSuccess()).isTrue();
         assertThat(response.getStatusCode()).isEqualTo("statusCode");
-        // and so on..
+        // assert goes on..
+        verify(smsApiClient, times(1)).send(request);
     }
 
     @Test
     void sms발송이_실패한다() {
         var phoneNumber = "phone-number";
         var smsMessage = "sms-message";
-        when(smsApiClient.send(new SmsRequest(phoneNumber, smsMessage))).thenReturn(
+        var request = new SmsRequest(phoneNumber, smsMessage);
+        when(smsApiClient.send(request)).thenReturn(
             new SmsResponse(
                 false,
                 "resultMessage",
@@ -71,5 +76,6 @@ class SmsApiServiceTest {
         assertThatThrownBy(() -> sut.send(phoneNumber, smsMessage))
             .isExactlyInstanceOf(RuntimeException.class)
             .hasMessage("sms send failed");
+        verify(smsApiClient, times(1)).send(request);
     }
 }

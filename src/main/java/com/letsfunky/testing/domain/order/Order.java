@@ -1,5 +1,6 @@
 package com.letsfunky.testing.domain.order;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,8 @@ public class Order {
     private Long id;
 
     private long ordererId;
+
+    @Column(length = 20)
     private String shippingAddress;
 
     public Order(long ordererId, String shippingAddress) {

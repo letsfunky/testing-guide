@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <member
+      id="1"
+      name="active-member-name1"/>
+
+    <member
+      id="2"
+      name="active-member-name2"/>
+
+    <member
+      id="3"
+      name="active-member-name3"/>
+</dataset>
