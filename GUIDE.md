@@ -116,7 +116,8 @@ A question many project teams I've been part of couldn't answer is how much test
 Line coverage is a bad metric to measure test success.
 And even at 100% we still can't be sure that every bug has been squashed.
 
-I suggest measuring test success in how comfortable we feel to ship the software. If we trust the tests enough to ship after having executed them, we're good. 
+I suggest measuring test success in how comfortable we feel to ship the software. 
+If we trust the tests enough to ship after having executed them, we're good. 
 
 - How Much Testing Is Enough? (Tom Hombergs, Get Your Hands Dirty on Clean Architecture, 2018, p68)
 ```
@@ -508,18 +509,14 @@ public void 재고가_충분하면_구매가_성공한다() {
   - [SmsApiDtoBuilder.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiDtoBuilder.java)
 - [Test Fixtures](https://junit.org/junit4/cookbook.html)
   - `Tests need to run against the background of a known set of objects. This set of objects is called a test fixture.`
-  - [ObjectMother](https://martinfowler.com/bliki/ObjectMother.html)  by Martin Fowler
-    ```
-    When you write tests in a reasonably sized system, you find you have to create a lot of example data.
-    ...
-    Potentially this can be a lot of objects to create. This set data is generally referred to as the test fixture.
-    ```
 - High coupling between tests is an anti-pattern
 - The use of constructors(like `@BeforeEach`) in tests diminishes test readability
 - A better way to reuse test fixtures
-  - builder 의 이용 (ObjectMother vs Builder, DRY)
+  - builder 의 이용 (ObjectMother vs Builder)
   - 테스트에서 이용되지 않는 metadata는 dummy 를 이용하자
   - 나 자신이 아닌, 유지보수할 사람을 생각해서 코드를 작성하자
+- [gradle java-test-fixture](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
+  - [gradle java-test-fixture in toss tech blog](https://toss.tech/article/how-to-manage-test-dependency-in-gradle)
 
 ## 5.16 Don’t assert interactions with stubs
 - Code
@@ -699,7 +696,12 @@ ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는�
 ```
 Treat Spurious Failures as Candidate Threading Issues
 
-Threaded code causes things to fail that “simply cannot fail.” Most developers do not have an intuitive feel for how threading interacts with other code (authors included). Bugs in threaded code might exhibit their symptoms once in a thousand, or a million, executions. Attempts to repeat the systems can be frustratingly. This often leads developers to write off the failure as a cosmic ray, a hardware glitch, or some other kind of “one-off.” It is best to assume that one-offs do not exist. The longer these “one-offs” are ignored, the more code is built on top of a potentially faulty approach.
+Threaded code causes things to fail that “simply cannot fail.” 
+Most developers do not have an intuitive feel for how threading interacts with other code (authors included). 
+Bugs in threaded code might exhibit their symptoms once in a thousand, or a million, executions. 
+Attempts to repeat the systems can be frustratingly. 
+This often leads developers to write off the failure as a cosmic ray, a hardware glitch, or some other kind of “one-off.” 
+It is best to assume that one-offs do not exist. The longer these “one-offs” are ignored, the more code is built on top of a potentially faulty approach.
 
 - Testing Threaded Code (Clean Code, Robert C. Martin, 2008)
 ```
