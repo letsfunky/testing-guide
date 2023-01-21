@@ -2,6 +2,7 @@ package com.letsfunky.testing.application.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -20,9 +21,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase{
 
@@ -50,17 +48,16 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase{
     @Test
     @Disabled
     void 주문상세_조회에_성공한다_no_dbunit() {
-        // NOTE: test fixtures are extractable to helper method
         var member = memberRepository.saveAndFlush(new Member("name"));
         var order = orderRepository.saveAndFlush(new Order(member.getId(), "address"));
         // var orderLine = orderLineRepository.saveAndFlush(..)
         // var store = storeRepository.saveAndFlush(..)
         // var inventories = inventoryRepository.saveAndFlush(..)
 
-        mockMvc.perform(MockMvcRequestBuilders.get(baseUrl + "/" + order.getId())) // no dangling
-            .andDo(MockMvcResultHandlers.print())
-            .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(get(baseUrl + "/" + order.getId())) // no dangling
+            .andDo(print())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
     }
 
     @SneakyThrows
@@ -71,7 +68,7 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase{
         var orderRequest = new OrderRequest(member.getId(), "goods", 3, "phone-num", "shipping-address");
 
         var resultActions = mockMvc.perform(
-                MockMvcRequestBuilders.post(baseUrl + "/")
+                post(baseUrl + "/")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(toJson(orderRequest))
             )

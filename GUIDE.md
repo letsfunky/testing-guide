@@ -280,7 +280,7 @@ var purchase = new Purchase(order);
 
 ## 5.1 AAA Pattern (arrange, act, and assert)
 - Code
-  - [Calculator.java](tbd)
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
 - The AAA pattern advocates for splitting each test into three parts
   - arrange (given)
   - act (when)
@@ -288,7 +288,7 @@ var purchase = new Purchase(order);
 
 ## 5.2 Dropping the arrange, act, and assert comments from tests
 - Code
-  - [Calculator.java](tbd)
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
 - It’s also important to differentiate the three sections from each other
   - One way to do that is to put `// Arrange, // Act, and // Assert` comments before the beginning of each section. 
   - Another way is to separate the sections with empty lines, as shown next.
@@ -300,7 +300,8 @@ var purchase = new Purchase(order);
 
 ## 5.3.1 Derived Values
 - Code
-  - [Calculator.java](tbd)
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 ```
 @Test
 void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_integers() {
@@ -319,7 +320,7 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
 
 ## 5.3.2 Hard Coded Values
 - Code
-  - [Calculator.java](tbd)
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
 ```
 @Test
 void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_integers() {
@@ -338,7 +339,7 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
 
 ## 5.3.3 Why Not Both?
 - Code
-  - [Calculator.java](tbd)
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
 ```
 @Test
 void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_integers() {
@@ -375,7 +376,7 @@ public static int sum(int x, int y) { ... }
 
 ## 5.6 Naming a unit test
 - Code
-  - [RevisitedCalculatorTest.java](tbd)
+  - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
 - One of the most prominent, and probably least helpful, is the following convention:
   - `[MethodUnderTest]_[Scenario]_[ExpectedResult]`
   - It’s unhelpful specifically because it encourages you to focus on implementation details instead of the behavior.
@@ -391,7 +392,7 @@ public static int sum(int x, int y) { ... }
 
 ## 5.7 Using `@DisplayName("...")` vs Test Method Name
 - Code
-  - [RevisitedCalculatorTest.java](tbd)<br/>
+  - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)<br/>
 - `@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)`
   - 한글은 underscore 와 혼용해도 가독성이 나쁘지 않다
 ```
@@ -404,7 +405,7 @@ class RevisitedCalculatorTest {
 
 ## 5.8 Refactoring to parameterized tests
 - Code
-  - [RevisitedCalculatorTest.java](tbd)
+  - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
 - @ParameterizedTest vs Simple Iteration
 ```
 @ParameterizedTest
@@ -429,9 +430,9 @@ vs
 
 ## 5.9 Differentiating the system under test
 - Code
-  - [OrderServiceTest.java](tbd)
-  - [RevistedOrderServiceTest.java](tbd)
-  - [RevisitedOrderServiceIntegrationTest.java](tbd)
+  - [OrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderServiceTest.java)
+  - [RevistedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
+  - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
 - SUT (System Under Test)
   ```
   var actual = orderService.getOrderDetail(order.getId());
@@ -443,8 +444,8 @@ vs
 
 ## 5.10 How many assertions should the assert section hold?
 - Code
-  - [OrderServiceTest.java](tbd)
-  - [RevistedOrderServiceTest.java](tbd)
+  - [OrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderServiceTest.java)
+  - [RevistedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
 - You may have heard about the guideline of having one assertion per test. 
   - As you already know, this premise is incorrect. 
   - A unit in unit testing is a unit of behavior, not a unit of code. 
@@ -501,10 +502,10 @@ public void 재고가_충분하면_구매가_성공한다() {
 
 ## 5.15 Reusing test fixtures between tests
 - Code
-  - [SmsApiService.java]()
-  - [SmsApiServiceTest.java]()
-  - [RevistedSmsApiServiceTest.java]()
-  - [SmsApiDtoBuilder.java]()
+  - [SmsApiService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsApiService.java)
+  - [SmsApiServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiServiceTest.java)
+  - [RevistedSmsApiServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/RevisitedSmsApiServiceTest.java)
+  - [SmsApiDtoBuilder.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiDtoBuilder.java)
 - [Test Fixtures](https://junit.org/junit4/cookbook.html)
   - `Tests need to run against the background of a known set of objects. This set of objects is called a test fixture.`
   - [ObjectMother](https://martinfowler.com/bliki/ObjectMother.html)  by Martin Fowler
@@ -522,8 +523,8 @@ public void 재고가_충분하면_구매가_성공한다() {
 
 ## 5.16 Don’t assert interactions with stubs
 - Code
-  - [SmsApiService.java]()
-  - [SmsApiServiceTest.java]()
+  - [SmsApiService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsApiService.java)
+  - [SmsApiServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiServiceTest.java)
 - Asserting interactions with stubs is a common anti-pattern that leads to fragile tests.
 - This practice of verifying things that aren’t part of the end result is also called overspecification.
 - The only way to improve resistance to refactoring in tests is to make those tests verify the end result (which, ideally, should be meaningful to a non-programmer), not implementation details.
@@ -543,8 +544,8 @@ void sms발송이_성공한다() {
 
 ## 5.17 Using mocks and stubs together
 - Code
-  - [OrderService.java]()
-  - [RevisitedOrderServiceTest.java]()
+  - [OrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderService.java)
+  - [RevisitedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
 - Sometimes you need to create a test double that exhibits the properties of both a mock and a stub.
 - When a test double is both a mock and a stub, it’s still called a mock, not a stub.
 
@@ -567,8 +568,8 @@ void 주문이_성공하면_inventory가_줄어든다() {
 
 ## 5.18 Nested Test
 - Code
-  - [OrderStatus.java]()
-  - [OrderStatusTest.java]()
+  - [OrderStatus.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/order/OrderStatus.java)
+  - [OrderStatusTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderStatusTest.java)
 - 인간이 이해할 수 있는 테스트 구조<br/>
 <img src="./images/nested-test.png" width="600"/><br/>
 
@@ -601,17 +602,17 @@ void 주문이_성공하면_inventory가_줄어든다() {
 
 ## 6.4 [@SpringBootTest](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing)
 - Code
-  - [RevisitedOrderService.java]()
-  - [RevisitedOrderServiceIntegrationTest.java]()
+  - [RevisitedOrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/RevisitedOrderService.java)
+  - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
 - `@SpringBootTest` tests are full integration tests and involve the entire application.
 - The annotation works by creating the `ApplicationContext` used in your tests through SpringApplication.
 
 ## 6.5 [@SpringBootTest + webEnvironment + @MockMvc](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
 - Code
-  - [OrderController.java]()
-  - [OrderControllerIntegrationTest.java]()
-  - [MockMvcTestBase.java]()
-  - [RevisitedOrderControllerIntegrationTest.java]()
+  - [OrderController.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderController.java)
+  - [OrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderControllerIntegrationTest.java)
+  - [MockMvcTestBase.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/MockMvcTestBase.java)
+  - [RevisitedOrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderControllerIntegrationTest.java)
 - By default, `@SpringBootTest` does not start the server but instead sets up a mock environment for testing web endpoints.
   - If you need to start a full running server, we recommend that you use random ports.
 - With Spring MVC, we can query our web endpoints using `MockMvc` or `WebTestClient`.
@@ -620,7 +621,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 
 ## 6.6 [@DataJpaTest](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.autoconfigured-spring-data-jpa)
 - Code
-  - [OrderRepositoryIntegrationTest.java]()
+  - [OrderRepositoryIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderRepositoryIntegrationTest.java)
 - You can use the `@DataJpaTest` annotation to test JPA applications. 
 - By default, it scans for `@Entity` classes and configures Spring Data JPA repositories. 
 - If an embedded database is available on the classpath, it configures one as well. 
@@ -628,8 +629,8 @@ void 주문이_성공하면_inventory가_줄어든다() {
 
 ## 6.7 Persistent vs Non-persistent Test Fixtures
 - Code
-  - [OrderControllerIntegrationTest.java:주문상세_조회에_성공한다_dbunit()]()
-  - [RevisitedOrderControllerIntegrationTest.java:주문상세_조회에_성공한다_no_dbunit()]()
+  - [OrderControllerIntegrationTest.java:주문상세_조회에_성공한다_dbunit()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderControllerIntegrationTest.java)
+  - [RevisitedOrderControllerIntegrationTest.java:주문상세_조회에_성공한다_no_dbunit()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderControllerIntegrationTest.java)
 - Persistent test fixtures
   - [executing sql](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html#testcontext-executing-sql)
   - [database-rider](https://github.com/database-rider/database-rider)
