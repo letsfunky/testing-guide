@@ -15,7 +15,7 @@
   - Unit Testing (Vladimir Khorikov, Manning, 2020)
   - Pragmatic Unit Testing in Java 8 With JUnit (Jeff Langr with Andy Hunt & Dave Thomas, The Pragmatic Programmers, 2015)
 - https://github.com/letsfunky/testing-guide
-
+  - 테스팅을 만들어 보기 위한 코드로, 다소 `으응?`스러운 코드들이 있을 수 있습니다. 🙇
 # 시작하기 전에
 ## 약력
   - 잡다구리한 도메인에서 잡다구리한 테스트를 해봄
