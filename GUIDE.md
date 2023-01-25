@@ -150,7 +150,9 @@ If we trust the tests enough to ship after having executed them, we're good.
 - Coverage
   - Low coverage numbers — say, below 60% — are a certain sign of trouble.
     - They mean there’s a lot of untested code in your code base. 
-  - But high numbers don’t mean anything. 
+  - But high numbers don’t mean anything.
+- Run with Coverage <br/>
+  <img src="./images/run-with-coverage.png" width="400"/><br/>
 
 ## 1.6 좋은 테스트란 무엇일까요?
 - 뭘까?
