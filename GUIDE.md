@@ -282,6 +282,7 @@ var purchase = new Purchase(order);
 ## 5.1 AAA Pattern (arrange, act, and assert)
 - Code
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 - The AAA pattern advocates for splitting each test into three parts
   - arrange (given)
   - act (when)
@@ -290,6 +291,7 @@ var purchase = new Purchase(order);
 ## 5.2 Dropping the arrange, act, and assert comments from tests
 - Code
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 - It’s also important to differentiate the three sections from each other
   - One way to do that is to put `// Arrange, // Act, and // Assert` comments before the beginning of each section. 
   - Another way is to separate the sections with empty lines, as shown next.
@@ -322,6 +324,7 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
 ## 5.3.2 Hard Coded Values
 - Code
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 ```
 @Test
 void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_integers() {
@@ -341,6 +344,7 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
 ## 5.3.3 Why Not Both?
 - Code
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 ```
 @Test
 void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_integers() {
@@ -431,6 +435,7 @@ vs
 
 ## 5.9 Differentiating the system under test
 - Code
+  - [OrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderService.java) 
   - [OrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderServiceTest.java)
   - [RevistedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
   - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
@@ -445,6 +450,7 @@ vs
 
 ## 5.10 How many assertions should the assert section hold?
 - Code
+  - [OrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderService.java) 
   - [OrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderServiceTest.java)
   - [RevistedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
 - You may have heard about the guideline of having one assertion per test. 
