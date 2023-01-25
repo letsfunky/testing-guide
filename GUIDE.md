@@ -33,7 +33,6 @@
 # 0 Software Engineering
 ## 0.1 정답은 없고, 정답에 가까운 길을 찾아갈 뿐
 <img src="./images/pigeon-copter.jpeg" width="400"/><br/>
-- [(주의) 일반적으로 개소리는 그럴싸하게 들림](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=74920795)<br/>
 
 ## 0.2 Good code vs Bad code
 ```
