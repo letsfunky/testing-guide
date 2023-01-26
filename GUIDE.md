@@ -653,7 +653,9 @@ void 주문이_성공하면_inventory가_줄어든다() {
 
 - 스프링부트에서 DbUnit 을 이용하여 DB 테스트 해보기 (https://techblog.woowahan.com/2650/, 2019)
 ```
-- Problems
+- Pros
+  - Data visible through DB tools 
+- Cons
   - Non-self-explanatory
   - DRY (Don't Repeat Yourself) violation
   - Dangling reference
@@ -669,7 +671,7 @@ ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는�
 
 - ORM 롤백 트랜잭션 테스트의 주의사항 (이일민, 토비의 스프링3, p1333)
 ```
-- test fixture는 persistent layer를 이용해보자
+- Test fixture는 persistent layer를 이용해보자
 
 ## 6.8 Parallel Test Execution
 - [Do not run tests in parallel if the tests:](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html#testcontext-parallel-test-execution)
@@ -681,7 +683,7 @@ ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는�
 ## 7.0 end to end 테스트는 이 교육에서는 만들지 않습니당
 - An end-to-end test in a scenario with an API would be a test running against a deployed, fully functioning version of that API, which means no mocks for any of the out-of-process dependencies.
 - 만들기도 어렵고, 유지보수하기도 어렵다
-  - 다행히 우리에겐 유능하고 잘생긴 (그리고 모든 서비스를 아우르는) QA분들이 있음
+- 다행히 우리에겐 유능하고 잘생긴 (그리고 모든 서비스를 아우르는) QA분들이 있음
 
 # 8 학습테스트
 ## 8.0 TestAny
