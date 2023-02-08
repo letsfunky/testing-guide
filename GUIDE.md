@@ -4,30 +4,31 @@
 - 단위/통합 테스팅을 입문하고자 하는 분
 - 테스트를 작성하고 있지만, 좀 더 좋은 테스팅에 대해 고민하시는 분
 - 참고
-  - 코드는 제공되지만, 따라해보는 실습은 없습니다.
-  - TDD는 다루지 않습니다.
+  - 코드는 제공되지만, 따라해보는 실습은 없어요.🙏
+  - TDD는 다루지 않아요.
 
 ## 교육목표
-- 테스팅에 대해 이해합니다.
-- Spring Boot, JPA, JUnit5 를 이용하여 단위/통합 테스트를 작성해 봅니다.
-- 실용적이고, 효율적인 테스팅 방법에 대해 고민합니다.
-- 아래의 책들에 기반한 내용이 주를 이룹니다.
+- 테스팅에 대해 이해해 보아요.
+- Spring Boot, JPA, JUnit5 를 이용하여 단위/통합 테스트를 작성해 보아요.
+- 실용적이고, 효율적인 테스팅 방법에 대해 고민해 보아요.
+- 아래의 책들에 기반한 내용이 주를 이뤄요.
   - Unit Testing (Vladimir Khorikov, Manning, 2020)
   - Pragmatic Unit Testing in Java 8 With JUnit (Jeff Langr with Andy Hunt & Dave Thomas, The Pragmatic Programmers, 2015)
 - https://github.com/letsfunky/testing-guide
-  - 테스팅을 만들어 보기 위한 코드로, 다소 `으응?`스러운 코드들이 있을 수 있습니다. 🙇
+  - 테스팅을 만들어 보기 위한 코드로, 다소 `으응?`스러운 코드들이 있을 수 있어요. 🙇
+
 # 시작하기 전에
 ## 약력
-  - 잡다구리한 도메인에서 잡다구리한 테스트를 해봄
+- 잡다구리한 도메인에서 잡다구리한 테스트를 해봤어요.
     ```
     한국투자증권 (pro*c, manual testing)
-    daum/kakao (spring, junit, selenium, acceptance test)
+    daum/kakao (spring, junit, selenium, brower-based regression test)
     myrealtrip (rails, rspec)
     sk telecom (spring, junit, rest-assured, end-to-end test)
-    kakao (spring, rails, junit, rspec)
+    kakao (spring, rails, junit, rspec, coverage 0%)
     ncsoft (spring, junit, grpc, concurrency test)
     bemyfriends (spring, kotest, 99.99% integration test)
-    nhn cloud (spring, junit, concurrency test)
+    nhn cloud (spring, junit)
     ```
 
 # 0 Software Engineering
@@ -206,6 +207,9 @@ If we trust the tests enough to ship after having executed them, we're good.
 - Most of the tests written in the classical style would be deemed integration tests by the London school proponents.
 
 ## 2.4 end-to-end 테스트
+- An end-to-end test in a scenario with an API would be a test running against 
+  - a deployed, fully functioning version of that API, 
+  - which means no mocks for any of the out-of-process dependencies.
 - End-to-end tests are a subset of integration tests
 
 # 3 Mock
@@ -300,6 +304,7 @@ var purchase = new Purchase(order);
 
 ## 5.3 Assert by Derived Values vs Hard Coded Values
 - It's a controversial stance.
+  - Domain knowledge leakage vs Executable specification
 - [Derived Values Ensure Executable Specification](https://blog.ploeh.dk/2009/03/03/DerivedValuesEnsureExecutableSpecification/)
 
 ## 5.3.1 Derived Values
@@ -398,6 +403,7 @@ public static int sum(int x, int y) { ... }
 
 ## 5.7 Using `@DisplayName("...")` vs Test Method Name
 - Code
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
   - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)<br/>
 - `@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)`
   - 한글은 underscore 와 혼용해도 가독성이 나쁘지 않다
@@ -452,8 +458,8 @@ vs
 ## 5.10 How many assertions should the assert section hold?
 - Code
   - [OrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderService.java) 
-  - [OrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderServiceTest.java)
-  - [RevistedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
+  - [OrderServiceTest.java#주문이_존재하면_주문상세를_가져온다()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderServiceTest.java)
+  - [RevistedOrderServiceTest.java#주문이_존재하면_주문상세를_가져온다()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
 - You may have heard about the guideline of having one assertion per test. 
   - As you already know, this premise is incorrect. 
   - A unit in unit testing is a unit of behavior, not a unit of code. 
@@ -577,6 +583,15 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - 인간이 이해할 수 있는 테스트 구조<br/>
 <img src="./images/nested-test.png" width="600"/><br/>
 
+## 5.19 Interfaces and loose coupling
+- Genuine abstractions are discovered, not invented.
+- For an interface to be a genuine abstraction, it must have at least two implementations.
+- YAGNI (You aren’t gonna need it)
+  - Opportunity cost
+  - The less code in the project, the better.
+
+## 5.20 Code pollution
+- `Code pollution` is adding production code that’s only needed for testing.
 
 # 6 통합 테스트 만들어보기
 
@@ -611,7 +626,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - `@SpringBootTest` tests are full integration tests and involve the entire application.
 - The annotation works by creating the `ApplicationContext` used in your tests through SpringApplication.
 
-## 6.5 [@SpringBootTest + webEnvironment + @MockMvc](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
+## 6.5 [@SpringBootTest + webEnvironment + MockMvc](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
 - Code
   - [OrderController.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderController.java)
   - [OrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderControllerIntegrationTest.java)
@@ -622,6 +637,12 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - With Spring MVC, we can query our web endpoints using `MockMvc` or `WebTestClient`.
   - You can also auto-configure `MockMvc` in a non-`@WebMvcTest` (such as `@SpringBootTest`) by annotating it with `@AutoConfigureMockMvc`.
 - [TestRestTemplate](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.utilities.test-rest-template)
+- [Serialization/Deserialization issue](- [OrderDto.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderDto.java))
+
+## 6.5.1 [@SpringBootTest + webEnvironment + @Transactional](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
+- If your test is `@Transactional`, it rolls back the transaction at the end of each test method by default. 
+  - However, as using this arrangement with either `RANDOM_PORT` or `DEFINED_PORT` implicitly provides a real servlet environment, the HTTP client and server run in separate threads and, thus, in separate transactions. 
+  - ️Any transaction initiated on the server does not roll back in this case.
 
 ## 6.6 [@DataJpaTest](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.autoconfigured-spring-data-jpa)
 - Code
@@ -767,6 +788,10 @@ Don’t Trust a Test You’ve Never Seen Fail.
 - Fail first.
 
 ## 10.3 당부의 말씀 (2)
+- It’s better to not write a test at all than to write a bad test. 
+- A test that doesn’t provide significant value is a bad test.
+
+## 10.4 당부의 말씀 (3)
 - 정답은 없고, 정답에 가까운 길을 찾아갈 뿐
   - [지금은맞고그때는틀리다](https://namu.wiki/w/%EC%A7%80%EA%B8%88%EC%9D%80%EB%A7%9E%EA%B3%A0%EA%B7%B8%EB%95%8C%EB%8A%94%ED%8B%80%EB%A6%AC%EB%8B%A4)
 

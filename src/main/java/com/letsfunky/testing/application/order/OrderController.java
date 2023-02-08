@@ -2,6 +2,8 @@ package com.letsfunky.testing.application.order;
 
 import com.letsfunky.testing.application.order.OrderDto.OrderDetailResponse;
 import com.letsfunky.testing.application.order.OrderDto.OrderRequest;
+import com.letsfunky.testing.application.order.OrderDto.TestRequest;
+import com.letsfunky.testing.application.order.OrderDto.TestResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,5 +35,11 @@ public class OrderController {
                 request.getGoods(), request.getCount()
             )
         );
+    }
+
+    @PostMapping("/dto-test")
+    public TestResponse dtoTest(@RequestBody TestRequest testRequest) {
+        var negated = !testRequest.isSuccess();
+        return new TestResponse(negated, negated);
     }
 }

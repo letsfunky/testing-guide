@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class SmsApiDtoBuilder {
+public class SmsApiDtoBuilder {
 
     public static SmsResponse generateResponse(boolean success) {
         return new SmsResponse(

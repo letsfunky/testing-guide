@@ -5,24 +5,30 @@ import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.Order;
 import com.letsfunky.testing.domain.order.OrderDetail;
 import com.letsfunky.testing.domain.order.OrderRepository;
+import com.letsfunky.testing.infrastructure.message.SmsApiService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Slf4j
 public class OrderService {
 
     private final OrderRepository orderRepository;
     private final MemberRepository memberRepository;
     private final StoreService storeService;
+    private final SmsApiService smsApiService;
 
     public OrderService(
         OrderRepository orderRepository,
         MemberRepository memberRepository,
-        StoreService storeService
+        StoreService storeService,
+        SmsApiService smsApiService
     ) {
         this.orderRepository = orderRepository;
         this.memberRepository = memberRepository;
         this.storeService = storeService;
+        this.smsApiService = smsApiService;
     }
 
     @Transactional(readOnly = true)
@@ -55,6 +61,9 @@ public class OrderService {
                 () -> new RuntimeException("member not exist: memberId=" + memberId)
             );
 
+            smsApiService.send(phoneNumber, "order placed");
+
+            log.info("order created. orderId={}", persistedOrder.getId());
             return OrderDetail.of(member, persistedOrder);
         } else {
             throw new RuntimeException("not enough inventory");

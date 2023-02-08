@@ -13,6 +13,7 @@ import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.Order;
 import com.letsfunky.testing.domain.order.OrderDetail;
 import com.letsfunky.testing.domain.order.OrderRepository;
+import com.letsfunky.testing.infrastructure.message.SmsApiService;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -25,6 +26,7 @@ class RevisitedOrderServiceTest {
     private OrderRepository orderRepository;
     private MemberRepository memberRepository;
     private StoreService storeService;
+    private SmsApiService smsApiService;
     private OrderService sut;
 
     @BeforeEach
@@ -32,7 +34,8 @@ class RevisitedOrderServiceTest {
         orderRepository = mock(OrderRepository.class);
         memberRepository = mock(MemberRepository.class);
         storeService = mock(StoreService.class);
-        sut = new OrderService(orderRepository, memberRepository, storeService);
+        smsApiService = mock(SmsApiService.class);
+        sut = new OrderService(orderRepository, memberRepository, storeService, smsApiService);
     }
 
     @Test
@@ -44,19 +47,15 @@ class RevisitedOrderServiceTest {
 
         var fetchedOrderDetail = sut.getOrderDetail(order.getId());
 
-        assertEquals(member, order, fetchedOrderDetail);
+        assertResult(member, order, fetchedOrderDetail);
     }
 
-    private static void assertEquals(Member member, Order order, OrderDetail actual) {
+    private void assertResult(Member member, Order order, OrderDetail actual) {
         assertThat(actual.getOrderId()).isEqualTo(order.getId());
         assertThat(actual.getShippingAddress()).isEqualTo(order.getShippingAddress());
         assertThat(actual.getOrdererId()).isEqualTo(member.getId());
         assertThat(actual.getOrdererName()).isEqualTo(member.getName());
-
-        /* assertion block
-            assertThat(...)..
-            assertThat(..)..
-         */
+        // assert goes on..
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.letsfunky.testing.application.order;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.letsfunky.testing.domain.order.OrderDetail;
 import lombok.Value;
 
@@ -22,7 +23,6 @@ public class OrderDto {
         String shippingAddress;
 
         public static OrderDetailResponse of(OrderDetail orderDetail) {
-            // NOTE: some pretty formatting + presentation magic happens here
             return new OrderDetailResponse(
                 orderDetail.getOrderId(),
                 orderDetail.getOrdererId(),
@@ -30,5 +30,18 @@ public class OrderDto {
                 orderDetail.getShippingAddress()
             );
         }
+    }
+
+    @Value
+    public static class TestRequest {
+        @JsonProperty("success")
+        boolean isSuccess;
+        String dummy;
+    }
+
+    @Value
+    public static class TestResponse {
+        boolean isSuccess;
+        Boolean isActive;
     }
 }

@@ -1,13 +1,30 @@
 spring:
   datasource:
-    embedded-database-connection: hsqldb
+    # NOTE: hsqldb
+    # embedded-database-connection: hsqldb
+
+    # NOTE: h2
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+
+    # NOTE: testcontainers
+    # driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    # url: jdbc:tc:mysql:8.0.24:///test
   jpa:
     generate-ddl: true
     hibernate:
       ddl-auto: create-drop
     open-in-view: false
     properties:
-      hibernate.dialect: org.hibernate.dialect.HSQLDialect
+      # NOTE: hsqldb
+      # hibernate.dialect: org.hibernate.dialect.HSQLDialect
+
+      # NOTE: h2
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+
+      # NOTE: testcontainers
+      # database-platform: org.hibernate.dialect.MySQL8Dialect
+
       hibernate.format_sql: true
       hibernate.show_sql: true
       hibernate.use_sql_comments: false

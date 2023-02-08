@@ -11,6 +11,8 @@ import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.OrderRepository;
 import com.letsfunky.testing.infrastructure.message.SmsApiService;
 import javax.transaction.Transactional;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +20,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest
 @Transactional
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RevisitedOrderServiceIntegrationTest {
 
     @Autowired

@@ -88,7 +88,6 @@ class OrderControllerIntegrationTest {
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.ordererId", is(member.getId().intValue())))
             .andExpect(MockMvcResultMatchers.jsonPath("$.ordererName", is(member.getName())))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.shippingAddress", is("shipping-addr")))
-        ;
+            .andExpect(MockMvcResultMatchers.jsonPath("$.shippingAddress", is("shipping-addr")));
     }
 }

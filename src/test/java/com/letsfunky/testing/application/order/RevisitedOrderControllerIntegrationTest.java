@@ -10,19 +10,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.letsfunky.testing.MockMvcTestBase;
 import com.letsfunky.testing.application.order.OrderDto.OrderDetailResponse;
 import com.letsfunky.testing.application.order.OrderDto.OrderRequest;
+import com.letsfunky.testing.application.order.OrderDto.TestRequest;
+import com.letsfunky.testing.application.order.OrderDto.TestResponse;
 import com.letsfunky.testing.domain.member.Member;
 import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.Order;
 import com.letsfunky.testing.domain.order.OrderRepository;
 import com.letsfunky.testing.infrastructure.message.SmsApiService;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase{
+@Slf4j
+class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase {
 
     @Autowired
     private MemberRepository memberRepository;
@@ -80,5 +88,42 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase{
         assertThat(response.getOrdererName()).isEqualTo(member.getName());
         assertThat(response.getShippingAddress()).isEqualTo(orderRequest.getShippingAddress());
         // assert goes on..
+    }
+
+    @SneakyThrows
+    @Test
+    void sut가_다른_thread라_테스트가_실패한다(@Autowired TestRestTemplate testRestTemplate) {
+        var member = memberRepository.saveAndFlush(new Member("member-name"));
+        var orderRequest = new OrderRequest(member.getId(), "goods", 3, "phone-num", "shipping-address");
+
+        ResponseEntity<OrderDetailResponse> responseEntity =
+            testRestTemplate.postForEntity(baseUrl + "/", orderRequest, OrderDetailResponse.class);
+
+        var response = responseEntity.getBody();
+        assertThat(response.getOrdererId()).isEqualTo(member.getId());
+        assertThat(response.getOrdererName()).isEqualTo(member.getName());
+        assertThat(response.getShippingAddress()).isEqualTo(orderRequest.getShippingAddress());
+        // assert goes on..
+    }
+
+    @SneakyThrows
+    @Test
+    void primitive_boolean의_is_prefix가_response에서_사라진다() {
+        var givenParam = false;
+        var resultActions = mockMvc.perform(
+                post(baseUrl + "/dto-test")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(new TestRequest(givenParam, "dummy-string")))
+            )
+            .andDo(print())
+            .andExpect(status().isOk());
+
+        var response = toResponse(resultActions, TestResponse.class);
+        assertThat(response.isSuccess()).isEqualTo(!givenParam); // NOTE: fails due to ser/deser behavior
+        assertThat(response.getIsActive()).isEqualTo(!givenParam);
+
+        // NOTE: add if needed
+        resultActions
+            .andExpect(MockMvcResultMatchers.jsonPath("$.isSuccessful", Is.is(givenParam)));
     }
 }

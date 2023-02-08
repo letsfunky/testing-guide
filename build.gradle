@@ -39,12 +39,21 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.hsqldb:hsqldb'
     testImplementation 'org.dbunit:dbunit:2.7.3'
     testImplementation 'com.github.springtestdbunit:spring-test-dbunit:1.3.0'
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
 
+    // NOTE: hsqldb
+    // testImplementation 'org.hsqldb:hsqldb'
+
+    // NOTE: com.h2database
+    testImplementation 'com.h2database:h2'
+
+    // NOTE: testcontainers
+    testImplementation "org.testcontainers:testcontainers:1.17.6"
+    testImplementation "org.testcontainers:junit-jupiter:1.17.6"
+    testImplementation "org.testcontainers:mysql:1.17.6"
 }
 
 test {
