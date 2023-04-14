@@ -36,7 +36,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Integer.MIN_VALUE 두개를 sum()하면 두 숫자를 더한 것과 결과값이 같아야 한다.")
+    @DisplayName("Integer.MIN_VALUE 두개를 sum하면 두 숫자를 더한 것과 결과값이 같아야 한다.")
     void sum_of_integer_min_value() {
         // arrange
         int x = Integer.MIN_VALUE;

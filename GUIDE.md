@@ -1,34 +1,46 @@
 # 스프링 테스팅
-
 ## 교육대상
 - 단위/통합 테스팅을 입문하고자 하는 분
 - 테스트를 작성하고 있지만, 좀 더 좋은 테스팅에 대해 고민하시는 분
-- 참고
-  - 코드는 제공되지만, 따라해보는 실습은 없어요.🙏
-  - TDD는 다루지 않아요.
 
 ## 교육목표
 - 테스팅에 대해 이해해 보아요.
 - Spring Boot, JPA, JUnit5 를 이용하여 단위/통합 테스트를 작성해 보아요.
 - 실용적이고, 효율적인 테스팅 방법에 대해 고민해 보아요.
+
+## 참고
 - 아래의 책들에 기반한 내용이 주를 이뤄요.
   - Unit Testing (Vladimir Khorikov, Manning, 2020)
   - Pragmatic Unit Testing in Java 8 With JUnit (Jeff Langr with Andy Hunt & Dave Thomas, The Pragmatic Programmers, 2015)
 - https://github.com/letsfunky/testing-guide
-  - 테스팅을 만들어 보기 위한 코드로, 다소 `으응?`스러운 코드들이 있을 수 있어요. 🙇
+  - 테스트를 만들어 보기 위한 코드로, 다소 `으응?`스러운 코드들이 있을 수 있어요. 🙇
+
+# 목차
+- [0. Software Engineering](#0-software-engineering)
+- [1. 테스팅이란 무엇일까요?](#1-------------)
+- [2. 테스트의 종류에는 어떤 것들이 있을까요?](#2-----------------------)
+- [3. Mock](#3-mock)
+- [4. 테스팅 프레임워크](#4----------)
+- [5. 단위 테스트 만들어보기](#5-------------)
+- [6. 통합 테스트 만들어보기](#6-------------)
+- [7. end to end 테스트](#7-end-to-end----)
+- [8. 학습테스트](#8------)
+- [9. FAQ](#9-faq)
+- [10. 마치며](#10----)
+- [11. 별책부록](#11-----)
 
 # 시작하기 전에
 ## 약력
 - 잡다구리한 도메인에서 잡다구리한 테스트를 해봤어요.
     ```
-    한국투자증권 (pro*c, manual testing)
-    daum/kakao (spring, junit, selenium, brower-based regression test)
-    myrealtrip (rails, rspec)
-    sk telecom (spring, junit, rest-assured, end-to-end test)
-    kakao (spring, rails, junit, rspec, coverage 0%)
-    ncsoft (spring, junit, grpc, concurrency test)
-    bemyfriends (spring, kotest, 99.99% integration test)
-    nhn cloud (spring, junit)
+    한국**** (pro*c, manual testing)
+    da** (spring, junit, selenium, acceptance test)
+    my******** (rails, rspec)
+    sk******* (spring, junit, rest-assured, end-to-end test)
+    ka*** (spring, rails, junit, rspec, coverage 0%)
+    nc**** (spring, junit, grpc, concurrency test)
+    be********* (spring, kotest, 99.99% integration test)
+    nh****** (spring, junit)
     ```
 
 # 0 Software Engineering
@@ -50,9 +62,10 @@ Good programmers write code that humans can understand.
 
 ## 0.4 테스트 해야하나요?
 ```
-Tip 66: Testing Is Not About Finding Bugs
-Tip 67: A Test Is the First User of Your Code
 Tip 70: Test Your Software, or Your Users Will
+Tip 67: A Test Is the First User of Your Code
+Tip 66: Testing Is Not About Finding Bugs
+
 
 - Test To Code (David Thomas and Andrew Hunt, The Pragmatic Programmer, 2020)
 ```
@@ -73,15 +86,22 @@ It's not.
 ```
 
 ## 1.1 우리는 언제 테스트를 할까요?
-- You just finished coding a feature and want to ensure that it works as you expect.
-- You want to document a change so that you and others later understand the choices you coded into the system.
-- You need to change code and want to make sure your forthcoming changes don’t break any existing behavior.
-- You want to understand the current behavior of the system.
-- You want to know when third-party code no longer behaves as you expect.
+- 새로 개발한 기능이 생각대로 작동하는지 확인하고 싶엉
+  - You just finished coding a feature and want to ensure that it works as you expect.
+- 변경에 대한 명세를 남겨 친구들이 나의 코드를 이해할 수 있도록 하고 싶엉
+  - You want to document a change so that you and others later understand the choices you coded into the system.
+- 변경된 코드가 기존 시스템을 깨트리지 않는 것을 내 눈으로 보고 싶엉
+  - You need to change code and want to make sure your forthcoming changes don’t break any existing behavior.
+- 현재 시스템이 어떻게 동작하는지 알고 싶엉 
+  - You want to understand the current behavior of the system.
+- 3rd party 코드의 동작을 확인하고 싶엉
+  - You want to know when third-party code no longer behaves as you expect.
 
 ## 1.2 그럼 테스팅의 목표는 무엇일까요?
-- The goal is to enable sustainable growth of the software project. 
-- (side effect) unit testing practices lead to a better design.
+- 소프트웨어의 지속가능한 성장
+  - The goal is to enable sustainable growth of the software project.
+- (부작용) 더 좋은 소프트웨어 디자인
+  - (side effect) unit testing practices lead to a better design.
 
 ## 1.3 그런데 코드에는 부채와 비용이 존재합니다
 ### 1.3.1 Code (Asset vs Liability)
@@ -95,12 +115,13 @@ It's not.
 ## 1.4 그럼 무엇을 테스트 해야 좋을까요?
 - 뭘 하면 잘 했다고 소문이 날까
 
-## 1.4.1 100% Coverage
+## 1.4.1 100% Coverage (?)
 ```
 How much of the code should be tested with these automated unit tests? 
 Do I really need to answer that question? All of it! All. Of. It.
 
 Am I suggesting 100% test coverage? No, I’m not suggesting it. I’m demanding it.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Every single line of code that you write should be tested. Period.
 
 Isn’t that unrealistic? Of course not. You only write code because you expect it
@@ -117,6 +138,7 @@ Line coverage is a bad metric to measure test success.
 And even at 100% we still can't be sure that every bug has been squashed.
 
 I suggest measuring test success in how comfortable we feel to ship the software. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If we trust the tests enough to ship after having executed them, we're good. 
 
 - How Much Testing Is Enough? (Tom Hombergs, Get Your Hands Dirty on Clean Architecture, 2018, p68)
@@ -139,6 +161,10 @@ If we trust the tests enough to ship after having executed them, we're good.
 - Output-based testing
 - State-based testing
 - Communication-based testing
+- Among the three, 
+  - the output-based style produces tests of the highest quality, 
+  - state-based testing is the second-best choice, 
+  - and communication-based testing should be used only occasionally.
 
 ## 1.4.5 Happy Path vs Edge Case
 - check as many of the business scenario’s edge cases as possible with unit tests; 
@@ -159,7 +185,8 @@ If we trust the tests enough to ship after having executed them, we're good.
 - 뭘까?
 
 ## 1.6.1 It’s integrated into the development cycle
-- 개발 사이클에 들어가있지 않은 테스트는 상하기 마련
+- 개발 사이클에 들어가 있지 않은 테스트는 상하기 마련
+  - Build pipeline/script
 
 ## 1.6.2 It targets only the most important parts of your code base
 - In most applications, the most important part is the part that contains business logic — the domain model.
@@ -178,23 +205,59 @@ If we trust the tests enough to ship after having executed them, we're good.
   - On the other hand, writing a valuable test requires you to also know code design techniques.
 
 # 2 테스트의 종류에는 어떤 것들이 있을까요?
-## 2.0 테스트의 종류
+## 2.0 테스트의 종류 (Monolithic Architecture)
 <img src="./images/test-pyramid.png" width="400"/><br/>
+- [Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
 - acceptance test
 - regression test, smoke testing ...
 - load test, stress test ...
 - mutation test ...
+- [testing in msa](https://martinfowler.com/articles/microservice-testing/)
 
 ## 2.1 단위 테스트
 - Verifies a small piece of code (also known as a unit)
 - Does it quickly,
 - And does it in an isolated manner.
 
-## 2.2 London school(mockist) vs Classical school
+## 2.2 London school(Mockist) vs Classical school(Classicist)
 <img src="./images/london-classical.png" width="600"/><br/>
 <img src="./images/shared-outofprocess-dep.png" width="600"/><br/>
 
-## 2.2.1 London School
+## 2.2.1 Classical School(Classicist)
+```
+void purchase_succeeds_when_enough_inventory() {
+    // Arrange
+    var store = new Store();
+    store.addInventory(Product.Shampoo, 10);
+    var customer = new Customer();
+
+    // Act
+    bool success = customer.purchase(store, Product.Shampoo, 5);
+
+    // Assert
+    assertTrue(success);
+    assertEqual(5, store.getInventory(Product.Shampoo));
+}
+```
+
+## 2.2.2 London School(Mockist)
+```
+void purchase_succeeds_when_enough_inventory() {
+    // Arrange
+    var mockStore = mock(Store.class)();
+    var customer = new Customer();
+    when(mockStore.hasEnoughInventory(Product.Shampoo, 5)).thenReturn(true);
+
+    // Act
+    bool success = customer.purchase(mockStore, Product.Shampoo, 5);
+
+    // Assert
+    assertTrue(success);
+    verify(mockStore, times(1)).removeInventory(Product.Shampoo, 5);
+}
+```
+
+## 2.2.3 London School Pros and Cons
 - Pros
   - Better granularity: The tests are fine-grained and check only one class at a time.
   - It’s easier to unit test a larger graph of interconnected classes.
@@ -230,8 +293,9 @@ If we trust the tests enough to ship after having executed them, we're good.
 var order = mock(Order.class);
 var purchase = new Purchase(order);
 
-@Test {
-  when(order.getItems().thenReturn(List.of()); // stub
+@Test 
+void stub() {
+  when(order.getItems()).thenReturn(List.of()); // stub
 
   purchase.validateOrders();
 
@@ -244,8 +308,9 @@ var purchase = new Purchase(order);
 var order = mock(Order.class);
 var purchase = new Purchase(order);
 
-@Test {
-  when(order.getItems().thenReturn(List.of()); // stub
+@Test 
+void mock() {
+  when(order.getItems()).thenReturn(List.of()); // stub
 
   purchase.validateOrders();
 
@@ -258,13 +323,14 @@ var purchase = new Purchase(order);
 var order = mock(Order.class);
 var purchase = new Purchase(order);
 
-@Test {
+@Test 
+void spy() {
   var list = new ArrayList<>();
   var spyList = spy(list);
 
-  purchase.doSomething(spyList); // System under test
+  purchase.doSomething(spyList);
 
-  verify(spyList).add("1");
+  verify(spyList).add("1"); // examine the call to the spy
   verify(spyList).add("2");
   assertThat(spyList.size()).isEqualTo(2);
 }
@@ -306,6 +372,7 @@ var purchase = new Purchase(order);
 - It's a controversial stance.
   - Domain knowledge leakage vs Executable specification
 - [Derived Values Ensure Executable Specification](https://blog.ploeh.dk/2009/03/03/DerivedValuesEnsureExecutableSpecification/)
+  - Tests should act both as `Executable Specification` as well as `documentation`, which puts a lot of responsibility on the test. 
 
 ## 5.3.1 Derived Values
 - Code
@@ -411,6 +478,7 @@ public static int sum(int x, int y) { ... }
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RevisitedCalculatorTest {
 
+  @ParameterizedTest
   @Test
   void 두개의_integer를_sum한다(int x, int y, long expected) { ... }
 ```
@@ -568,7 +636,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 
     var result = sut.createOrder(goods, count);
 
-    verify(storeService.removeInventory(goods, count));
+    verify(storeService, times(1)).removeInventory(goods, count);
 }
 ```
 
@@ -622,7 +690,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 ## 6.4 [@SpringBootTest](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing)
 - Code
   - [RevisitedOrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/RevisitedOrderService.java)
-  - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
+  - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
 - `@SpringBootTest` tests are full integration tests and involve the entire application.
 - The annotation works by creating the `ApplicationContext` used in your tests through SpringApplication.
 
@@ -663,14 +731,11 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - Non-persistent test fixtures
   - (JPA) save(), saveAndFlush()
 
-## 6.7.1 Persistent Test Fixtures
+## 6.7.1 Persistent Test Fixtures (1)
 ```
 간단한 관계를 가진 예제이기 때문에 테스트에 필요한 데이터를 미리 설정하는데 별다른 힘을 들이지 않았지만, 
-~~~~~~~~~~~~~~~~~~~~~~~~~~                                     ~~~~~~~~~~~~~~~
 점차 관계가 복잡해질수록 데이터를 설정하는것에 많은 고통이 따르게 됩니다.
-    ~~~~~~~~~~~~~~                     ~~~~~~~~~~~~~~~~
 데이터를 설정하는데 드는 힘을 조금이나마 덜어보고자 DbUnit 을 사용해보도록 하겠습니다.
-                   ~~~~~~~~~~~~~~~~~~~
 
 - 스프링부트에서 DbUnit 을 이용하여 DB 테스트 해보기 (https://techblog.woowahan.com/2650/, 2019)
 ```
@@ -681,7 +746,19 @@ void 주문이_성공하면_inventory가_줄어든다() {
   - DRY (Don't Repeat Yourself) violation
   - Dangling reference
   - Type-unsafe
-  - Xml Hell (for complicated cases)
+  - Xml hell (for complicated cases)
+
+## 6.7.1 Persistent Test Fixtures (2)
+```
+# 토비의 스프링 3 (2010)
+ORM 롤백 트랜잭션 테스트의 주의사항
+트랜잭션 지원 테스트에 DBUnit 사용하기
+
+# 토비의 스프 부트 - 이해와 원리 Q&A (2023)
+오래전에는 dbunit 같은 도구를 이용해서 테스트 수행 전후에 테스트용 db를 준비하는 것과 
+테스트 후에 이를 원래대로 돌려놓는 작업을 일일히 진행을 했어야 했습니다.
+```
+- [토비의 스프 부트 - 이해와 원리 Q&A](https://www.inflearn.com/questions/792383/%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%97%90%EC%84%9C%EC%9D%98-transactional-%EC%82%AC%EC%9A%A9%EC%97%90-%EB%8C%80%ED%95%B4-%EC%A7%88%EB%AC%B8%EC%9D%B4-%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4)
 
 ## 6.7.2 Non-persistent Test Fixtures
 ```
@@ -690,11 +767,15 @@ ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는�
 ...
 이럴 때는 테스트 코드 내부에서 강제로 flush() 메소드를 호출하는 방법을 사용해야 한다.
 
-- ORM 롤백 트랜잭션 테스트의 주의사항 (이일민, 토비의 스프링3, p1333)
+- ORM 롤백 트랜잭션 테스트의 주의사항 (이일민, 토비의 스프링3, p1333, 2010)
 ```
 - Test fixture는 persistent layer를 이용해보자
 
-## 6.8 Parallel Test Execution
+## 6.8 In-memory DB vs Regular DB
+- Using in-memory database is, mismatch between production and test environments.
+  - Use TestContainers
+
+## 6.9 Parallel Test Execution
 - [Do not run tests in parallel if the tests:](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html#testcontext-parallel-test-execution)
   - Use Spring Framework’s `@DirtiesContext` support.
   - Use Spring Boot’s `@MockBean` or `@SpyBean` support.
@@ -756,19 +837,14 @@ Working Effectively with Legacy Code (Robert C. Martin Series) by Michael Feathe
 ```
 
 ## 9.6 TDD 어떻게 하면 되나요?.?
-- 사실 잘 모름 (안해봄 + 못해봄)
-  - TAD (Test After Development)
-- 현실과 이상의 괴리
-  - NDD (Needs Driven Development) ~= 당장 돌아가는 결과물 >>>>>>> 넘사벽 >>> 지속가능한 결과물
-- 해보고 알려주세요 ❤️ 
-- 참고
-  - [TDD is dead](https://dhh.dk/2014/tdd-is-dead-long-live-testing.html)
+- [TDD is dead](https://dhh.dk/2014/tdd-is-dead-long-live-testing.html)
+- [Mockists Are Dead. Long Live Classicists.](https://www.thoughtworks.com/insights/blog/mockists-are-dead-long-live-classicists)
 
 ## 9.7 다른 테스트 프레임워크/라이브러리
 - spock
-- rest-assured
-- PowerMock
+- karate
 - kotest
+- rest-assured
 - ...
 
 # 10 마치며
