@@ -37,9 +37,9 @@ class RevisitedCalculatorTest {
             List.of(123_456, 789_012), 912_468L,
             List.of(Integer.MAX_VALUE, Integer.MAX_VALUE), 4294967294L,
             List.of(Integer.MIN_VALUE, Integer.MIN_VALUE), -4294967296L
-        ).forEach((k, expected) -> {
-            var x = k.get(0);
-            var y = k.get(1);
+        ).forEach((params, expected) -> {
+            var x = params.get(0);
+            var y = params.get(1);
 
             long actual = RevisitedCalculator.sum(x, y);
 

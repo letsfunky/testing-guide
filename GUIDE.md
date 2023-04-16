@@ -115,7 +115,7 @@ It's not.
 ## 1.4 그럼 무엇을 테스트 해야 좋을까요?
 - 뭘 하면 잘 했다고 소문이 날까
 
-## 1.4.1 100% Coverage (?)
+## 1.4.1 100% Coverage 🫠
 ```
 How much of the code should be tested with these automated unit tests? 
 Do I really need to answer that question? All of it! All. Of. It.
@@ -131,7 +131,7 @@ works. The only way to know this is to test it.
 - You Must Know It Works (Robert C. Martin, The Clean Coder, 2012, p46)
 ```
 
-## 1.4.2 Feel Comfortable
+## 1.4.2 Feel Comfortable 🙂
 ```
 A question many project teams I've been part of couldn't answer is how much testing we should do.
 Line coverage is a bad metric to measure test success.
@@ -145,7 +145,11 @@ If we trust the tests enough to ship after having executed them, we're good.
 ```
 
 ## 1.4.3 Domain Model (Business Logic)
-- [An object model of the domain that incorporates both behavior and data.](https://martinfowler.com/eaaCatalog/domainModel.html)
+- Domain
+  - [A domain is the targeted subject area of a computer program. (..) For example, a particular programming project might have had as a goal, the creation of a program for a particular hospital, and that hospital would be the domain.]((https://en.wikipedia.org/wiki/Domain_(software_engineering)))
+- Domain Model
+  - [An object model of the domain that incorporates both behavior and data.](https://martinfowler.com/eaaCatalog/domainModel.html)
+  - [Designing a microservice domain model (from msdn)](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model)
 <br/><br/>
 
 ## 1.4.3.1 Domain Model in DDD
@@ -222,6 +226,11 @@ If we trust the tests enough to ship after having executed them, we're good.
 ## 2.2 London school(Mockist) vs Classical school(Classicist)
 <img src="./images/london-classical.png" width="600"/><br/>
 <img src="./images/shared-outofprocess-dep.png" width="600"/><br/>
+- types of dependencies:
+  - `Shared dependency` — A dependency shared by tests (not production code)
+    - A typical example of a shared dependency is a static mutable field
+    - A change to such a field is visible across all unit tests running within the same process. 
+  - `Private dependency` — Any dependency that is not shared
 
 ## 2.2.1 Classical School(Classicist)
 ```
