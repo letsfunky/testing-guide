@@ -130,6 +130,7 @@ works. The only way to know this is to test it.
 
 - You Must Know It Works (Robert C. Martin, The Clean Coder, 2012, p46)
 ```
+- [토스ㅣSLASH 21 - 테스트 커버리지 100%](https://www.youtube.com/watch?v=jdlBu2vFv58)
 
 ## 1.4.2 Feel Comfortable 🙂
 ```
@@ -149,7 +150,7 @@ If we trust the tests enough to ship after having executed them, we're good.
   - [A domain is the targeted subject area of a computer program. (..) For example, a particular programming project might have had as a goal, the creation of a program for a particular hospital, and that hospital would be the domain.]((https://en.wikipedia.org/wiki/Domain_(software_engineering)))
 - Domain Model
   - [An object model of the domain that incorporates both behavior and data.](https://martinfowler.com/eaaCatalog/domainModel.html)
-  - [Designing a microservice domain model (from msdn)](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model)
+  - [Designing a microservice domain model](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model)
 <br/><br/>
 
 ## 1.4.3.1 Domain Model in DDD
@@ -297,22 +298,7 @@ void purchase_succeeds_when_enough_inventory() {
   - Mock waits to be called by the SUT(system under test)
   - Stub gives out data that goes to the SUT
 
-## 3.2 Stub
-```
-var order = mock(Order.class);
-var purchase = new Purchase(order);
-
-@Test 
-void stub() {
-  when(order.getItems()).thenReturn(List.of()); // stub
-
-  purchase.validateOrders();
-
-  assertTrue(purchase.canBeShipped());
-}
-```
-
-## 3.3 Mock
+## 3.2 Mock
 ```
 var order = mock(Order.class);
 var purchase = new Purchase(order);
@@ -327,7 +313,7 @@ void mock() {
 }
 ```
 
-## 3.4 Spy
+## 3.3 Spy
 ```
 var order = mock(Order.class);
 var purchase = new Purchase(order);
@@ -344,6 +330,25 @@ void spy() {
   assertThat(spyList.size()).isEqualTo(2);
 }
 ```
+
+## 3.4 Stub (+ Dummy, Fake)
+```
+var order = mock(Order.class);
+var purchase = new Purchase(order);
+
+@Test 
+void stub() {
+  when(order.getItems()).thenReturn(List.of()); // stub
+
+  purchase.validateOrders();
+
+  assertFalse(purchase.canBeShipped());
+}
+```
+- `Dummy` is a simple, hardcoded value such as a null value or a made-up string.
+  - It’s used to satisfy the SUT’s method signature and doesn’t participate in producing the final outcome.
+- `Fake` is the same as a stub for most purposes.
+  - The difference is in the rationale for its creation: a fake is usually implemented to replace a dependency that doesn’t yet exist.
 
 # 4 테스팅 프레임워크
 ## 4.0 테스팅 프레임워크
