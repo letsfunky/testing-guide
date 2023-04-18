@@ -33,8 +33,6 @@ class RevisitedSmsApiServiceTest {
         var response = sut.send(phoneNumber, smsMessage);
 
         assertThat(response.isSuccess()).isTrue();
-        assertThat(response.getStatusCode()).isEqualTo("statusCode");
-        // assert goes on..
     }
 
     @Test

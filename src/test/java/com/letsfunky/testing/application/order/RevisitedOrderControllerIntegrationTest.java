@@ -41,7 +41,7 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase {
     @MockBean
     private SmsApiService dummySmsApiService;
 
-    private String baseUrl = "/orders";
+    private final static String baseUrl = "/orders";
 
     @SneakyThrows
     @Test
@@ -87,7 +87,6 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase {
         assertThat(response.getOrdererId()).isEqualTo(member.getId());
         assertThat(response.getOrdererName()).isEqualTo(member.getName());
         assertThat(response.getShippingAddress()).isEqualTo(orderRequest.getShippingAddress());
-        // assert goes on..
     }
 
     @SneakyThrows
@@ -103,7 +102,6 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase {
         assertThat(response.getOrdererId()).isEqualTo(member.getId());
         assertThat(response.getOrdererName()).isEqualTo(member.getName());
         assertThat(response.getShippingAddress()).isEqualTo(orderRequest.getShippingAddress());
-        // assert goes on..
     }
 
     @SneakyThrows

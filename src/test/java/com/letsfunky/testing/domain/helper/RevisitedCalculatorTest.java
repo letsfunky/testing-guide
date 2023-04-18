@@ -15,10 +15,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RevisitedCalculatorTest {
 
+    // @ParameterizedTest 사용
     @ParameterizedTest
     @MethodSource("sumIntegersSource")
     void 두개의_integer를_sum한다(int x, int y, long expected) {
-        long actual = RevisitedCalculator.sum(x, y);
+        var actual = RevisitedCalculator.sum(x, y);
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -31,17 +32,18 @@ class RevisitedCalculatorTest {
         );
     }
 
+    // @ParameterizedTest 미사용
     @Test
-    void 두개의_integer를_sum한다_$parameterized_test_미사용$() {
+    void 두개의_integer를_sum한다() {
         Map.of(
             List.of(123_456, 789_012), 912_468L,
             List.of(Integer.MAX_VALUE, Integer.MAX_VALUE), 4294967294L,
             List.of(Integer.MIN_VALUE, Integer.MIN_VALUE), -4294967296L
-        ).forEach((params, expected) -> {
-            var x = params.get(0);
-            var y = params.get(1);
+        ).forEach((xy, expected) -> {
+            var x = xy.get(0);
+            var y = xy.get(1);
 
-            long actual = RevisitedCalculator.sum(x, y);
+            var actual = RevisitedCalculator.sum(x, y);
 
             assertThat(actual).isEqualTo(expected);
         });

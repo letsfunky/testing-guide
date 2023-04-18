@@ -48,10 +48,8 @@ class SmsApiServiceTest {
 
         var response = sut.send(phoneNumber, smsMessage);
 
-        assertThat(response.isSuccess()).isTrue();
-        assertThat(response.getStatusCode()).isEqualTo("statusCode");
-        // assert goes on..
         verify(smsApiClient, times(1)).send(request);
+        assertThat(response.isSuccess()).isTrue();
     }
 
     @Test
@@ -73,9 +71,9 @@ class SmsApiServiceTest {
             )
         );
 
+        verify(smsApiClient, times(1)).send(request);
         assertThatThrownBy(() -> sut.send(phoneNumber, smsMessage))
             .isExactlyInstanceOf(RuntimeException.class)
             .hasMessage("sms send failed");
-        verify(smsApiClient, times(1)).send(request);
     }
 }

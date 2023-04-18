@@ -14,12 +14,12 @@ class OrderStatusTest {
     class OrderStatus가_DRAFT일때 {
         @Test
         void ORDERED로_변경가능하다() {
-            assertThat(OrderStatus.DRAFT.processable(OrderStatus.ORDERED));
+            assertThat(OrderStatus.DRAFT.processable(OrderStatus.ORDERED)).isTrue();
         }
 
         @Test
         void PAYMENT_COMPLETED로_변경가능하다() {
-            assertThat(OrderStatus.DRAFT.processable(OrderStatus.PAYMENT_COMPLETED));
+            assertThat(OrderStatus.DRAFT.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
         }
     }
 
@@ -27,12 +27,12 @@ class OrderStatusTest {
     class OrderStatus가_ORDERED일때 {
         @Test
         void PAYMENT_COMPLETED로_변경가능하다() {
-            assertThat(OrderStatus.ORDERED.processable(OrderStatus.PAYMENT_COMPLETED));
+            assertThat(OrderStatus.ORDERED.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
         }
 
         @Test
         void SHIPPED로_변경가능하다() {
-            assertThat(OrderStatus.ORDERED.processable(OrderStatus.SHIPPED));
+            assertThat(OrderStatus.ORDERED.processable(OrderStatus.SHIPPED)).isTrue();
         }
     }
 

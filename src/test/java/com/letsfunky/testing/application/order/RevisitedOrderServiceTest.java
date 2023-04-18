@@ -55,7 +55,6 @@ class RevisitedOrderServiceTest {
         assertThat(actual.getShippingAddress()).isEqualTo(order.getShippingAddress());
         assertThat(actual.getOrdererId()).isEqualTo(member.getId());
         assertThat(actual.getOrdererName()).isEqualTo(member.getName());
-        // assert goes on..
     }
 
     @Test
@@ -73,10 +72,9 @@ class RevisitedOrderServiceTest {
 
         var orderDetail = sut.createOrder(memberId, phoneNumber, shippingAddress, goods, count);
 
+        verify(storeService, times(1)).removeInventory(goods, count);
         assertThat(orderDetail.getOrderId()).isEqualTo(orderId);
         assertThat(orderDetail.getOrdererId()).isEqualTo(memberId);
-        // assert goes on..
-        verify(storeService, times(1)).removeInventory(goods, count);
     }
 }
 

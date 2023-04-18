@@ -46,9 +46,8 @@ class RevisitedOrderServiceIntegrationTest {
 
         var orderDetail = sut.createOrder(member.getId(), phoneNumber, shippingAddress, goods, count);
 
+        verify(smsApiService, times(1)).send(eq(phoneNumber), any());
         assertThat(orderRepository.findAll().size()).isEqualTo(1);
         assertThat(orderDetail.getOrdererId()).isEqualTo(member.getId());
-        // assert goes on..
-        verify(smsApiService, times(1)).send(eq(phoneNumber), any());
     }
 }

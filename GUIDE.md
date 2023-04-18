@@ -87,21 +87,23 @@ It's not.
 
 ## 1.1 우리는 언제 테스트를 할까요?
 - 새로 개발한 기능이 생각대로 작동하는지 확인하고 싶엉
-  - You just finished coding a feature and want to ensure that it works as you expect.
 - 변경에 대한 명세를 남겨 친구들이 나의 코드를 이해할 수 있도록 하고 싶엉
-  - You want to document a change so that you and others later understand the choices you coded into the system.
 - 변경된 코드가 기존 시스템을 깨트리지 않는 것을 내 눈으로 보고 싶엉
-  - You need to change code and want to make sure your forthcoming changes don’t break any existing behavior.
 - 현재 시스템이 어떻게 동작하는지 알고 싶엉 
-  - You want to understand the current behavior of the system.
 - 3rd party 코드의 동작을 확인하고 싶엉
-  - You want to know when third-party code no longer behaves as you expect.
+
+* You just finished coding a feature and want to ensure that it works as you expect.
+* You want to document a change so that you and others later understand the choices you coded into the system.
+* You need to change code and want to make sure your forthcoming changes don’t break any existing behavior.
+* You want to understand the current behavior of the system.
+* You want to know when third-party code no longer behaves as you expect.
 
 ## 1.2 그럼 테스팅의 목표는 무엇일까요?
 - 소프트웨어의 지속가능한 성장
-  - The goal is to enable sustainable growth of the software project.
 - (부작용) 더 좋은 소프트웨어 디자인
-  - (side effect) unit testing practices lead to a better design.
+
+* The goal is to enable sustainable growth of the software project.
+* (side effect) unit testing practices lead to a better design.
 
 ## 1.3 그런데 코드에는 부채와 비용이 존재합니다
 ### 1.3.1 Code (Asset vs Liability)
@@ -305,8 +307,6 @@ var purchase = new Purchase(order);
 
 @Test 
 void mock() {
-  when(order.getItems()).thenReturn(List.of()); // stub
-
   purchase.validateOrders();
 
   verify(order, times(1)).validated(); // examine the call to the mock
@@ -444,30 +444,34 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
 
     // assert
     int derivedExpected = x + y;
+    assertEquals(actual, derivedExpected);
+
     int hardCodedExpected = 912_468;
     assertEquals(actual, hardCodedExpected);
-    assertEquals(actual, derivedExpected);
 }
 ```
 
-## 5.4 Using an assertion library to further improve test readability
+## 5.4 Happy path and Edge case (Boundary Condition)
+- Code
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
+```
+public static int sum(int x, int y) { ... }
+```
+
+## 5.5 Using an assertion library to further improve test readability
 ```
 // assertJ 가 다양한 기능을 가독성 좋게 제공
-assertEquals(expected, actual);
+assertEquals(actual, expected); // ?
+assertEquals(expected, actual); // ?
 
 vs
 
 assertThat(actual).isEqualTo(expected);
 ```
 
-## 5.5 Happy path and Edge case
-```
-              ~~~
-public static int sum(int x, int y) { ... }
-```
-
 ## 5.6 Naming a unit test
 - Code
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
   - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
 - One of the most prominent, and probably least helpful, is the following convention:
   - `[MethodUnderTest]_[Scenario]_[ExpectedResult]`
@@ -499,21 +503,25 @@ class RevisitedCalculatorTest {
 
 ## 5.8 Refactoring to parameterized tests
 - Code
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
   - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
 - @ParameterizedTest vs Simple Iteration
 ```
 @ParameterizedTest
-@MethodSource("sumIntegersSource") {
+@MethodSource("sumIntegersSource") 
+void parameterized() {
   ... 
 }
 
+// @MethodSource
 static Stream<Arguments> sumIntegersSource() {
   ...
 }
 
 vs
 
-@Test {
+@Test 
+void simple_iteration() {
   Map.of(...).forEach((k, v) ->
     ...
   );
@@ -551,7 +559,8 @@ vs
 ## 5.11 Avoid multiple arrange, act, and assert sections
 ```
 // 아아 안됳. ... .
-@Test {
+@Test
+void 변하는_job상태를_확인한다() {
   var startedJob = initJob.start();
   assertEquals(JobStatus.STARTED, startedJob.getStatus());
 
@@ -571,7 +580,7 @@ vs
 
 ## 5.13 How large should each section be?
 - the `arrange` section is the largest
-- watch out for `act` sections that are larger than a single line
+- ❗ watch out for `act` sections that are larger than a single line
 - If the `act` consists of two or more lines, it could indicate a problem with the SUT’s public API.
   - Leaking implementation details
 ```
@@ -582,7 +591,7 @@ public void 재고가_충분하면_구매가_성공한다() {
   var store = new Store();
   store.addInventory(Product.Shampoo, 10);
 
-  // Act
+  // Act (code smell)
   var success = customer.purchase(store, Product.Shampoo, 5);
   store.RemoveInventory(success, Product.Shampoo, 5);
 
@@ -604,11 +613,11 @@ public void 재고가_충분하면_구매가_성공한다() {
   - [SmsApiDtoBuilder.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiDtoBuilder.java)
 - [Test Fixtures](https://junit.org/junit4/cookbook.html)
   - `Tests need to run against the background of a known set of objects. This set of objects is called a test fixture.`
-- High coupling between tests is an anti-pattern
-- The use of constructors(like `@BeforeEach`) in tests diminishes test readability
+- ❗High coupling between tests is an anti-pattern
+  - The use of constructors (like `@BeforeEach`) in tests diminishes test readability
 - A better way to reuse test fixtures
   - builder 의 이용 (ObjectMother vs Builder)
-  - 테스트에서 이용되지 않는 metadata는 dummy 를 이용하자
+  - 테스트에서 이용되지 않는 field 는 dummy 를 이용하자
   - 나 자신이 아닌, 유지보수할 사람을 생각해서 코드를 작성하자
 - [gradle java-test-fixture](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
   - [gradle java-test-fixture in toss tech blog](https://toss.tech/article/how-to-manage-test-dependency-in-gradle)
@@ -617,7 +626,7 @@ public void 재고가_충분하면_구매가_성공한다() {
 - Code
   - [SmsApiService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsApiService.java)
   - [SmsApiServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiServiceTest.java)
-- Asserting interactions with stubs is a common anti-pattern that leads to fragile tests.
+- ❗Asserting interactions with stubs is a common anti-pattern that leads to fragile tests.
 - This practice of verifying things that aren’t part of the end result is also called overspecification.
 - The only way to improve resistance to refactoring in tests is to make those tests verify the end result (which, ideally, should be meaningful to a non-programmer), not implementation details.
 ```

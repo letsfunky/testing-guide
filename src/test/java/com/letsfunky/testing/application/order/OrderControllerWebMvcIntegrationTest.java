@@ -32,7 +32,7 @@ class OrderControllerWebMvcIntegrationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private String baseUrl = "/orders";
+    private final static String baseUrl = "/orders";
 
     @SneakyThrows
     @Test
