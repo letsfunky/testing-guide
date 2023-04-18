@@ -607,9 +607,9 @@ public void 재고가_충분하면_구매가_성공한다() {
 
 ## 5.15 Reusing test fixtures between tests
 - Code
-  - [SmsApiService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsApiService.java)
-  - [SmsApiServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiServiceTest.java)
-  - [RevistedSmsApiServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/RevisitedSmsApiServiceTest.java)
+  - [SmsService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsService.java)
+  - [SmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsServiceTest.java)
+  - [RevistedSmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/RevisitedSmsServiceTest.java)
   - [SmsApiDtoBuilder.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiDtoBuilder.java)
 - [Test Fixtures](https://junit.org/junit4/cookbook.html)
   - `Tests need to run against the background of a known set of objects. This set of objects is called a test fixture.`
@@ -624,8 +624,8 @@ public void 재고가_충분하면_구매가_성공한다() {
 
 ## 5.16 Don’t assert interactions with stubs
 - Code
-  - [SmsApiService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsApiService.java)
-  - [SmsApiServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiServiceTest.java)
+  - [SmsService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsService.java)
+  - [SmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsServiceTest.java)
 - ❗Asserting interactions with stubs is a common anti-pattern that leads to fragile tests.
 - This practice of verifying things that aren’t part of the end result is also called overspecification.
 - The only way to improve resistance to refactoring in tests is to make those tests verify the end result (which, ideally, should be meaningful to a non-programmer), not implementation details.
@@ -808,7 +808,6 @@ ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는�
 ## 7.0 end to end 테스트는 이 교육에서는 만들지 않습니당
 - An end-to-end test in a scenario with an API would be a test running against a deployed, fully functioning version of that API, which means no mocks for any of the out-of-process dependencies.
 - 만들기도 어렵고, 유지보수하기도 어렵다
-- 다행히 우리에겐 유능하고 잘생긴 (그리고 모든 서비스를 아우르는) QA분들이 있음
 
 # 8 학습테스트
 ## 8.0 TestAny
@@ -832,7 +831,7 @@ Treat Spurious Failures as Candidate Threading Issues
 
 Threaded code causes things to fail that “simply cannot fail.” 
 Most developers do not have an intuitive feel for how threading interacts with other code (authors included). 
-Bugs in threaded code might exhibit their symptoms once in a thousand, or a million, executions. 
+Bugs in threaded code might exhibit their symptoms once in a thousand, or a million, executions.
 Attempts to repeat the systems can be frustratingly. 
 This often leads developers to write off the failure as a cosmic ray, a hardware glitch, or some other kind of “one-off.” 
 It is best to assume that one-offs do not exist. The longer these “one-offs” are ignored, the more code is built on top of a potentially faulty approach.

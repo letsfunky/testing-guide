@@ -1,6 +1,7 @@
 package com.letsfunky.testing.application.order;
 
 import com.letsfunky.testing.application.store.StoreService;
+import com.letsfunky.testing.domain.member.Member;
 import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.Order;
 import com.letsfunky.testing.domain.order.OrderDetail;
@@ -33,25 +34,22 @@ public class RevisitedOrderService {
 
     @Transactional
     public OrderDetail createOrder(
-        long memberId,
+        Member member,
         String phoneNumber, String shippingAddress,
         String goods, int count
     ) {
         if (storeService.hasInventory(goods, count)) {
             storeService.removeInventory(goods, count);
 
-            var order = new Order(memberId, shippingAddress);
+            var order = new Order(member.getId(), shippingAddress);
             var persistedOrder = orderRepository.save(order);
-            var member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("member not exist: memberId=" + memberId));
 
-            smsService.send(phoneNumber, "order placed");
-
+            smsService.send(phoneNumber, "order placed successfully.");
             log.info("order created: orderId={}", persistedOrder.getId());
 
             return OrderDetail.of(member, persistedOrder);
         } else {
-            throw new RuntimeException("not enough inventory");
+            throw new RuntimeException("not enough inventory"); // needs exception abstraction
         }
     }
 

@@ -44,7 +44,7 @@ class RevisitedOrderServiceIntegrationTest {
         var goods = "goods";
         var count = 3;
 
-        var orderDetail = sut.createOrder(member.getId(), phoneNumber, shippingAddress, goods, count);
+        var orderDetail = sut.createOrder(member, phoneNumber, shippingAddress, goods, count);
 
         verify(smsService, times(1)).send(eq(phoneNumber), any());
         assertThat(orderRepository.findAll().size()).isEqualTo(1);
