@@ -13,7 +13,7 @@ import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.Order;
 import com.letsfunky.testing.domain.order.OrderDetail;
 import com.letsfunky.testing.domain.order.OrderRepository;
-import com.letsfunky.testing.infrastructure.message.SmsApiService;
+import com.letsfunky.testing.infrastructure.message.SmsService;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -26,7 +26,7 @@ class RevisitedOrderServiceTest {
     private OrderRepository orderRepository;
     private MemberRepository memberRepository;
     private StoreService storeService;
-    private SmsApiService smsApiService;
+    private SmsService smsService;
     private OrderService sut;
 
     @BeforeEach
@@ -34,8 +34,8 @@ class RevisitedOrderServiceTest {
         orderRepository = mock(OrderRepository.class);
         memberRepository = mock(MemberRepository.class);
         storeService = mock(StoreService.class);
-        smsApiService = mock(SmsApiService.class);
-        sut = new OrderService(orderRepository, memberRepository, storeService, smsApiService);
+        smsService = mock(SmsService.class);
+        sut = new OrderService(orderRepository, memberRepository, storeService, smsService);
     }
 
     @Test

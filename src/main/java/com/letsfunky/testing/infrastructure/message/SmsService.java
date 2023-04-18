@@ -6,11 +6,11 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SmsApiService {
+public class SmsService {
 
     private final SmsApiClient smsApiClient;
 
-    public SmsApiService(SmsApiClient smsApiClient) {
+    public SmsService(SmsApiClient smsApiClient) {
         this.smsApiClient = smsApiClient;
     }
 

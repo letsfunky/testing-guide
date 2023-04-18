@@ -9,7 +9,7 @@ import static org.mockito.Mockito.verify;
 import com.letsfunky.testing.domain.member.Member;
 import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.OrderRepository;
-import com.letsfunky.testing.infrastructure.message.SmsApiService;
+import com.letsfunky.testing.infrastructure.message.SmsService;
 import javax.transaction.Transactional;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -30,7 +30,7 @@ class RevisitedOrderServiceIntegrationTest {
     private MemberRepository memberRepository;
 
     @MockBean
-    private SmsApiService smsApiService;
+    private SmsService smsService;
 
     @Autowired
     private RevisitedOrderService sut;
@@ -46,7 +46,7 @@ class RevisitedOrderServiceIntegrationTest {
 
         var orderDetail = sut.createOrder(member.getId(), phoneNumber, shippingAddress, goods, count);
 
-        verify(smsApiService, times(1)).send(eq(phoneNumber), any());
+        verify(smsService, times(1)).send(eq(phoneNumber), any());
         assertThat(orderRepository.findAll().size()).isEqualTo(1);
         assertThat(orderDetail.getOrdererId()).isEqualTo(member.getId());
     }

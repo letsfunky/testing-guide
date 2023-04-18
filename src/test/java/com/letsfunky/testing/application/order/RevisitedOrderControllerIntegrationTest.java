@@ -16,7 +16,7 @@ import com.letsfunky.testing.domain.member.Member;
 import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.Order;
 import com.letsfunky.testing.domain.order.OrderRepository;
-import com.letsfunky.testing.infrastructure.message.SmsApiService;
+import com.letsfunky.testing.infrastructure.message.SmsService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.core.Is;
@@ -39,7 +39,7 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase {
     private OrderRepository orderRepository;
 
     @MockBean
-    private SmsApiService dummySmsApiService;
+    private SmsService dummySmsService;
 
     private final static String baseUrl = "/orders";
 

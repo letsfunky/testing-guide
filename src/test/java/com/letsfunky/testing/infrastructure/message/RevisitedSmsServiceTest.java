@@ -12,15 +12,15 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class RevisitedSmsApiServiceTest {
+class RevisitedSmsServiceTest {
 
     private SmsApiClient smsApiClient;
-    private SmsApiService sut;
+    private SmsService sut;
 
     @BeforeEach
     void init() {
         smsApiClient = mock(SmsApiClient.class);
-        sut = new SmsApiService(smsApiClient);
+        sut = new SmsService(smsApiClient);
     }
 
     @Test

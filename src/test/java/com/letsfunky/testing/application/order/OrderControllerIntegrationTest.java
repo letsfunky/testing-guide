@@ -6,7 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.letsfunky.testing.domain.member.Member;
 import com.letsfunky.testing.domain.member.MemberRepository;
-import com.letsfunky.testing.infrastructure.message.SmsApiService;
+import com.letsfunky.testing.infrastructure.message.SmsService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -36,7 +36,7 @@ class OrderControllerIntegrationTest {
     private MemberRepository memberRepository;
 
     @MockBean
-    private SmsApiService dummySmsApiService;
+    private SmsService dummySmsService;
 
     private final static String baseUrl = "/orders";
 

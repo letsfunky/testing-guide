@@ -5,7 +5,7 @@ import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.Order;
 import com.letsfunky.testing.domain.order.OrderDetail;
 import com.letsfunky.testing.domain.order.OrderRepository;
-import com.letsfunky.testing.infrastructure.message.SmsApiService;
+import com.letsfunky.testing.infrastructure.message.SmsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,21 +14,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class RevisitedOrderService {
 
-    private final OrderRepository orderRepository;
-    private final MemberRepository memberRepository;
-    private final StoreService storeService;
-    private final SmsApiService smsApiService;
+    private final OrderRepository orderRepository; // managed dependency
+    private final MemberRepository memberRepository; // managed dependency
+    private final StoreService storeService; // managed dependency
+    private final SmsService smsService; // unmanaged dependency
 
     public RevisitedOrderService(
         OrderRepository orderRepository,
         MemberRepository memberRepository,
         StoreService storeService,
-        SmsApiService smsApiService
+        SmsService smsService
     ) {
-        this.orderRepository = orderRepository; // managed dependency
-        this.memberRepository = memberRepository; // managed dependency
-        this.storeService = storeService; // managed dependency
-        this.smsApiService = smsApiService; // unmanaged dependency
+        this.orderRepository = orderRepository;
+        this.memberRepository = memberRepository;
+        this.storeService = storeService;
+        this.smsService = smsService;
     }
 
     @Transactional
@@ -45,7 +45,7 @@ public class RevisitedOrderService {
             var member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new RuntimeException("member not exist: memberId=" + memberId));
 
-            smsApiService.send(phoneNumber, "order placed");
+            smsService.send(phoneNumber, "order placed");
 
             log.info("order created: orderId={}", persistedOrder.getId());
 
