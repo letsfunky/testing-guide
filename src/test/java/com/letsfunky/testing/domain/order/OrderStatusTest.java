@@ -39,7 +39,7 @@ class OrderStatusTest {
     @Nested
     class OrderStatus가_PAYMENT_SHIPPED일때 {
         @Test
-        void 다른_상태로_변경이_불가하다() {
+        void 다른_상태로_변경이_불가하다_테스트가_구현되지_않아_실패한다() {
             throw new UnsupportedOperationException("test not implemented yet");
         }
     }

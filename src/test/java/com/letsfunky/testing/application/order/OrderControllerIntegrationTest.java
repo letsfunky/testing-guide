@@ -40,6 +40,7 @@ class OrderControllerIntegrationTest {
 
     private final static String baseUrl = "/orders";
 
+    // add static import
     @SneakyThrows
     @Test
     void 주문상세_조회에_실패한다() {
@@ -51,7 +52,7 @@ class OrderControllerIntegrationTest {
 
     @SneakyThrows
     @Test
-    @Disabled
+    @Disabled // dummy dbunit example
     @DatabaseSetup(connection = "dbUnitDatabaseConnection", value = {
         "classpath:dbunit-data/member-active.xml", // member-inactive.xml ...
         "classpath:dbunit-data/order-dummy.xml", // order-dummy-15.xml ...

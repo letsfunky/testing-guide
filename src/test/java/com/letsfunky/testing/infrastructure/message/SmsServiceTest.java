@@ -48,7 +48,7 @@ class SmsServiceTest {
 
         var response = sut.send(phoneNumber, smsMessage);
 
-        verify(smsApiClient, times(1)).send(request);
+        verify(smsApiClient, times(1)).send(request); // do not verify stub
         assertThat(response.isSuccess()).isTrue();
     }
 
@@ -71,9 +71,9 @@ class SmsServiceTest {
             )
         );
 
-        verify(smsApiClient, times(1)).send(request);
         assertThatThrownBy(() -> sut.send(phoneNumber, smsMessage))
             .isExactlyInstanceOf(RuntimeException.class)
             .hasMessage("sms send failed");
+        verify(smsApiClient, times(1)).send(request); // do not verify stub
     }
 }

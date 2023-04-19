@@ -1,6 +1,5 @@
 package com.letsfunky.testing.application.order;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.letsfunky.testing.domain.order.OrderDetail;
 import lombok.Value;
 
@@ -34,14 +33,13 @@ public class OrderDto {
 
     @Value
     public static class TestRequest {
-        @JsonProperty("success")
-        boolean isSuccess;
-        String dummy;
+        boolean isPrimitive;
+        Boolean isBoxed;
     }
 
     @Value
     public static class TestResponse {
-        boolean isSuccess;
-        Boolean isActive;
+        boolean isPrimitive;
+        Boolean isBoxed;
     }
 }

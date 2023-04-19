@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.letsfunky.testing.MockMvcTestBase;
@@ -26,8 +27,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @Slf4j
 class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase {
@@ -54,8 +53,9 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase {
 
     @SneakyThrows
     @Test
-    @Disabled
+    @Disabled // dummy example
     void 주문상세_조회에_성공한다_no_dbunit() {
+        // refactor into test fixture
         var member = memberRepository.saveAndFlush(new Member("name"));
         var order = orderRepository.saveAndFlush(new Order(member.getId(), "address"));
         // var orderLine = orderLineRepository.saveAndFlush(..)
@@ -95,7 +95,7 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase {
         var member = memberRepository.saveAndFlush(new Member("member-name"));
         var orderRequest = new OrderRequest(member.getId(), "goods", 3, "phone-num", "shipping-address");
 
-        ResponseEntity<OrderDetailResponse> responseEntity =
+        var responseEntity =
             testRestTemplate.postForEntity(baseUrl + "/", orderRequest, OrderDetailResponse.class);
 
         var response = responseEntity.getBody();
@@ -106,22 +106,20 @@ class RevisitedOrderControllerIntegrationTest extends MockMvcTestBase {
 
     @SneakyThrows
     @Test
-    void primitive_boolean의_is_prefix가_response에서_사라진다() {
+    void primitive_boolean의_is_prefix가_사라져서_테스트가_실패한다() {
         var givenParam = false;
+
         var resultActions = mockMvc.perform(
-                post(baseUrl + "/dto-test")
+                post(baseUrl + "/negate")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(toJson(new TestRequest(givenParam, "dummy-string")))
+                    .content(toJson(new TestRequest(givenParam, givenParam)))
             )
             .andDo(print())
             .andExpect(status().isOk());
 
         var response = toResponse(resultActions, TestResponse.class);
-        assertThat(response.isSuccess()).isEqualTo(!givenParam); // NOTE: fails due to ser/deser behavior
-        assertThat(response.getIsActive()).isEqualTo(!givenParam);
-
-        // NOTE: add if needed
-        resultActions
-            .andExpect(MockMvcResultMatchers.jsonPath("$.isSuccessful", Is.is(givenParam)));
+        assertThat(response.isPrimitive()).isEqualTo(!givenParam); // NOTE: fails due to ser/deser behavior
+        assertThat(response.getIsBoxed()).isEqualTo(!givenParam);
+        resultActions.andExpect(jsonPath("$.isPrimitive", Is.is(givenParam))); // NOTE: fails due to ser/deser behavior
     }
 }

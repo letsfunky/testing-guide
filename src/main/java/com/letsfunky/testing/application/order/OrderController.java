@@ -37,9 +37,9 @@ public class OrderController {
         );
     }
 
-    @PostMapping("/dto-test")
+    @PostMapping("/negate")
     public TestResponse dtoTest(@RequestBody TestRequest testRequest) {
-        var negated = !testRequest.isSuccess();
+        var negated = !testRequest.isPrimitive();
         return new TestResponse(negated, negated);
     }
 }

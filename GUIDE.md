@@ -710,14 +710,18 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - Additionally, you can use `@SpyBean` to wrap any existing bean with a Mockito `spy`
 - While Spring’s test framework caches application contexts between tests and reuses a context for tests sharing the same configuration, the use of `@MockBean` or `@SpyBean` influences the cache key, which will most likely increase the number of contexts.
 
-## 6.4 [@SpringBootTest](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing)
+## 6.4 [@SpringBootTest + @Transactional](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
 - Code
   - [RevisitedOrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/RevisitedOrderService.java)
   - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
+    - vs. [RevistedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
 - `@SpringBootTest` tests are full integration tests and involve the entire application.
 - The annotation works by creating the `ApplicationContext` used in your tests through SpringApplication.
+- If your test is `@Transactional`, it rolls back the transaction at the end of each test method by default. 
+  - However, as using this arrangement with either `RANDOM_PORT` or `DEFINED_PORT` implicitly provides a real servlet environment, the HTTP client and server run in separate threads and, thus, in separate transactions. 
+  - ️Any transaction initiated on the server does not roll back in this case.
 
-## 6.5 [@SpringBootTest + webEnvironment + MockMvc](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
+## 6.5 [Web Controller Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
 - Code
   - [OrderController.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderController.java)
   - [OrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderControllerIntegrationTest.java)
@@ -727,13 +731,9 @@ void 주문이_성공하면_inventory가_줄어든다() {
   - If you need to start a full running server, we recommend that you use random ports.
 - With Spring MVC, we can query our web endpoints using `MockMvc` or `WebTestClient`.
   - You can also auto-configure `MockMvc` in a non-`@WebMvcTest` (such as `@SpringBootTest`) by annotating it with `@AutoConfigureMockMvc`.
-- [TestRestTemplate](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.utilities.test-rest-template)
-- [Serialization/Deserialization issue](- [OrderDto.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderDto.java))
-
-## 6.5.1 [@SpringBootTest + webEnvironment + @Transactional](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
-- If your test is `@Transactional`, it rolls back the transaction at the end of each test method by default. 
-  - However, as using this arrangement with either `RANDOM_PORT` or `DEFINED_PORT` implicitly provides a real servlet environment, the HTTP client and server run in separate threads and, thus, in separate transactions. 
-  - ️Any transaction initiated on the server does not roll back in this case.
+  - Use `@AutoConfigureMockMvc` to add a `MockMvc` instance to the application context.
+- `MockMvc` vs. [TestRestTemplate](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.utilities.test-rest-template)
+- Lombok Serialization/Deserialization issue
 
 ## 6.6 [@DataJpaTest](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.autoconfigured-spring-data-jpa)
 - Code
@@ -780,6 +780,9 @@ ORM 롤백 트랜잭션 테스트의 주의사항
 # 토비의 스프 부트 - 이해와 원리 Q&A (2023)
 오래전에는 dbunit 같은 도구를 이용해서 테스트 수행 전후에 테스트용 db를 준비하는 것과 
 테스트 후에 이를 원래대로 돌려놓는 작업을 일일히 진행을 했어야 했습니다.
+
+김영한 님한테 @Transactional 롤백 테스트 쓰는 대신에 커밋시키고 tearDown에서 복원하는 방법에 대해서 물어봤습니다.
+답변은 "그러면 실용성이 너무 떨어지잖아요. 몇가지 조심하면 되는데 그것 때문에 오만가지 불편함을 감수하면서 초가삼간 다 태울 수 없으니..."
 ```
 - [토비의 스프 부트 - 이해와 원리 Q&A](https://www.inflearn.com/questions/792383/%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%97%90%EC%84%9C%EC%9D%98-transactional-%EC%82%AC%EC%9A%A9%EC%97%90-%EB%8C%80%ED%95%B4-%EC%A7%88%EB%AC%B8%EC%9D%B4-%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4)
 
@@ -792,6 +795,7 @@ ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는�
 
 - ORM 롤백 트랜잭션 테스트의 주의사항 (이일민, 토비의 스프링3, p1333, 2010)
 ```
+- 그래도 commit 은 일어나지 않는당
 - Test fixture는 persistent layer를 이용해보자
 
 ## 6.8 In-memory DB vs Regular DB
@@ -805,16 +809,19 @@ ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는�
   - Change the state of shared services or systems such as a database, message broker, filesystem, and others. This applies to both embedded and external systems.
 
 # 7 end to end 테스트
-## 7.0 end to end 테스트는 이 교육에서는 만들지 않습니당
+## 7.0 end to end 테스트
 - An end-to-end test in a scenario with an API would be a test running against a deployed, fully functioning version of that API, which means no mocks for any of the out-of-process dependencies.
 - 만들기도 어렵고, 유지보수하기도 어렵다
 
 # 8 학습테스트
 ## 8.0 TestAny
+```
+➜  ~ cat .gitignore_global
+TestAny*.java
+```
 - TestAny
 - TestAnyIntegration
 - TestAnyController
-- ...
 
 # 9 FAQ
 ## 9.1 Mocking Static Methods
@@ -838,6 +845,7 @@ It is best to assume that one-offs do not exist. The longer these “one-offs”
 
 - Testing Threaded Code (Clean Code, Robert C. Martin, 2008)
 ```
+- 1번 우연히 나는 에러같은 것은 없음
 
 ## 9.4 테스트 할 시간이 없어요
 ```
@@ -863,10 +871,10 @@ Working Effectively with Legacy Code (Robert C. Martin Series) by Michael Feathe
 - [Mockists Are Dead. Long Live Classicists.](https://www.thoughtworks.com/insights/blog/mockists-are-dead-long-live-classicists)
 
 ## 9.7 다른 테스트 프레임워크/라이브러리
-- spock
 - karate
 - kotest
 - rest-assured
+- spock
 - ...
 
 # 10 마치며
@@ -875,6 +883,7 @@ Working Effectively with Legacy Code (Robert C. Martin Series) by Michael Feathe
   - 상이한 경험, 지식
   - 소통과 포용
   - 톤 & 매너
+- 함께 공부하며 성장해요
 
 ## 10.2 당부의 말씀 (1)
 ```
