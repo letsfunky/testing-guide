@@ -845,7 +845,7 @@ It is best to assume that one-offs do not exist. The longer these “one-offs”
 
 - Testing Threaded Code (Clean Code, Robert C. Martin, 2008)
 ```
-- 1번 우연히 나는 에러같은 것은 없음
+- 1번만 우연히 나는 에러같은 것은 없음
 
 ## 9.4 테스트 할 시간이 없어요
 ```
