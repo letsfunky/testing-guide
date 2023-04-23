@@ -868,6 +868,7 @@ Working Effectively with Legacy Code (Robert C. Martin Series) by Michael Feathe
 
 ## 9.6 TDD 어떻게 하면 되나요?.?
 - [TDD is dead](https://dhh.dk/2014/tdd-is-dead-long-live-testing.html)
+- [RIP TDD](https://www.facebook.com/notes/kent-beck/rip-tdd/750840194948847)
 - [Mockists Are Dead. Long Live Classicists.](https://www.thoughtworks.com/insights/blog/mockists-are-dead-long-live-classicists)
 
 ## 9.7 다른 테스트 프레임워크/라이브러리
