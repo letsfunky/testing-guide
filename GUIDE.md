@@ -230,7 +230,7 @@ If we trust the tests enough to ship after having executed them, we're good.
 <img src="./images/london-classical.png" width="600"/><br/>
 <img src="./images/shared-outofprocess-dep.png" width="600"/><br/>
 - types of dependencies:
-  - `Shared dependency` — A dependency shared by tests (not production code)
+  - `Shared dependency` — A dependency shared by tests
     - A typical example of a shared dependency is a static mutable field
     - A change to such a field is visible across all unit tests running within the same process. 
   - `Private dependency` — Any dependency that is not shared
