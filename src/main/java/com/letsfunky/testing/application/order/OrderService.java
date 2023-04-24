@@ -41,8 +41,7 @@ public class OrderService {
             memberRepository.findById(order.getOrdererId()).map(member ->
                 OrderDetail.of(member, order)
             ).orElseThrow(() -> new RuntimeException("member not exist, ordererId=" + order.getOrdererId()))
-        ).orElseThrow(
-            () -> new RuntimeException("order not exist, orderId=" + orderId));
+        ).orElseThrow(() -> new RuntimeException("order not exist, orderId=" + orderId));
     }
 
     @Transactional
