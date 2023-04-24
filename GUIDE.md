@@ -256,7 +256,7 @@ void purchase_succeeds_when_enough_inventory() {
 ```
 void purchase_succeeds_when_enough_inventory() {
     // Arrange
-    var mockStore = mock(Store.class)();
+    var mockStore = mock(Store.class);
     var customer = new Customer();
     when(mockStore.hasEnoughInventory(Product.Shampoo, 5)).thenReturn(true);
 
@@ -796,7 +796,7 @@ ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는�
 - ORM 롤백 트랜잭션 테스트의 주의사항 (이일민, 토비의 스프링3, p1333, 2010)
 ```
 - 그래도 commit 은 일어나지 않는당
-- Test fixture는 persistent layer를 이용해보자
+- Test fixture는 persistence layer를 이용해보자
 
 ## 6.8 In-memory DB vs Regular DB
 - Using in-memory database is, mismatch between production and test environments.
