@@ -38,9 +38,9 @@ public class OrderService {
             TODO: needs exception abstraction
          */
         return orderRepository.findById(orderId).map(order ->
-                memberRepository.findById(order.getOrdererId()).map(member ->
-                    OrderDetail.of(member, order)
-                ).orElseThrow(() -> new RuntimeException("member not exist, ordererId=" + order.getOrdererId()))
+            memberRepository.findById(order.getOrdererId()).map(member ->
+                OrderDetail.of(member, order)
+            ).orElseThrow(() -> new RuntimeException("member not exist, ordererId=" + order.getOrdererId()))
         ).orElseThrow(
             () -> new RuntimeException("order not exist, orderId=" + orderId));
     }
