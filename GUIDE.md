@@ -169,6 +169,7 @@ If we trust the tests enough to ship after having executed them, we're good.
 
 ## 1.4.3.3 Domain Model in Hexagonal Architecture
 <img src="./images/hexagonal-architecture.png" width="600"/><br/>
+- [Get Your Hands Dirty on Clean Architecture](https://reflectoring.io/book/)
 
 ## 1.4.3.4 Humble Object
 - [HumbleObject | Martin Fowler](https://martinfowler.com/bliki/HumbleObject.html)
