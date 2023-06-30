@@ -155,14 +155,27 @@ If we trust the tests enough to ship after having executed them, we're good.
   - [Designing a microservice domain model](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model)
 <br/><br/>
 
-## 1.4.3.1 Domain Model in DDD
+## 1.4.3.1 Domain Model in DDD (vs Database-driven Design)
 <img src="./images/ddd.png" width="600"/><br/>
+- [JPA DDD sample led by Eric Evans](https://github.com/citerus/dddsample-core)
+- 참고
+  - [DDD entity vs JPA entity #1](https://twitter.com/bitboss/status/1005518596276187137?lang=en)
+  - [DDD entity vs ORM entity #2](https://twitter.com/vlad_mihalcea/status/1005519964508442624?lang=en)
+  - [DDD entity vs ORM entity #3](https://matthiasnoback.nl/2022/04/ddd-entities-and-orm-entities/)
+  - [DDD entity vs ORM entity #4](https://www.cockroachlabs.com/blog/relational-database-entities/)
 
 ## 1.4.3.2 Domain Model in Clean Architecture
 <img src="./images/clean-architecture.png" width="600"/><br/>
 
 ## 1.4.3.3 Domain Model in Hexagonal Architecture
 <img src="./images/hexagonal-architecture.png" width="600"/><br/>
+
+## 1.4.3.4 Humble Object
+- [HumbleObject | Martin Fowler](https://martinfowler.com/bliki/HumbleObject.html)
+- [Refactoring - Humble Object Pattern | YouTube 백명석](https://youtu.be/JYhTjzp0ChU?t=135)
+
+## 1.4.3.5 Architecture?
+- [프로젝트 폴더구조..에 관하여 질문이 있습니다 | Inflearn 김영한](https://www.inflearn.com/questions/16046/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0%EC%99%80-%EA%B0%95%EC%9D%98-%EC%9D%BC%EC%A0%95%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC-%EC%A7%88%EB%AC%B8%EC%9D%B4-%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4)
 
 ## 1.4.4 Observable Behavior (vs Implementation Detail)
 - Output-based testing
@@ -172,6 +185,18 @@ If we trust the tests enough to ship after having executed them, we're good.
   - the output-based style produces tests of the highest quality, 
   - state-based testing is the second-best choice, 
   - and communication-based testing should be used only occasionally.
+
+## 1.4.4.1 Output-based Testing
+- The output-based style of unit testing is also known as functional. 
+- This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code. 
+- TBD
+  - https://github.com/gunjasal/book-unit-testing/blob/main/unit-testing.md#611-defining-the-output-based-style
+
+## 1.4.4.2 State-based Testing
+- TBD
+
+## 1.4.4.3 Communication-based Testing
+- TBD
 
 ## 1.4.5 Happy Path vs Edge Case
 - check as many of the business scenario’s edge cases as possible with unit tests; 
@@ -930,8 +955,6 @@ Don’t Trust a Test You’ve Never Seen Fail.
 - [classical vs london school](https://medium.com/@adrianbooth/test-driven-development-wars-detroit-vs-london-classicist-vs-mockist-9956c78ae95f)
 - [TDD에 대한 몇 가지 질문](https://brunch.co.kr/@cleancode/44)
 - [1. 테스트하기 좋은 코드 - 테스트하기 어려운 코드](https://jojoldu.tistory.com/674)
-- [HumbleObject](https://martinfowler.com/bliki/HumbleObject.html)
-- [domainModel](https://martinfowler.com/eaaCatalog/domainModel.html)
 - [unit/integration/end-to-end test](https://tecoble.techcourse.co.kr/post/2021-05-25-unit-test-vs-integration-test-vs-acceptance-test/)
 - [unit test best practices](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices#characteristics-of-a-good-unit-test)
 - [atdd example](https://github.com/msbaek/atdd-example)
