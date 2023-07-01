@@ -207,12 +207,12 @@ Premature optimization is the root of all evil
   - [PriceEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingtype/PriceEngineTest.java)
 - The output-based style of unit testing is also known as _functional_. 
   - This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code.
-- The goal of functional programming is
-  - not to eliminate side effects altogether
-  - but rather to introduce a separation between 
-    - code that handles business logic (functional core)
-    - and code that incurs side effects. (imperative shell)
 - 참고
+  - The goal of functional programming is
+    - not to eliminate side effects altogether
+    - but rather to introduce a separation between
+      - code that handles business logic (functional core)
+      - and code that incurs side effects. (imperative shell)
   - [functional core and imperative shell](https://github.com/kbilsted/Functional-core-imperative-shell/tree/master)
 
 ## 1.4.4.2 State-based Testing
