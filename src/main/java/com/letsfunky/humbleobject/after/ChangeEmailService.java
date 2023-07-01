@@ -12,8 +12,8 @@ public class ChangeEmailService {
     }
 
     public void changeEmail(int userId, String newEmail) {
-        User user = userRepository.findById(userId);
-        Company company = companyRepository.findById(user.companyId());
+        var user = userRepository.findById(userId);
+        var company = companyRepository.findById(user.companyId());
 
         user.changeEmail(newEmail, company);
 

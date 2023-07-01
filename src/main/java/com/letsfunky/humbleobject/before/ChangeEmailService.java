@@ -12,22 +12,22 @@ public class ChangeEmailService {
     }
 
     public void changeEmail(int userId, String newEmail) {
-        User user = userRepository.findById(userId);
+        var user = userRepository.findById(userId);
         if (user.email().equals(newEmail)) {
             return;
         }
 
-        Company company = companyRepository.findById(user.companyId());
-        String companyDomainName = company.domainName();
-        int noOfEmployees = company.noOfEmployees();
+        var company = companyRepository.findById(user.companyId());
+        var companyDomainName = company.domainName();
+        var noOfEmployees = company.noOfEmployees();
 
-        String emailDomain = newEmail.split("@")[1];
-        boolean isEmailCorporate = emailDomain.equals(companyDomainName);
+        var emailDomain = newEmail.split("@")[1];
+        var isEmailCorporate = emailDomain.equals(companyDomainName);
 
-        UserType newUserType = isEmailCorporate ? UserType.Employee : UserType.Customer;
+        var newUserType = isEmailCorporate ? UserType.Employee : UserType.Customer;
         if (user.userType() != newUserType) {
-            int delta = newUserType == UserType.Employee ? 1 : -1;
-            int newNumbers = noOfEmployees + delta;
+            var delta = newUserType == UserType.Employee ? 1 : -1;
+            var newNumbers = noOfEmployees + delta;
             company.noOfEmployees(newNumbers);
             companyRepository.save(company);
         }

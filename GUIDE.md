@@ -132,7 +132,10 @@ works. The only way to know this is to test it.
 
 - You Must Know It Works (Robert C. Martin, The Clean Coder, 2012, p46)
 ```
-- [토스ㅣSLASH 21 - 테스트 커버리지 100%](https://www.youtube.com/watch?v=jdlBu2vFv58)
+- 💰 Test Costs
+- It depends
+  - ☢️ 원자력발전소, 🏦 은행 ... 
+  - [토스ㅣSLASH 21 - 테스트 커버리지 100%](https://www.youtube.com/watch?v=jdlBu2vFv58)  
 
 ## 1.4.2 Feel Comfortable 🙂
 ```
@@ -174,7 +177,7 @@ If we trust the tests enough to ship after having executed them, we're good.
 ## 1.4.3.4 Humble Object (with Domain Model)
 - Code
   - [before/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/humbleobject/before/ChangeEmailService.java)
-  - [after/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/humbleobject/before/ChangeEmailService.java)
+  - [after/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/humbleobject/after/ChangeEmailService.java)
 
 - [HumbleObject | Martin Fowler](https://martinfowler.com/bliki/HumbleObject.html)
   > move the logic into a separate element that is testable,\
@@ -199,13 +202,22 @@ Premature optimization is the root of all evil
   - and communication-based testing should be used only occasionally.
 
 ## 1.4.4.1 Output-based Testing
+- Code
+  - [PriceEngine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingtype/PriceEngine.java)
+  - [PriceEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingtype/PriceEngineTest.java)
 - The output-based style of unit testing is also known as _functional_. 
-- This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code. 
-- TBD
-  - https://github.com/gunjasal/book-unit-testing/blob/main/unit-testing.md#611-defining-the-output-based-style
+  - This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code.
+- The goal of functional programming is
+  - not to eliminate side effects altogether
+  - but rather to introduce a separation between 
+    - code that handles business logic (functional core)
+    - and code that incurs side effects. (imperative shell)
+- 참고
+  - [functional core and imperative shell](https://github.com/kbilsted/Functional-core-imperative-shell/tree/master)
 
 ## 1.4.4.2 State-based Testing
 - TBD
+- 6.1.2
 
 ## 1.4.4.3 Communication-based Testing
 - TBD

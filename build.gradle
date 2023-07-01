@@ -61,11 +61,11 @@ test {
     testLogging.showStandardStreams = true
 }
 
-task unitTest(type: Test) {
-    useJUnitPlatform()
-    testLogging.showStandardStreams = true
-    exclude '**/**IntegrationTest*'
-}
+//task unitTest(type: Test) {
+//    useJUnitPlatform()
+//    testLogging.showStandardStreams = true
+//    exclude '**/**IntegrationTest*'
+//}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

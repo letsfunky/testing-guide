@@ -33,15 +33,10 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public OrderDetail getOrderDetail(long orderId) {
-        /*
-            TODO: needs query abstraction
-            TODO: needs exception abstraction
-         */
-        return orderRepository.findById(orderId).map(order ->
-            memberRepository.findById(order.getOrdererId()).map(member ->
-                OrderDetail.of(member, order)
-            ).orElseThrow(() -> new RuntimeException("member not exist, ordererId=" + order.getOrdererId()))
-        ).orElseThrow(() -> new RuntimeException("order not exist, orderId=" + orderId));
+        var order = orderRepository.findById(orderId).get();
+        var member = memberRepository.findById(order.getOrdererId()).get();
+
+        return OrderDetail.of(member, order);
     }
 
     @Transactional
