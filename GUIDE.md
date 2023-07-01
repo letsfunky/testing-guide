@@ -172,12 +172,21 @@ If we trust the tests enough to ship after having executed them, we're good.
 - [Get Your Hands Dirty on Clean Architecture](https://reflectoring.io/book/)
 
 ## 1.4.3.4 Humble Object (with Domain Model)
+- Code
+  - [before/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/humbleobject/before/ChangeEmailService.java)
+  - [after/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/humbleobject/before/ChangeEmailService.java)
+
 - [HumbleObject | Martin Fowler](https://martinfowler.com/bliki/HumbleObject.html)
   > move the logic into a separate element that is testable,\
   > making the original object _**humble**_ 
 - [Refactoring - Humble Object Pattern | YouTube 백명석](https://youtu.be/JYhTjzp0ChU?t=135) 
 
 ## 1.4.3.5 Architecture?
+```
+Premature optimization is the root of all evil
+
+- Tony Hoare
+```
 - [프로젝트 폴더구조..에 관하여 질문이 있습니다 | Inflearn 김영한](https://www.inflearn.com/questions/16046/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0%EC%99%80-%EA%B0%95%EC%9D%98-%EC%9D%BC%EC%A0%95%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC-%EC%A7%88%EB%AC%B8%EC%9D%B4-%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4)
 
 ## 1.4.4 Observable Behavior (vs Implementation Detail)
@@ -190,7 +199,7 @@ If we trust the tests enough to ship after having executed them, we're good.
   - and communication-based testing should be used only occasionally.
 
 ## 1.4.4.1 Output-based Testing
-- The output-based style of unit testing is also known as functional. 
+- The output-based style of unit testing is also known as _functional_. 
 - This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code. 
 - TBD
   - https://github.com/gunjasal/book-unit-testing/blob/main/unit-testing.md#611-defining-the-output-based-style
