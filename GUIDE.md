@@ -11,6 +11,7 @@
 ## 참고
 - 아래의 책들에 기반한 내용이 주를 이뤄요.
   - Unit Testing (Vladimir Khorikov, Manning, 2020)
+  - xUnit Test Patterns (Gerard Meszaros, 2007)
   - Pragmatic Unit Testing in Java 8 With JUnit (Jeff Langr with Andy Hunt & Dave Thomas, The Pragmatic Programmers, 2015)
 - https://github.com/letsfunky/testing-guide
   - 테스트를 만들어 보기 위한 코드로, 다소 `으응?`스러운 코드들이 있을 수 있어요. 🙇
@@ -132,8 +133,7 @@ works. The only way to know this is to test it.
 
 - You Must Know It Works (Robert C. Martin, The Clean Coder, 2012, p46)
 ```
-- 💰 Test Costs
-- It depends
+- 💰 Test Costs vs 💸 Cost of Not Testing
   - ☢️ 원자력발전소, 🏦 은행 ... 
   - [토스ㅣSLASH 21 - 테스트 커버리지 100%](https://www.youtube.com/watch?v=jdlBu2vFv58)  
 
@@ -158,7 +158,14 @@ If we trust the tests enough to ship after having executed them, we're good.
   - [Designing a microservice domain model](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model)
 <br/><br/>
 
-## 1.4.3.1 Domain Model in DDD (vs Database-driven Design)
+## 1.4.3.1 Domain Model in Clean Architecture
+<img src="./images/clean-architecture.png" width="600"/><br/>
+
+## 1.4.3.2 Domain Model in Hexagonal Architecture
+<img src="./images/hexagonal-architecture.png" width="600"/><br/>
+- [Get Your Hands Dirty on Clean Architecture](https://reflectoring.io/book/)
+
+## 1.4.3.3 Domain Model in DDD (vs Database-driven Design)
 <img src="./images/ddd.png" width="600"/><br/>
 - [JPA DDD sample led by Eric Evans](https://github.com/citerus/dddsample-core)
 - 참고
@@ -166,13 +173,6 @@ If we trust the tests enough to ship after having executed them, we're good.
   - [DDD entity vs ORM entity #2](https://twitter.com/vlad_mihalcea/status/1005519964508442624?lang=en)
   - [DDD entity vs ORM entity #3](https://matthiasnoback.nl/2022/04/ddd-entities-and-orm-entities/)
   - [DDD entity vs ORM entity #4](https://www.cockroachlabs.com/blog/relational-database-entities/)
-
-## 1.4.3.2 Domain Model in Clean Architecture
-<img src="./images/clean-architecture.png" width="600"/><br/>
-
-## 1.4.3.3 Domain Model in Hexagonal Architecture
-<img src="./images/hexagonal-architecture.png" width="600"/><br/>
-- [Get Your Hands Dirty on Clean Architecture](https://reflectoring.io/book/)
 
 ## 1.4.3.4 Humble Object (with Domain Model)
 - Code
@@ -663,6 +663,7 @@ public void 재고가_충분하면_구매가_성공한다() {
   - builder 의 이용 (ObjectMother vs Builder)
   - 테스트에서 이용되지 않는 field 는 dummy 를 이용하자
   - 나 자신이 아닌, 유지보수할 사람을 생각해서 코드를 작성하자
+  - TBD xUnit
 - [gradle java-test-fixture](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
   - [gradle java-test-fixture in toss tech blog](https://toss.tech/article/how-to-manage-test-dependency-in-gradle)
 
