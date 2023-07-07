@@ -210,7 +210,7 @@ Premature optimization is the root of all evil
   - [PriceEngine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/PriceEngine.java)
   - [PriceEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/PriceEngineTest.java)
 - The output-based style of unit testing is also known as _functional_. 
-  - This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code.
+  - This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code
 
 ## 1.4.4.2 State-based Testing
 - Code
@@ -219,10 +219,13 @@ Premature optimization is the root of all evil
 - The term state in this style of testing can refer to the state
   - of the SUT itself, 
   - of one of its collaborators,
-  - or of an out-of-process dependency, such as the database or the filesystem.
+  - or of an out-of-process dependency, such as the database or the filesystem
 
 ## 1.4.4.3 Communication-based Testing
-- TBD
+- Code
+  - [GreetingService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/GreetingService.java)
+  - [GreetingServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/GreetingServiceTest.java)
+- This style uses mocks to verify communications between the system under test and its collaborators
 
 ## 1.4.4.4 Observable Behavior (vs Implementation Detail) 
 - Among the three,
