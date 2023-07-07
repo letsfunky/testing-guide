@@ -1,4 +1,4 @@
-package com.letsfunky.testingtype;
+package com.letsfunky.testingstyle;
 
 
 import org.junit.jupiter.api.Test;
