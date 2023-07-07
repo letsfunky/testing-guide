@@ -213,8 +213,13 @@ Premature optimization is the root of all evil
   - This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code.
 
 ## 1.4.4.2 State-based Testing
-- TBD
-- 6.1.2
+- Code
+  - [Order.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/Order.java)
+  - [OrderTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/OrderTest.java)
+- The term state in this style of testing can refer to the state
+  - of the SUT itself, 
+  - of one of its collaborators,
+  - or of an out-of-process dependency, such as the database or the filesystem.
 
 ## 1.4.4.3 Communication-based Testing
 - TBD
