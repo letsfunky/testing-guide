@@ -33,20 +33,20 @@
 # 시작하기 전에
 ## 약력
 - 잡다구리한 도메인에서 잡다구리한 테스트를 해봤어요.
-    ```
-    한국**** (pro*c, manual testing)
-    da** (spring, junit, selenium, acceptance test)
-    my******** (rails, rspec)
-    sk******* (spring, junit, rest-assured, end-to-end test)
-    ka*** (spring, rails, junit, rspec, coverage 0%)
-    nc**** (spring, junit, grpc, concurrency test)
-    be********* (spring, kotest, 99.99% integration test)
-    nh****** (spring, junit)
-    ```
+  ```
+  한국**** (pro*c, manual testing)
+  da** (spring, junit, selenium, acceptance test)
+  my******** (rails, rspec)
+  sk******* (spring, junit, rest-assured, end-to-end test)
+  ka*** (spring, rails, junit, rspec, coverage 0%)
+  nc**** (spring, junit, grpc, concurrency test)
+  be********* (spring, kotest, 99.99% integration test)
+  nh****** (spring, junit)
+  ```
 
 # 0 Software Engineering
 ## 0.1 정답은 없고, 정답에 가까운 길을 찾아갈 뿐
-<img src="./images/pigeon-copter.jpeg" width="400"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/pigeon-copter.jpeg" width="400"/><br/>
 
 ## 0.2 Good code vs Bad code
 ```
@@ -55,10 +55,10 @@ Good programmers write code that humans can understand.
 
 - Martin Fowler
 ```
-<img src="./images/good-bad-code.png" width="500"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/good-bad-code.png" width="500"/><br/>
 
 ## 0.3 Let's speak the same language (Ubiquitous Language)
-<img src="./images/missing-ubiquitous-language.jpeg" width="300"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/missing-ubiquitous-language.jpeg" width="300"/><br/>
 - consensus + convention
 
 ## 0.4 테스트 해야하나요?
@@ -159,14 +159,14 @@ If we trust the tests enough to ship after having executed them, we're good.
 <br/><br/>
 
 ## 1.4.3.1 Domain Model in Clean Architecture
-<img src="./images/clean-architecture.png" width="600"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/clean-architecture.png" width="600"/><br/>
 
 ## 1.4.3.2 Domain Model in Hexagonal Architecture
-<img src="./images/hexagonal-architecture.png" width="600"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/hexagonal-architecture.png" width="600"/><br/>
 - [Get Your Hands Dirty on Clean Architecture](https://reflectoring.io/book/)
 
 ## 1.4.3.3 Domain Model in DDD (vs Database-driven Design)
-<img src="./images/ddd.png" width="600"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/ddd.png" width="600"/><br/>
 - [JPA DDD sample led by Eric Evans](https://github.com/citerus/dddsample-core)
 - 참고
   - [DDD entity vs JPA entity #1](https://twitter.com/bitboss/status/1005518596276187137?lang=en)
@@ -235,7 +235,7 @@ Premature optimization is the root of all evil
     - They mean there’s a lot of untested code in your code base. 
   - But high numbers don’t mean anything.
 - Run with Coverage <br/>
-  <img src="./images/run-with-coverage.png" width="400"/><br/>
+  <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/run-with-coverage.png" width="400"/><br/>
 
 ## 1.6 좋은 테스트란 무엇일까요?
 - 뭘까?
@@ -262,7 +262,7 @@ Premature optimization is the root of all evil
 
 # 2 테스트의 종류에는 어떤 것들이 있을까요?
 ## 2.0 테스트의 종류 (Monolithic Architecture)
-<img src="./images/test-pyramid.png" width="400"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/test-pyramid.png" width="400"/><br/>
 - [Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
 - acceptance test
 - regression test, smoke testing ...
@@ -276,8 +276,8 @@ Premature optimization is the root of all evil
 - And does it in an isolated manner.
 
 ## 2.2 London school(Mockist) vs Classical school(Classicist)
-<img src="./images/london-classical.png" width="600"/><br/>
-<img src="./images/shared-outofprocess-dep.png" width="600"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/london-classical.png" width="600"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/shared-outofprocess-dep.png" width="600"/><br/>
 
 ## 2.2.1 Classical School(Classicist)
 ```
@@ -339,7 +339,7 @@ void purchase_succeeds_when_enough_inventory() {
 - There’s a deep and almost inevitable connection between mocks and test fragility.
 
 ## 3.1 Mock vs Stub
-<img src="./images/test-doubles.png" width="600"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/test-doubles.png" width="600"/><br/>
 - [Test Double (think stunt double)](https://martinfowler.com/bliki/TestDouble.html)
   - Mock waits to be called by the SUT(system under test)
   - Stub gives out data that goes to the SUT
@@ -572,7 +572,7 @@ void simple_iteration() {
 }
 ```
 <br/>
-  <img src="./images/test-names.png" width="600"/><br/>
+  <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/test-names.png" width="600"/><br/>
 
 ## 5.9 Differentiating the system under test
 - Code
@@ -717,7 +717,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
   - [OrderStatus.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/order/OrderStatus.java)
   - [OrderStatusTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderStatusTest.java)
 - 인간이 이해할 수 있는 테스트 구조<br/>
-<img src="./images/nested-test.png" width="600"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/nested-test.png" width="600"/><br/>
 
 ## 5.19 Interfaces and loose coupling
 - Genuine abstractions are discovered, not invented.
