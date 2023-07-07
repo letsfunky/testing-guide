@@ -249,7 +249,7 @@ Premature optimization is the root of all evil
   <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/run-with-coverage.png" width="400"/><br/>
 
 ## 1.6 좋은 테스트란 무엇일까요?
-- 뭘까?
+- 뭘까?,.?
 
 ## 1.6.1 It’s integrated into the development cycle
 - 개발 사이클에 들어가 있지 않은 테스트는 상하기 마련
@@ -274,12 +274,11 @@ Premature optimization is the root of all evil
 # 2 테스트의 종류에는 어떤 것들이 있을까요?
 ## 2.0 테스트의 종류 (Monolithic Architecture)
 <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/test-pyramid.png" width="400"/><br/>
-- [Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
-- acceptance test
+- [Practical Test Pyramid | martinfowler.com](https://martinfowler.com/articles/practical-test-pyramid.html)
+- [Testing Strategies in a Microservice Architecture | martinfowler.com](https://martinfowler.com/articles/microservice-testing/)
 - regression test, smoke testing ...
 - load test, stress test ...
 - mutation test ...
-- [testing in msa](https://martinfowler.com/articles/microservice-testing/)
 
 ## 2.1 단위 테스트
 - Verifies a small piece of code (also known as a unit)
@@ -330,7 +329,10 @@ void purchase_succeeds_when_enough_inventory() {
   - It’s easier to unit test a larger graph of interconnected classes.
   - If a test fails, you know for sure which functionality has failed.
 - Cons
-  - tests that use mocks tend to be more brittle than classical tests 
+  - Tests that use mocks tend to be more brittle than classical tests
+    - Tests shouldn’t verify units of code. Rather, they should verify units of behavior: 
+      - something that is meaningful for the problem domain and, 
+      - ideally, something that a business person can recognize as useful.
 
 ## 2.3 통합 테스트
 - The London school considers any test that uses a real collaborator object an integration test.
@@ -385,6 +387,7 @@ void spy() {
   assertThat(spyList.size()).isEqualTo(2);
 }
 ```
+TBD vs mock
 
 ## 3.4 Stub (+ Dummy, Fake)
 ```
