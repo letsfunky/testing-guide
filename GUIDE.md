@@ -17,18 +17,19 @@
   - 테스트를 만들어 보기 위한 코드로, 다소 `으응?`스러운 코드들이 있을 수 있어요. 🙇
 
 # 목차
-- [0. Software Engineering](#0-software-engineering)
-- [1. 테스팅이란 무엇일까요?](#1-------------)
-- [2. 테스트의 종류에는 어떤 것들이 있을까요?](#2-----------------------)
-- [3. Mock](#3-mock)
-- [4. 테스팅 프레임워크](#4----------)
-- [5. 단위 테스트 만들어보기](#5-------------)
-- [6. 통합 테스트 만들어보기](#6-------------)
-- [7. end to end 테스트](#7-end-to-end----)
-- [8. 학습테스트](#8------)
-- [9. FAQ](#9-faq)
-- [10. 마치며](#10----)
-- [11. 별책부록](#11-----)
+* [0 Software Engineering](#0-software-engineering)
+* [1 테스팅이란 무엇일까요?](#1-테스팅이란-무엇일까요)
+* [2 테스트의 종류에는 어떤 것들이 있을까요?](#2-테스트의-종류에는-어떤-것들이-있을까요)
+* [3 Mock](#3-mock)
+* [4 테스팅 프레임워크](#4-테스팅-프레임워크)
+* [5 단위 테스트 만들어보기](#5-단위-테스트-만들어보기)
+* [6 Three Styles of Unit Testing](#6-three-styles-of-unit-testing)
+* [7 통합 테스트 만들어보기](#7-통합-테스트-만들어보기)
+* [8 end to end 테스트](#8-end-to-end-테스트)
+* [9 학습테스트](#9-학습테스트)
+* [10 FAQ](#10-faq)
+* [11 마치며](#11-마치며)
+* [12 별책부록](#12-별책부록)
 
 # 시작하기 전에
 ## 약력
@@ -200,39 +201,6 @@ Premature optimization is the root of all evil
 ```
 - [프로젝트 폴더구조..에 관하여 질문이 있습니다 | Inflearn 김영한](https://www.inflearn.com/questions/16046/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0%EC%99%80-%EA%B0%95%EC%9D%98-%EC%9D%BC%EC%A0%95%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC-%EC%A7%88%EB%AC%B8%EC%9D%B4-%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4)
 
-## 1.4.4 Three Styles of Unit Testing 
-- Output-based testing
-- State-based testing
-- Communication-based testing
-
-## 1.4.4.1 Output-based Testing
-- Code
-  - [PriceEngine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/PriceEngine.java)
-  - [PriceEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/PriceEngineTest.java)
-- The output-based style of unit testing is also known as _functional_. 
-  - This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code
-
-## 1.4.4.2 State-based Testing
-- Code
-  - [Order.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/Order.java)
-  - [OrderTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/OrderTest.java)
-- The term state in this style of testing can refer to the state
-  - of the SUT itself, 
-  - of one of its collaborators,
-  - or of an out-of-process dependency, such as the database or the filesystem
-
-## 1.4.4.3 Communication-based Testing
-- Code
-  - [GreetingService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/GreetingService.java)
-  - [GreetingServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/GreetingServiceTest.java)
-- This style uses mocks to verify communications between the system under test and its collaborators
-
-## 1.4.4.4 Observable Behavior (vs Implementation Detail) 
-- Among the three,
-  - the output-based style produces tests of the highest quality,
-  - state-based testing is the second-best choice,
-  - and communication-based testing should be used only occasionally.
-
 ## 1.4.5 Happy Path vs Edge Case
 - check as many of the business scenario’s edge cases as possible with unit tests; 
 - use integration tests to cover one happy path, as well as any edge cases that can’t be covered by unit tests.
@@ -305,6 +273,7 @@ void purchase_succeeds_when_enough_inventory() {
     assertEqual(5, store.getInventory(Product.Shampoo));
 }
 ```
+TBD handson
 
 ## 2.2.2 London School(Mockist)
 ```
@@ -322,6 +291,7 @@ void purchase_succeeds_when_enough_inventory() {
     verify(mockStore, times(1)).removeInventory(Product.Shampoo, 5);
 }
 ```
+TBD handson
 
 ## 2.2.3 London School Pros and Cons
 - Pros
@@ -369,6 +339,11 @@ void mock() {
   verify(order, times(1)).validated(); // examine the call to the mock
 }
 ```
+- `Mock` waits to be called by the SUT(system under test)
+- Hands-on
+  - [Car.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/mock/Car.java)
+  - [Engine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/mock/Engine.java)
+  - [CarTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/mock/CarTest.java)
 
 ## 3.3 Spy
 ```
@@ -377,6 +352,7 @@ var purchase = new Purchase(order);
 
 @Test 
 void spy() {
+  // spying List not working on JDK >= 17
   var list = new ArrayList<>();
   var spyList = spy(list);
 
@@ -387,7 +363,10 @@ void spy() {
   assertThat(spyList.size()).isEqualTo(2);
 }
 ```
-TBD vs mock
+`Spy`, there is the real object and you just spying or stubbing specific methods of it.
+- Hands-on
+  - [GiftEngine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/mock/GiftEngine.java)
+  - [GiftEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/mock/GiftEngineTest.java)
 
 ## 3.4 Stub (+ Dummy, Fake)
 ```
@@ -403,10 +382,15 @@ void stub() {
   assertFalse(purchase.canBeShipped());
 }
 ```
+- `Stub` gives out data that goes to the SUT
 - `Dummy` is a simple, hardcoded value such as a null value or a made-up string.
   - It’s used to satisfy the SUT’s method signature and doesn’t participate in producing the final outcome.
 - `Fake` is the same as a stub for most purposes.
   - The difference is in the rationale for its creation: a fake is usually implemented to replace a dependency that doesn’t yet exist.
+- Hands-on
+  - [Car.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/mock/Car.java)
+  - [Engine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/mock/Engine.java)
+  - [CarTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/mock/CarTest.java)
 
 # 4 테스팅 프레임워크
 ## 4.0 테스팅 프레임워크
@@ -423,13 +407,14 @@ void stub() {
   - You can also use mock objects instead of real dependencies.
 
 ## 5.1 AAA Pattern (arrange, act, and assert)
-- Code
-  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
-  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 - The AAA pattern advocates for splitting each test into three parts
   - arrange (given)
   - act (when)
   - assert (then)
+- Hands-on
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
+  - Create new test by `Cmd + Shift + T`
+    - HandsOnCalculatorTest.java
 
 ## 5.2 Dropping the arrange, act, and assert comments from tests
 - Code
@@ -585,6 +570,7 @@ void simple_iteration() {
   );
 }
 ```
+Tbd
 <br/>
   <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/test-names.png" width="600"/><br/>
 
@@ -677,7 +663,7 @@ public void 재고가_충분하면_구매가_성공한다() {
   - builder 의 이용 (ObjectMother vs Builder)
   - 테스트에서 이용되지 않는 field 는 dummy 를 이용하자
   - 나 자신이 아닌, 유지보수할 사람을 생각해서 코드를 작성하자
-  - TBD xUnit
+  - TBD handson
 - [gradle java-test-fixture](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
   - [gradle java-test-fixture in toss tech blog](https://toss.tech/article/how-to-manage-test-dependency-in-gradle)
 
@@ -743,19 +729,52 @@ void 주문이_성공하면_inventory가_줄어든다() {
 ## 5.20 Code pollution
 - `Code pollution` is adding production code that’s only needed for testing.
 
-# 6 통합 테스트 만들어보기
+# 6 Three Styles of Unit Testing
+- Output-based testing
+- State-based testing
+- Communication-based testing
 
-## 6.0 통합 테스트 만들어보기
+## 6.1 Output-based Testing
+- Code
+  - [PriceEngine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/PriceEngine.java)
+  - [PriceEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/PriceEngineTest.java)
+- The output-based style of unit testing is also known as _functional_.
+  - This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code
+
+## 6.2 State-based Testing
+- Code
+  - [Order.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/Order.java)
+  - [OrderTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/OrderTest.java)
+- The term state in this style of testing can refer to the state
+  - of the SUT itself,
+  - of one of its collaborators,
+  - or of an out-of-process dependency, such as the database or the filesystem
+
+## 6.3 Communication-based Testing
+- Code
+  - [GreetingService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/GreetingService.java)
+  - [GreetingServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/GreetingServiceTest.java)
+- This style uses mocks to verify communications between the system under test and its collaborators
+
+## 6.4 Observable Behavior (vs Implementation Detail)
+- Among the three,
+  - the output-based style produces tests of the highest quality,
+  - state-based testing is the second-best choice,
+  - and communication-based testing should be used only occasionally.
+
+# 7 통합 테스트 만들어보기
+
+## 7.0 통합 테스트 만들어보기
 - You can never be sure your system works as a whole if you rely on unit tests exclusively. 
 - Unit tests are great at verifying business logic, but it’s not enough to check that logic in a vacuum.
 
-## 6.1 What scenarios to test?
+## 7.1 What scenarios to test?
 - Test Pyramid
 - The general guideline for integration testing is to 
   - cover the longest happy path 
   - and any edge cases that can’t be exercised by unit tests. 
 
-## 6.2 The two types of out-of-process dependencies
+## 7.2 The two types of out-of-process dependencies
 - Use real instances of managed dependencies; replace unmanaged dependencies with mocks.
   - `Managed dependencies (out-of-process dependencies you have full control over)`
     - These dependencies are only accessible through your application; interactions with them aren’t visible to the external world. A typical example is a database. External systems normally don’t access your database directly; they do that through the API your application provides.
@@ -764,12 +783,12 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - Communications with managed dependencies are implementation details. 
   - Conversely, communications with unmanaged dependencies are part of your system’s observable behavior.
 
-## 6.3 [@MockBean & @SpyBean](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.mocking-beans)
+## 7.3 [@MockBean & @SpyBean](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.mocking-beans)
 - Spring Boot includes a `@MockBean` annotation that can be used to define a Mockito `mock` for a bean inside your `ApplicationContext`.
 - Additionally, you can use `@SpyBean` to wrap any existing bean with a Mockito `spy`
 - While Spring’s test framework caches application contexts between tests and reuses a context for tests sharing the same configuration, the use of `@MockBean` or `@SpyBean` influences the cache key, which will most likely increase the number of contexts.
 
-## 6.4 [@SpringBootTest + @Transactional](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
+## 7.4 [@SpringBootTest + @Transactional](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
 - Code
   - [RevisitedOrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/RevisitedOrderService.java)
   - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
@@ -780,7 +799,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
   - However, as using this arrangement with either `RANDOM_PORT` or `DEFINED_PORT` implicitly provides a real servlet environment, the HTTP client and server run in separate threads and, thus, in separate transactions. 
   - ️Any transaction initiated on the server does not roll back in this case.
 
-## 6.5 [Web Controller Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
+## 7.5 [Web Controller Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
 - Code
   - [OrderController.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderController.java)
   - [OrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderControllerIntegrationTest.java)
@@ -794,7 +813,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - `MockMvc` vs. [TestRestTemplate](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.utilities.test-rest-template)
 - Lombok Serialization/Deserialization issue
 
-## 6.6 [@DataJpaTest](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.autoconfigured-spring-data-jpa)
+## 7.6 [@DataJpaTest](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.autoconfigured-spring-data-jpa)
 - Code
   - [OrderRepositoryIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderRepositoryIntegrationTest.java)
 - You can use the `@DataJpaTest` annotation to test JPA applications. 
@@ -802,7 +821,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - If an embedded database is available on the classpath, it configures one as well. 
 - SQL queries are logged by default by setting the `spring.jpa.show-sql` property to `true`.
 
-## 6.7 Persistent vs Non-persistent Test Fixtures
+## 7.7 Persistent vs Non-persistent Test Fixtures
 - Code
   - [OrderControllerIntegrationTest.java:주문상세_조회에_성공한다_dbunit()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderControllerIntegrationTest.java)
   - [RevisitedOrderControllerIntegrationTest.java:주문상세_조회에_성공한다_no_dbunit()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderControllerIntegrationTest.java)
@@ -813,7 +832,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - Non-persistent test fixtures
   - (JPA) save(), saveAndFlush()
 
-## 6.7.1 Persistent Test Fixtures (1)
+## 7.7.1 Persistent Test Fixtures (1)
 ```
 간단한 관계를 가진 예제이기 때문에 테스트에 필요한 데이터를 미리 설정하는데 별다른 힘을 들이지 않았지만, 
 점차 관계가 복잡해질수록 데이터를 설정하는것에 많은 고통이 따르게 됩니다.
@@ -830,7 +849,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
   - Type-unsafe
   - Xml hell (for complicated cases)
 
-## 6.7.1 Persistent Test Fixtures (2)
+## 7.7.1 Persistent Test Fixtures (2)
 ```
 # 토비의 스프링 3 (2010)
 ORM 롤백 트랜잭션 테스트의 주의사항
@@ -845,7 +864,7 @@ ORM 롤백 트랜잭션 테스트의 주의사항
 ```
 - [토비의 스프 부트 - 이해와 원리 Q&A](https://www.inflearn.com/questions/792383/%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%97%90%EC%84%9C%EC%9D%98-transactional-%EC%82%AC%EC%9A%A9%EC%97%90-%EB%8C%80%ED%95%B4-%EC%A7%88%EB%AC%B8%EC%9D%B4-%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4)
 
-## 6.7.2 Non-persistent Test Fixtures
+## 7.7.2 Non-persistent Test Fixtures
 ```
 ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는다. 
 대신 가능한 한 오랫동안 메모리에 변경사항을 저장하고 있다가 꼭 필요한 시점에서 DB에 반영한다.
@@ -857,23 +876,23 @@ ORM은 기본적으로 모든 작업 결과를 바로 DB에 반영하지 않는�
 - 그래도 commit 은 일어나지 않는당
 - Test fixture는 persistence layer를 이용해보자
 
-## 6.8 In-memory DB vs Regular DB
+## 7.8 In-memory DB vs Regular DB
 - Using in-memory database is, mismatch between production and test environments.
   - Use TestContainers
 
-## 6.9 Parallel Test Execution
+## 7.9 Parallel Test Execution
 - [Do not run tests in parallel if the tests:](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html#testcontext-parallel-test-execution)
   - Use Spring Framework’s `@DirtiesContext` support.
   - Use Spring Boot’s `@MockBean` or `@SpyBean` support.
   - Change the state of shared services or systems such as a database, message broker, filesystem, and others. This applies to both embedded and external systems.
 
-# 7 end to end 테스트
-## 7.0 end to end 테스트
+# 8 end to end 테스트
+## 8.0 end to end 테스트
 - An end-to-end test in a scenario with an API would be a test running against a deployed, fully functioning version of that API, which means no mocks for any of the out-of-process dependencies.
 - 만들기도 어렵고, 유지보수하기도 어렵다
 
-# 8 학습테스트
-## 8.0 TestAny
+# 9 학습테스트
+## 9.0 TestAny
 ```
 ➜  ~ cat .gitignore_global
 TestAny*.java
@@ -882,16 +901,16 @@ TestAny*.java
 - TestAnyIntegration
 - TestAnyController
 
-# 9 FAQ
-## 9.1 Mocking Static Methods
+# 10 FAQ
+## 10.1 Mocking Static Methods
 - Generally speaking, some might say that when writing clean object-orientated code, we shouldn't need to mock static classes. This could typically hint at a design issue or code smell in our application.
 - So, it's always worth investigating if we can refactor our code to make it more testable. Of course, this is not always possible, and sometimes we need to mock static methods.
 
-## 9.2 Testing Private Methods
+## 10.2 Testing Private Methods
 - Tests shouldn’t verify units of code. Rather, they should verify units of behavior: something that is meaningful for the problem domain and, ideally, something that a business person can recognize as useful.
 - A test should tell a story about the problem your code helps to solve, and this story should be cohesive and meaningful to a non-programmer.
 
-## 9.3 Testing Concurrency
+## 10.3 Testing Concurrency
 ```
 Treat Spurious Failures as Candidate Threading Issues
 
@@ -906,7 +925,7 @@ It is best to assume that one-offs do not exist. The longer these “one-offs”
 ```
 - 1번만 우연히 나는 에러같은 것은 없음
 
-## 9.4 테스트 할 시간이 없어요
+## 10.4 테스트 할 시간이 없어요
 ```
 Slaves are not allowed to say no. 
 Laborers may be hesitant to say no. 
@@ -918,34 +937,34 @@ It’s the only way you can really get anything done.
 - Robert C. Martin, The Clean Coder, p26
 ```
 
-## 9.5 너무 레거시에요, 기존 테스트가 1개도 없어용
+## 10.5 너무 레거시에요, 기존 테스트가 1개도 없어용
 ```
 영웅은 난세에 태어난다.
 
 Working Effectively with Legacy Code (Robert C. Martin Series) by Michael Feathers - 2005
 ```
 
-## 9.6 TDD 어떻게 하면 되나요?.?
+## 10.6 TDD 어떻게 하면 되나요?.?
 - [TDD is dead](https://dhh.dk/2014/tdd-is-dead-long-live-testing.html)
 - [RIP TDD](https://www.facebook.com/notes/kent-beck/rip-tdd/750840194948847)
 - [Mockists Are Dead. Long Live Classicists.](https://www.thoughtworks.com/insights/blog/mockists-are-dead-long-live-classicists)
 
-## 9.7 다른 테스트 프레임워크/라이브러리
+## 10.7 다른 테스트 프레임워크/라이브러리
 - karate
 - kotest
 - rest-assured
 - spock
 - ...
 
-# 10 마치며
-## 10.1 열린 마음으로 동료와 함께 성장하쟈
+# 11 마치며
+## 11.1 열린 마음으로 동료와 함께 성장하쟈
 - 팀보다 위대한 선수는 없다
   - 상이한 경험, 지식
   - 소통과 포용
   - 톤 & 매너
 - 함께 공부하며 성장해요
 
-## 10.2 당부의 말씀 (1)
+## 11.2 당부의 말씀 (1)
 ```
 Don’t Trust a Test You’ve Never Seen Fail.
 
@@ -954,16 +973,16 @@ Don’t Trust a Test You’ve Never Seen Fail.
 - The test could be providing false negatives. 
 - Fail first.
 
-## 10.3 당부의 말씀 (2)
+## 11.3 당부의 말씀 (2)
 - It’s better to not write a test at all than to write a bad test. 
 - A test that doesn’t provide significant value is a bad test.
 
-## 10.4 당부의 말씀 (3)
+## 11.4 당부의 말씀 (3)
 - 정답은 없고, 정답에 가까운 길을 찾아갈 뿐
   - [지금은맞고그때는틀리다](https://namu.wiki/w/%EC%A7%80%EA%B8%88%EC%9D%80%EB%A7%9E%EA%B3%A0%EA%B7%B8%EB%95%8C%EB%8A%94%ED%8B%80%EB%A6%AC%EB%8B%A4)
 
-# 11 별책부록
-## 11.1 기억해둘 만한 Software Design Principles
+# 12 별책부록
+## 12.1 기억해둘 만한 Software Design Principles
 ```
 * Don't Repeat Yourself (DRY)
  - 복붙하지 말거라
@@ -990,20 +1009,16 @@ Don’t Trust a Test You’ve Never Seen Fail.
  - 누군가 보고 깜짝 놀랄 코드는 짜지 말거라
 ```
 
-## 11.2 Reference
+## 12.2 Reference
 - [classical vs london school](https://medium.com/@adrianbooth/test-driven-development-wars-detroit-vs-london-classicist-vs-mockist-9956c78ae95f)
 - [TDD에 대한 몇 가지 질문](https://brunch.co.kr/@cleancode/44)
-- [1. 테스트하기 좋은 코드 - 테스트하기 어려운 코드](https://jojoldu.tistory.com/674)
 - [unit/integration/end-to-end test](https://tecoble.techcourse.co.kr/post/2021-05-25-unit-test-vs-integration-test-vs-acceptance-test/)
 - [unit test best practices](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices#characteristics-of-a-good-unit-test)
 - [atdd example](https://github.com/msbaek/atdd-example)
 - [백명석 clean coders](https://www.youtube.com/playlist?list=PLeQ0NTYUDTmMM71Jn1scbEYdLFHz5ZqFA)
-- [Testing strategies in microservice architecture](https://martinfowler.com/articles/microservice-testing/)
 - [unit/integration/functional/acceptance test](https://stackoverflow.com/questions/4904096/whats-the-difference-between-unit-functional-acceptance-and-integration-test)
-- [mock vs stub](https://stackoverflow.com/questions/3459287/whats-the-difference-between-a-mock-stub)
 - [Testing the Persistence Layer With Spring Boot @DataJpaTest](https://www.arhohuttunen.com/spring-boot-datajpatest/)
 - [Database Rider](https://github.com/database-rider/database-rider)
-- [ubiquitous language](https://tigosoftware.com/what-ubiquitous-language-examples)
 - [best practices](https://phauer.com/2019/modern-best-practices-testing-java/)
 - [TestEntityManager](https://josefczech.cz/2020/02/02/datajpatest-testentitymanager-flush-clear/)
 - [jpa repository](https://vladmihalcea.com/best-spring-data-jparepository/)

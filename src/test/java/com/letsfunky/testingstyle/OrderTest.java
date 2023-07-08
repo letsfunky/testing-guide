@@ -7,13 +7,16 @@ class OrderTest {
 
     @Test
     void 주문에_제품을_추가한다() {
-        // arrange
-        var product = new Product("foo");
-        var sut = new Order();
+        // todo: arrange
+        //  1. create Product fixture
+        //  2. create system under test (Order)
 
-        // act
-        sut.addProduct(product);
+        // todo:act
+        //  1. add product to order
 
-        // assert
+        // todo: assert
+        //  1. assert order products has size 1
+        //  2. assert product equals to given fixture
+
     }
 }
