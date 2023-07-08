@@ -4,6 +4,8 @@ package com.letsfunky.mock;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 import static org.mockito.Mockito.*;
 
 class CarTest {
@@ -22,5 +24,18 @@ class CarTest {
         // todo: assert
         //  1. verify `Engine.selfCheck()` has been invoked `exactly once`
 
+    }
+
+    // examine stub
+    // `Stub` gives out data that goes to the SUT
+    @Test
+    void 엔진에_문제가_있으면_자동차_시동이_실패한다() {
+        // todo: act
+        //  1. create Engine mock for stubbing
+        //  2. doThrow IllegalStateException when engine selfCheck() invoked
+        //  3. inject Engine stub into Car
+
+        // todo: act & assert
+        //  1. assert that IllegalStateException thrown by when Car's engine started
     }
 }
