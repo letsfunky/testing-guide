@@ -818,8 +818,11 @@ void 주문이_성공하면_inventory가_줄어든다() {
 ## 7.1 What scenarios to test?
 - Test Pyramid
 - The general guideline for integration testing is to 
-  - cover the longest happy path 
-  - and any edge cases that can’t be exercised by unit tests. 
+  - cover the longest happy path
+  - and any edge cases that can’t be exercised by unit tests.
+- Code
+  - [before/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/humbleobject/before/ChangeEmailService.java)
+  - [after/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/humbleobject/after/ChangeEmailService.java)
 
 ## 7.2 The two types of out-of-process dependencies
 - Use real instances of managed dependencies; replace unmanaged dependencies with mocks.
