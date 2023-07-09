@@ -47,7 +47,11 @@
 
 # 0 Software Engineering
 ## 0.1 정답은 없고, 정답에 가까운 길을 찾아갈 뿐
+```
+There is no silver bullet.
+```
 <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/pigeon-copter.jpeg" width="400"/><br/>
+
 
 ## 0.2 Good code vs Bad code
 ```
@@ -259,6 +263,34 @@ Premature optimization is the root of all evil
 - the root of the differences is the isolation attribute.
   - The London school views it as isolation of the system under test from its collaborators,
   - whereas the classical school views it as isolation of unit tests themselves from each other.
+
+## 2.2.0 Immutable Value Object
+- [PEAA | Martin Fowler](https://martinfowler.com/eaaCatalog/valueObject.html)
+  - A small simple object, like money or a date range, whose equality isn't based on identity.
+- [ValueObject | Martin Fowler](https://martinfowler.com/bliki/ValueObject.html)
+  - Of course, it makes it much easier to treat value objects as `immutable` if they really are immutable.
+- [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
+  - i.e. two value objects are equal when they have the same value, not necessarily being the same object.
+- Immutable VOs implemented by
+  - [java record](https://openjdk.org/jeps/384)
+  - [kotlin data class](https://kotlinlang.org/docs/data-classes.html)
+  - lombok `@Value` (vs `@Data`)
+
+## 2.2.0.1 Immutable Value Object Examples
+- Anti-Pattern of Mutable VO  
+  ```
+  @Data
+  class OrderRequest() {
+    ...
+    String address;
+  }
+  
+  void createOrder(OrderRequest req) {
+    req.setAddress("바꾸면 안됳....");
+  }
+  ```
+- Domain-driven vs Database-driven
+  - [Implement value objects | msdn](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects)
 
 ## 2.2.1 Classical School(Classicist)
 ```
@@ -670,7 +702,7 @@ public void 재고가_충분하면_구매가_성공한다() {
 - ❗High coupling between tests is an anti-pattern
   - The use of constructors (like `@BeforeEach`) in tests diminishes test readability
 - A better way to reuse test fixtures
-  - builder 의 이용 (ObjectMother vs Builder)
+  - fixture builder 이용 (ObjectMother vs Builder)
   - 테스트에서 이용되지 않는 field 는 dummy 를 이용하자
   - 나 자신이 아닌, 유지보수할 사람을 생각해서 코드를 작성하자
 - [gradle java-test-fixture](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
