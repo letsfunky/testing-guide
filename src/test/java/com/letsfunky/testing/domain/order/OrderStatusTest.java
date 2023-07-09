@@ -1,46 +1,33 @@
 package com.letsfunky.testing.domain.order;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+import static org.assertj.core.api.Assertions.assertThat;
+
 class OrderStatusTest {
 
-    @Nested
-    class OrderStatus가_DRAFT일때 {
-        @Test
-        void ORDERED로_변경가능하다() {
-            assertThat(OrderStatus.DRAFT.processable(OrderStatus.ORDERED)).isTrue();
-        }
-
-        @Test
-        void PAYMENT_COMPLETED로_변경가능하다() {
-            assertThat(OrderStatus.DRAFT.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
-        }
+    @Test
+    void OrderStatus가_DRAFT일때_ORDERED로_변경가능하다() {
+        assertThat(OrderStatus.DRAFT.processable(OrderStatus.ORDERED)).isTrue();
     }
 
-    @Nested
-    class OrderStatus가_ORDERED일때 {
-        @Test
-        void PAYMENT_COMPLETED로_변경가능하다() {
-            assertThat(OrderStatus.ORDERED.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
-        }
-
-        @Test
-        void SHIPPED로_변경가능하다() {
-            assertThat(OrderStatus.ORDERED.processable(OrderStatus.SHIPPED)).isTrue();
-        }
+    @Test
+    void ORDERED일때_PAYMENT_COMPLETED로_변경가능하다() {
+        assertThat(OrderStatus.ORDERED.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
     }
 
-    @Nested
-    class OrderStatus가_PAYMENT_SHIPPED일때 {
-        @Test
-        void 다른_상태로_변경이_불가하다_테스트가_구현되지_않아_실패한다() {
-            throw new UnsupportedOperationException("test not implemented yet");
-        }
+    @Test
+    void ORDERED일때_SHIPPED로_변경가능하다() {
+        assertThat(OrderStatus.ORDERED.processable(OrderStatus.SHIPPED)).isTrue();
+    }
+
+    @Test
+    void OrderStatus가_DRAFT일때_PAYMENT_COMPLETED로_변경가능하다() {
+        assertThat(OrderStatus.DRAFT.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
+    }
+
+    @Test
+    void PAYMENT_SHIPPED일때_다른_상태로_변경이_불가하다() {
+        // empty intended
     }
 }

@@ -696,12 +696,6 @@ public void 재고가_충분하면_구매가_성공한다() {
 - Unit tests don’t talk to out-of-process dependencies and thus don’t leave side effects that need to be disposed of. That’s a realm of integration testing.
 
 ## 5.15 Reusing test fixtures between tests
-- Hands-on
-  - [SmsService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsService.java)
-  - [SmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsServiceTest.java)
-  - [RevistedSmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/RevisitedSmsServiceTest.java)
-  - [SmsApiDtoBuilder.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiDtoBuilder.java)
-  - Refactor `SmsServiceTest` with builder
 - [Test Fixtures](https://junit.org/junit4/cookbook.html)
   - `Tests need to run against the background of a known set of objects. This set of objects is called a test fixture.`
 - ❗High coupling between tests is an anti-pattern
@@ -711,7 +705,14 @@ public void 재고가_충분하면_구매가_성공한다() {
   - Use dummy data on unused fields
 - [gradle java-test-fixture](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
   - [gradle java-test-fixture in toss tech blog](https://toss.tech/article/how-to-manage-test-dependency-in-gradle)
-
+- Hands-on
+  - [SmsService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsService.java)
+  - [SmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsServiceTest.java)
+  - [RevistedSmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/RevisitedSmsServiceTest.java)
+  - [SmsApiDtoBuilder.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiDtoBuilder.java)
+  - Refactor `SmsServiceTest` with builder
+    - Extract method and delegate
+  
 ## 5.16 Don’t assert interactions with stubs
 - Code
   - [SmsService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsService.java)
@@ -758,13 +759,14 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - In other words, tests must focus on the whats, not the hows.
 
 ## 5.18 Nested Test
-- Code
-  - [OrderStatus.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/order/OrderStatus.java)
-  - [OrderStatusTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderStatusTest.java)
 - 인간이 이해할 수 있는 테스트 구조<br/>
 <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/nested-test.png" width="600"/><br/>
-TBD
- 
+- Hands-on
+  - [OrderStatus.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/order/OrderStatus.java)
+  - [OrderStatusTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderStatusTest.java)
+  - [RevisitedOrderStatusTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/RevisitedOrderStatusTest.java)
+  - Refactor `OrderStatusTest` to nested test
+
 ## 5.19 Interfaces and loose coupling
 - Genuine abstractions are discovered, not invented.
 - For an interface to be a genuine abstraction, it must have at least two implementations.
@@ -781,26 +783,29 @@ TBD
 - Communication-based testing
 
 ## 6.1 Output-based Testing
-- Code
-  - [PriceEngine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/PriceEngine.java)
-  - [PriceEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/PriceEngineTest.java)
 - The output-based style of unit testing is also known as _functional_.
   - This name takes root in functional programming, a method of programming that emphasizes a preference for side-effect-free code
+- Hands-on
+  - [PriceEngine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/PriceEngine.java)
+  - [PriceEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/PriceEngineTest.java)
+  - Fill-up tests
 
 ## 6.2 State-based Testing
-- Code
-  - [Order.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/Order.java)
-  - [OrderTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/OrderTest.java)
 - The term state in this style of testing can refer to the state
   - of the SUT itself,
   - of one of its collaborators,
   - or of an out-of-process dependency, such as the database or the filesystem
+- Hands-on
+  - [Order.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/Order.java)
+  - [OrderTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/OrderTest.java)
+  - Fill-up tests
 
 ## 6.3 Communication-based Testing
-- Code
+- This style uses mocks to verify communications between the system under test and its collaborators
+- Hands-on
   - [GreetingService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/GreetingService.java)
   - [GreetingServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/GreetingServiceTest.java)
-- This style uses mocks to verify communications between the system under test and its collaborators
+  - Fill-up tests
 
 ## 6.4 Observable Behavior (vs Implementation Detail)
 - Among the three,
@@ -809,7 +814,6 @@ TBD
   - and communication-based testing should be used only occasionally.
 
 # 7 통합 테스트 만들어보기
-
 ## 7.0 통합 테스트 만들어보기
 - You can never be sure your system works as a whole if you rely on unit tests exclusively. 
 - Unit tests are great at verifying business logic, but it’s not enough to check that logic in a vacuum.

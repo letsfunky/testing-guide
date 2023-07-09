@@ -32,5 +32,4 @@ class PriceEngineTest {
         //  1. assert maximum discount rate
 
     }
-
 }
