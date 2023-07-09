@@ -17,19 +17,19 @@
   - 테스트를 만들어 보기 위한 코드로, 다소 `으응?`스러운 코드들이 있을 수 있어요. 🙇
 
 # 목차
-* [0 Software Engineering](#0-software-engineering)
-* [1 테스팅이란 무엇일까요?](#1-테스팅이란-무엇일까요)
-* [2 테스트의 종류에는 어떤 것들이 있을까요?](#2-테스트의-종류에는-어떤-것들이-있을까요)
-* [3 Mock](#3-mock)
-* [4 테스팅 프레임워크](#4-테스팅-프레임워크)
-* [5 단위 테스트 만들어보기](#5-단위-테스트-만들어보기)
-* [6 Three Styles of Unit Testing](#6-three-styles-of-unit-testing)
-* [7 통합 테스트 만들어보기](#7-통합-테스트-만들어보기)
-* [8 end to end 테스트](#8-end-to-end-테스트)
-* [9 학습테스트](#9-학습테스트)
-* [10 FAQ](#10-faq)
-* [11 마치며](#11-마치며)
-* [12 별책부록](#12-별책부록)
+[0 Software Engineering](#0-software-engineering) \
+[1 테스팅이란 무엇일까요?](#1-테스팅이란-무엇일까요) \
+[2 테스트의 종류에는 어떤 것들이 있을까요?](#2-테스트의-종류에는-어떤-것들이-있을까요) \
+[3 Mock](#3-mock) \
+[4 테스팅 프레임워크](#4-테스팅-프레임워크) \
+[5 단위 테스트 잘 만들어보기](#5-단위-테스트-잘-만들어보기) \
+[6 단위 테스트의 3가지 스타일](#6-단위-테스트의-3가지-스타일) \
+[7 통합 테스트 만들어보기](#7-통합-테스트-만들어보기) \
+[8 end to end 테스트](#8-end-to-end-테스트) \
+[9 학습테스트](#9-학습테스트) \
+[10 FAQ](#10-faq) \
+[11 마치며](#11-마치며) \
+[12 별책부록](#12-별책부록)
 
 # 시작하기 전에
 ## 약력
@@ -724,7 +724,6 @@ public void 재고가_충분하면_구매가_성공한다() {
 @Test
 void sms발송이_성공한다() {
     ...
-
     when(smsApiClient.send(request)).thenReturn(new SmsResponse(...)));
 
     var response = sut.send(phoneNumber, smsMessage);
@@ -777,7 +776,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 ## 5.20 Code pollution
 - `Code pollution` is adding production code that’s only needed for testing.
 
-# 6 Three Styles of Unit Testing
+# 6 단위 테스트의 3가지 스타일
 - Output-based testing
 - State-based testing
 - Communication-based testing
