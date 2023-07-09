@@ -568,7 +568,7 @@ assertThat(actual).isEqualTo(expected);
 
   vs
 
-  void 두개의_integer를_sum한다()
+  void 두개의_integer를_더한다()
   ```
 
 ## 5.7 Using `@DisplayName("...")` vs Test Method Name
@@ -590,17 +590,19 @@ class RevisitedCalculatorTest {
 - Code
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
   - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
-- @ParameterizedTest vs Simple Iteration
+- [@ParameterizedTest](https://reflectoring.io/tutorial-junit5-parameterized-tests/) vs Simple Iteration
 ```
 @ParameterizedTest
 @MethodSource("sumIntegersSource") 
-void parameterized() {
+void 두개의_int를_더한다(int x, int y, long expected) {
   ... 
 }
 
-// @MethodSource
-static Stream<Arguments> sumIntegersSource() {
-  ...
+// @MethodSource defined
+static Stream<Arguments> sumIntegerSource() { // won't work, find why
+  return Stream.of(
+    Arguments.of(..)
+  );
 }
 
 vs
@@ -614,7 +616,6 @@ void simple_iteration() {
 ```
 <br/>
   <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/test-names.png" width="600"/><br/>
-TBD hands on
 
 ## 5.9 Differentiating the system under test
 - Code
@@ -635,7 +636,7 @@ TBD hands on
 - Code
   - [OrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderService.java) 
   - [OrderServiceTest.java#주문이_존재하면_주문상세를_가져온다()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderServiceTest.java)
-  - [RevistedOrderServiceTest.java#주문이_존재하면_주문상세를_가져온다()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
+  - [RevisitedOrderServiceTest.java#주문이_존재하면_주문상세를_가져온다()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
 - You may have heard about the guideline of having one assertion per test. 
   - As you already know, this premise is incorrect. 
   - A unit in unit testing is a unit of behavior, not a unit of code. 
@@ -647,15 +648,18 @@ TBD hands on
 // 아아 안됳. ... .
 @Test
 void 변하는_job상태를_확인한다() {
+  // arrange, act, assert
+  var initJob = new Job().init();
   var startedJob = initJob.start();
   assertEquals(JobStatus.STARTED, startedJob.getStatus());
 
+  // act, assert
   var failedJob = startedJob.fail();
   assertEquals(JobStatus.FAILED, failedJob.getStatus());
 
+  // act, assert
   var restartedJob = startedJob.start();
   assertEquals(JobStatus.STARTED, restartedJob.getStatus());
-
   ...
 }
 ```
@@ -692,19 +696,19 @@ public void 재고가_충분하면_구매가_성공한다() {
 - Unit tests don’t talk to out-of-process dependencies and thus don’t leave side effects that need to be disposed of. That’s a realm of integration testing.
 
 ## 5.15 Reusing test fixtures between tests
-- Code
+- Hands-on
   - [SmsService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/infrastructure/message/SmsService.java)
   - [SmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsServiceTest.java)
   - [RevistedSmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/RevisitedSmsServiceTest.java)
   - [SmsApiDtoBuilder.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiDtoBuilder.java)
+  - Refactor `SmsServiceTest` with builder
 - [Test Fixtures](https://junit.org/junit4/cookbook.html)
   - `Tests need to run against the background of a known set of objects. This set of objects is called a test fixture.`
 - ❗High coupling between tests is an anti-pattern
   - The use of constructors (like `@BeforeEach`) in tests diminishes test readability
 - A better way to reuse test fixtures
-  - fixture builder 이용 (ObjectMother vs Builder)
-  - 테스트에서 이용되지 않는 field 는 dummy 를 이용하자
-  - 나 자신이 아닌, 유지보수할 사람을 생각해서 코드를 작성하자
+  - Use fixture builder (ObjectMother or Builder)
+  - Use dummy data on unused fields
 - [gradle java-test-fixture](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
   - [gradle java-test-fixture in toss tech blog](https://toss.tech/article/how-to-manage-test-dependency-in-gradle)
 
