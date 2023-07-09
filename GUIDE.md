@@ -196,7 +196,7 @@ If we trust the tests enough to ship after having executed them, we're good.
     - code that handles business logic (functional core)
     - and code that incurs side effects. (imperative shell)
 
-## 1.4.3.6 Architecture?
+## 1.4.4 Architecture?
 ```
 Premature optimization is the root of all evil
 
