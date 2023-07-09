@@ -11,7 +11,6 @@
 ## 참고
 - 아래의 책들에 기반한 내용이 주를 이뤄요.
   - Unit Testing (Vladimir Khorikov, Manning, 2020)
-  - xUnit Test Patterns (Gerard Meszaros, 2007)
   - Pragmatic Unit Testing in Java 8 With JUnit (Jeff Langr with Andy Hunt & Dave Thomas, The Pragmatic Programmers, 2015)
 - https://github.com/letsfunky/testing-guide
   - 테스트를 만들어 보기 위한 코드로, 다소 `으응?`스러운 코드들이 있을 수 있어요. 🙇
@@ -1067,7 +1066,6 @@ Don’t Trust a Test You’ve Never Seen Fail.
 - [백명석 clean coders](https://www.youtube.com/playlist?list=PLeQ0NTYUDTmMM71Jn1scbEYdLFHz5ZqFA)
 - [unit/integration/functional/acceptance test](https://stackoverflow.com/questions/4904096/whats-the-difference-between-unit-functional-acceptance-and-integration-test)
 - [Testing the Persistence Layer With Spring Boot @DataJpaTest](https://www.arhohuttunen.com/spring-boot-datajpatest/)
-- [Database Rider](https://github.com/database-rider/database-rider)
 - [best practices](https://phauer.com/2019/modern-best-practices-testing-java/)
 - [TestEntityManager](https://josefczech.cz/2020/02/02/datajpatest-testentitymanager-flush-clear/)
 - [jpa repository](https://vladmihalcea.com/best-spring-data-jparepository/)
