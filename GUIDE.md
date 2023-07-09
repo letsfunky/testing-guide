@@ -455,8 +455,7 @@ void stub() {
   - assert (then)
 - Hands-on
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
-  - Create new test by `Cmd + Shift + T`
-    - SpringTest.java
+  - Create new test by `Cmd + Shift + T` and add tests
 
 ## 5.2 Dropping the arrange, act, and assert comments from tests
 - Code
