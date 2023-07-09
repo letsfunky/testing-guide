@@ -264,7 +264,7 @@ Premature optimization is the root of all evil
   - whereas the classical school views it as isolation of unit tests themselves from each other.
 
 ## 2.2.0 Immutable Value Object
-- [PEAA | Martin Fowler](https://martinfowler.com/eaaCatalog/valueObject.html)
+- [P_EAA | Martin Fowler](https://martinfowler.com/eaaCatalog/valueObject.html)
   - A small simple object, like money or a date range, whose equality isn't based on identity.
 - [ValueObject | Martin Fowler](https://martinfowler.com/bliki/ValueObject.html)
   - Of course, it makes it much easier to treat value objects as `immutable` if they really are immutable.
