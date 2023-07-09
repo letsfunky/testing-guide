@@ -820,7 +820,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - The general guideline for integration testing is to 
   - cover the longest happy path
   - and any edge cases that can’t be exercised by unit tests.
-- Code
+- Code (from Humble Object)
   - [before/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/humbleobject/before/ChangeEmailService.java)
   - [after/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/humbleobject/after/ChangeEmailService.java)
 
