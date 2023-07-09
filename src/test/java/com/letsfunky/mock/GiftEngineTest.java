@@ -2,13 +2,6 @@ package com.letsfunky.mock;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-
 class GiftEngineTest {
 
     // examine spy

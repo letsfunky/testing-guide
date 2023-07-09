@@ -1,12 +1,7 @@
 package com.letsfunky.mock;
 
 
-
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
-import static org.mockito.Mockito.*;
 
 class CarTest {
 

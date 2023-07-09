@@ -441,8 +441,8 @@ void stub() {
 - [Mockito](https://site.mockito.org/)
 - [AssertJ](https://assertj.github.io/doc/)
 
-# 5 단위 테스트 만들어보기
-## 5.0 단위 테스트 만들어보기
+# 5 단위 테스트 잘 만들어보기
+## 5.0 단위 테스트 잘 만들어보기
 - [Spring Unit Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-applications)
   - One of the major advantages of dependency injection is that it should make your code easier to unit test. 
   - You can instantiate objects by using the `new` operator without even involving Spring. 
