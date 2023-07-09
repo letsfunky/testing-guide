@@ -253,9 +253,12 @@ Premature optimization is the root of all evil
 - Does it quickly,
 - And does it in an isolated manner.
 
-## 2.2 London school(Mockist) vs Classical school(Classicist)
+## 2.2 London school(Mockist) & Classical school(Classicist)
 <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/london-classical.png" width="600"/><br/>
 <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/shared-outofprocess-dep.png" width="600"/><br/>
+- the root of the differences is the isolation attribute.
+  - The London school views it as isolation of the system under test from its collaborators,
+  - whereas the classical school views it as isolation of unit tests themselves from each other.
 
 ## 2.2.1 Classical School(Classicist)
 ```
@@ -273,7 +276,6 @@ void purchase_succeeds_when_enough_inventory() {
     assertEqual(5, store.getInventory(Product.Shampoo));
 }
 ```
-TBD handson
 
 ## 2.2.2 London School(Mockist)
 ```
@@ -291,7 +293,6 @@ void purchase_succeeds_when_enough_inventory() {
     verify(mockStore, times(1)).removeInventory(Product.Shampoo, 5);
 }
 ```
-TBD handson
 
 ## 2.2.3 London School Pros and Cons
 - Pros
@@ -300,9 +301,9 @@ TBD handson
   - If a test fails, you know for sure which functionality has failed.
 - Cons
   - Tests that use mocks tend to be more brittle than classical tests
-    - Tests shouldn’t verify units of code. Rather, they should verify units of behavior: 
-      - something that is meaningful for the problem domain and, 
-      - ideally, something that a business person can recognize as useful.
+  - Tests shouldn’t verify units of code. Rather, they should verify units of behavior: 
+    - something that is meaningful for the problem domain and, 
+    - ideally, something that a business person can recognize as useful.
 
 ## 2.3 통합 테스트
 - The London school considers any test that uses a real collaborator object an integration test.
@@ -392,6 +393,15 @@ void stub() {
   - [Engine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/mock/Engine.java)
   - [CarTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/mock/CarTest.java)
 
+## 3.5 Mocking - Classicist & Mockist
+- Hands-on
+  - [Store.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/school/Store.java)
+  - [Customer.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/school/Customer.java)
+  - [CustomerTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/school/CustomerTest.java)
+- Use test doubles for
+  - Mockist: All but immutable dependencies
+  - Classicist: Shared dependencies
+
 # 4 테스팅 프레임워크
 ## 4.0 테스팅 프레임워크
 - [Spring Boot Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing)
@@ -414,7 +424,7 @@ void stub() {
 - Hands-on
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - Create new test by `Cmd + Shift + T`
-    - HandsOnCalculatorTest.java
+    - SpringTest.java
 
 ## 5.2 Dropping the arrange, act, and assert comments from tests
 - Code
@@ -570,9 +580,9 @@ void simple_iteration() {
   );
 }
 ```
-Tbd
 <br/>
   <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/test-names.png" width="600"/><br/>
+TBD hands on
 
 ## 5.9 Differentiating the system under test
 - Code
@@ -663,7 +673,6 @@ public void 재고가_충분하면_구매가_성공한다() {
   - builder 의 이용 (ObjectMother vs Builder)
   - 테스트에서 이용되지 않는 field 는 dummy 를 이용하자
   - 나 자신이 아닌, 유지보수할 사람을 생각해서 코드를 작성하자
-  - TBD handson
 - [gradle java-test-fixture](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
   - [gradle java-test-fixture in toss tech blog](https://toss.tech/article/how-to-manage-test-dependency-in-gradle)
 
@@ -718,7 +727,8 @@ void 주문이_성공하면_inventory가_줄어든다() {
   - [OrderStatusTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderStatusTest.java)
 - 인간이 이해할 수 있는 테스트 구조<br/>
 <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/nested-test.png" width="600"/><br/>
-
+TBD
+ 
 ## 5.19 Interfaces and loose coupling
 - Genuine abstractions are discovered, not invented.
 - For an interface to be a genuine abstraction, it must have at least two implementations.

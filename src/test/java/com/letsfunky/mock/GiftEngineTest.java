@@ -15,7 +15,7 @@ class GiftEngineTest {
     // `Stub` gives out data that goes to the SUT
     @Test
     void 무료선물이_추가된다() {
-        // todo: act
+        // todo: arrange
         //  1. create spy instance of HashMap<String, Integer> productPrices
 
         // todo: act

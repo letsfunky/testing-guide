@@ -14,7 +14,7 @@ class CarTest {
     // `Mock` waits to be called by the SUT(system under test)
     @Test
     void 자동차_시동을_걸면_엔진체크를_한다() {
-        // todo: act
+        // todo: arrange
         //  1. create mock instance of Engine
         //  2. inject Engine mock into Car
 
@@ -30,7 +30,7 @@ class CarTest {
     // `Stub` gives out data that goes to the SUT
     @Test
     void 엔진에_문제가_있으면_자동차_시동이_실패한다() {
-        // todo: act
+        // todo: arrange
         //  1. create Engine mock for stubbing
         //  2. doThrow IllegalStateException when engine selfCheck() invoked
         //  3. inject Engine stub into Car
