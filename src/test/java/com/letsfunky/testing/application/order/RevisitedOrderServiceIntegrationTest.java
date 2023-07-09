@@ -36,7 +36,7 @@ class RevisitedOrderServiceIntegrationTest {
     private RevisitedOrderService sut;
 
     @Test
-    void 주문이_성공하면_주문이_저장되고_sms가_발송된다() {
+    void 주문이_성공하면_sms가_발송되고_주문정보를_반환한다() {
         var member = memberRepository.saveAndFlush(new Member("member-name"));
         // NOTE: implies method parameters need refactoring
         var phoneNumber = "phoneNumber";
@@ -49,5 +49,6 @@ class RevisitedOrderServiceIntegrationTest {
         verify(smsService, times(1)).send(eq(phoneNumber), any());
         assertThat(orderRepository.findAll().size()).isEqualTo(1);
         assertThat(orderDetail.getOrdererId()).isEqualTo(member.getId());
+        assertThat(orderDetail.getOrderId()).isNotZero();
     }
 }

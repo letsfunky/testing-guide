@@ -40,7 +40,30 @@ class OrderControllerIntegrationTest {
 
     private final static String baseUrl = "/orders";
 
-    // add static import
+    @SneakyThrows
+    @Test
+    void 주문에_성공한다() {
+        var member = memberRepository.saveAndFlush(new Member("member-name"));
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.post(baseUrl + "/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{"
+                        + "  \"ordererId\": 1," // dangling reference
+                        + "  \"goods\": \"goods\","
+                        + "  \"count\": 3,"
+                        + "  \"phoneNumber\": \"phone-num\","
+                        + "  \"shippingAddress\": \"shipping-addr\""
+                        + "}"
+                )
+        )
+        .andDo(print())
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.ordererId", is(member.getId().intValue())))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.ordererName", is(member.getName())))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.shippingAddress", is("shipping-addr")));
+    }
+
     @SneakyThrows
     @Test
     void 주문상세_조회에_실패한다() {
@@ -65,30 +88,5 @@ class OrderControllerIntegrationTest {
             .andDo(MockMvcResultHandlers.print())
             .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk());
-    }
-
-    @SneakyThrows
-    @Test
-    void 주문에_성공한다() {
-        // NOTE: dbunit? rider?
-        var member = memberRepository.saveAndFlush(new Member("member-name"));
-
-        mockMvc.perform(
-            MockMvcRequestBuilders.post(baseUrl + "/")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{"
-                    + "  \"ordererId\": 1," // dangling reference
-                    + "  \"goods\": \"goods\","
-                    + "  \"count\": 3,"
-                    + "  \"phoneNumber\": \"phone-num\","
-                    + "  \"shippingAddress\": \"shipping-addr\""
-                    + "}"
-                )
-            )
-            .andDo(print())
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.ordererId", is(member.getId().intValue())))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.ordererName", is(member.getName())))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.shippingAddress", is("shipping-addr")));
     }
 }

@@ -620,7 +620,7 @@ void simple_iteration() {
 - Code
   - [OrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderService.java) 
   - [OrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderServiceTest.java)
-  - [RevistedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
+  - [RevisitedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
   - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
 - SUT (System Under Test)
   ```
@@ -837,29 +837,30 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - While Spring’s test framework caches application contexts between tests and reuses a context for tests sharing the same configuration, the use of `@MockBean` or `@SpyBean` influences the cache key, which will most likely increase the number of contexts.
 
 ## 7.4 [@SpringBootTest + @Transactional](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
-- Code
-  - [RevisitedOrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/RevisitedOrderService.java)
-  - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
-    - vs. [RevistedOrderServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceTest.java)
 - `@SpringBootTest` tests are full integration tests and involve the entire application.
 - The annotation works by creating the `ApplicationContext` used in your tests through SpringApplication.
 - If your test is `@Transactional`, it rolls back the transaction at the end of each test method by default. 
   - However, as using this arrangement with either `RANDOM_PORT` or `DEFINED_PORT` implicitly provides a real servlet environment, the HTTP client and server run in separate threads and, thus, in separate transactions. 
   - ️Any transaction initiated on the server does not roll back in this case.
+- Hands-on
+  - [RevisitedOrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/RevisitedOrderService.java)
+  - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
+  - Create new test `주문이_성공하면_sms가_발송되고_주문정보를_반환한다()`
+
 
 ## 7.5 [Web Controller Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
-- Code
-  - [OrderController.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderController.java)
-  - [OrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderControllerIntegrationTest.java)
-  - [MockMvcTestBase.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/MockMvcTestBase.java)
-  - [RevisitedOrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderControllerIntegrationTest.java)
 - By default, `@SpringBootTest` does not start the server but instead sets up a mock environment for testing web endpoints.
   - If you need to start a full running server, we recommend that you use random ports.
 - With Spring MVC, we can query our web endpoints using `MockMvc` or `WebTestClient`.
   - You can also auto-configure `MockMvc` in a non-`@WebMvcTest` (such as `@SpringBootTest`) by annotating it with `@AutoConfigureMockMvc`.
   - Use `@AutoConfigureMockMvc` to add a `MockMvc` instance to the application context.
 - `MockMvc` vs. [TestRestTemplate](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.utilities.test-rest-template)
-- Lombok Serialization/Deserialization issue
+- Hands-on
+  - [OrderController.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderController.java)
+  - [OrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderControllerIntegrationTest.java)
+  - [MockMvcTestBase.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/MockMvcTestBase.java)
+  - [RevisitedOrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderControllerIntegrationTest.java)
+  - Refactor test `OrderControllerIntegrationTest.주문에_성공한다()` by inheriting `MockMvcTestBase`
 
 ## 7.6 [@DataJpaTest](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.autoconfigured-spring-data-jpa)
 - Code
