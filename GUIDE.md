@@ -209,7 +209,7 @@ Premature optimization is the root of all evil
 - use integration tests to cover one happy path, as well as any edge cases that can’t be covered by unit tests.
 
 ## 1.5 Code coverage metric
-- Fomular
+- Formula
   - Code coverage = Lines of code executed / Total number of lines
   - Branch coverage = Branches traversed / Total number of branches
 - Coverage
