@@ -278,7 +278,7 @@ Premature optimization is the root of all evil
   - [lombok `@Value`](https://projectlombok.org/features/Value) (vs `@Data`)
 
 ## 2.2.0.1 What If Mutable?
-- Anti-Pattern of Mutable VO  
+- Anti-Pattern  
   ```
   class Money() {
     int amount;
@@ -292,8 +292,6 @@ Premature optimization is the root of all evil
     money.setAmount(123); // 바꾸면 안됳....
   }
   ```
-- Domain-driven vs Database-driven
-  - [Implement value objects | msdn](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects)
 
 ## 2.2.1 Classical School(Classicist)
 ```
