@@ -271,7 +271,7 @@ Premature optimization is the root of all evil
 - [Implementing value objects | msdn](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects#important-characteristics-of-value-objects)
   - There are two main characteristics for value objects:
     - They have no identity.
-      - They are immutable.
+    - They are immutable.
 - Immutable VOs implemented by
   - [java record](https://openjdk.org/jeps/384)
   - [kotlin data class](https://kotlinlang.org/docs/data-classes.html)
