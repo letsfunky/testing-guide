@@ -179,7 +179,15 @@ If we trust the tests enough to ship after having executed them, we're good.
   - [DDD entity vs ORM entity #3](https://matthiasnoback.nl/2022/04/ddd-entities-and-orm-entities/)
   - [DDD entity vs ORM entity #4](https://www.cockroachlabs.com/blog/relational-database-entities/)
 
-## 1.4.3.4 Humble Object (with Domain Model)
+## 1.4.3.4 Architecture?
+```
+Premature optimization is the root of all evil
+
+- Tony Hoare
+```
+- [프로젝트 폴더구조..에 관하여 질문이 있습니다 | Inflearn 김영한](https://www.inflearn.com/questions/16046/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0%EC%99%80-%EA%B0%95%EC%9D%98-%EC%9D%BC%EC%A0%95%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC-%EC%A7%88%EB%AC%B8%EC%9D%B4-%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4)
+
+## 1.4.3.5 Humble Object (with Domain Model)
 - Code
   - [before/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/humbleobject/before/ChangeEmailService.java)
   - [after/ChangeEmailService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/humbleobject/after/ChangeEmailService.java)
@@ -189,20 +197,12 @@ If we trust the tests enough to ship after having executed them, we're good.
   > making the original object _**humble**_ 
 - [Refactoring - Humble Object Pattern | YouTube 백명석](https://youtu.be/JYhTjzp0ChU?t=135) 
 
-## 1.4.3.5 Functional Core & Imperative Shell
+## 1.4.3.6 Functional Core & Imperative Shell
 - functional programming
   - The goal of functional programming is not to eliminate side effects altogether
   - but rather to introduce a separation between
     - code that handles business logic (functional core)
     - and code that incurs side effects. (imperative shell)
-
-## 1.4.4 Architecture?
-```
-Premature optimization is the root of all evil
-
-- Tony Hoare
-```
-- [프로젝트 폴더구조..에 관하여 질문이 있습니다 | Inflearn 김영한](https://www.inflearn.com/questions/16046/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0%EC%99%80-%EA%B0%95%EC%9D%98-%EC%9D%BC%EC%A0%95%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC-%EC%A7%88%EB%AC%B8%EC%9D%B4-%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4)
 
 ## 1.4.5 Happy Path vs Edge Case
 - check as many of the business scenario’s edge cases as possible with unit tests; 
