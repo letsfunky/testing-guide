@@ -51,9 +51,7 @@ public class OrderService {
 
             var order = new Order(memberId, shippingAddress);
             var persistedOrder = orderRepository.save(order);
-            var member = memberRepository.findById(memberId).orElseThrow(
-                () -> new RuntimeException("member not exist: memberId=" + memberId)
-            );
+            var member = memberRepository.findById(memberId).get();
 
             smsService.send(phoneNumber, "order placed");
 

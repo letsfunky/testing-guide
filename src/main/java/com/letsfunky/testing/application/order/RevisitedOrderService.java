@@ -34,15 +34,16 @@ public class RevisitedOrderService {
 
     @Transactional
     public OrderDetail createOrder(
-        Member member,
+        long memberId,
         String phoneNumber, String shippingAddress,
         String goods, int count
     ) {
         if (storeService.hasInventory(goods, count)) {
             storeService.removeInventory(goods, count);
 
-            var order = new Order(member.getId(), shippingAddress);
+            var order = new Order(memberId, shippingAddress);
             var persistedOrder = orderRepository.save(order);
+            var member = memberRepository.findById(memberId).get();
 
             smsService.send(phoneNumber, "order placed successfully.");
             log.info("order created: orderId={}", persistedOrder.getId());

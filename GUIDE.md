@@ -268,24 +268,28 @@ Premature optimization is the root of all evil
   - A small simple object, like money or a date range, whose equality isn't based on identity.
 - [ValueObject | Martin Fowler](https://martinfowler.com/bliki/ValueObject.html)
   - Of course, it makes it much easier to treat value objects as `immutable` if they really are immutable.
-- [Wikipedia](https://en.wikipedia.org/wiki/Value_object)
-  - i.e. two value objects are equal when they have the same value, not necessarily being the same object.
+- [Implementing value objects | msdn](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects#important-characteristics-of-value-objects)
+  - There are two main characteristics for value objects:
+    - They have no identity.
+      - They are immutable.
 - Immutable VOs implemented by
   - [java record](https://openjdk.org/jeps/384)
   - [kotlin data class](https://kotlinlang.org/docs/data-classes.html)
-  - lombok `@Value` (vs `@Data`)
+  - [lombok `@Value`](https://projectlombok.org/features/Value) (vs `@Data`)
 
-## 2.2.0.1 Immutable Value Object Examples
+## 2.2.0.1 What If Mutable?
 - Anti-Pattern of Mutable VO  
   ```
-  @Data
-  class OrderRequest() {
-    ...
-    String address;
+  class Money() {
+    int amount;
+    Currency currency;
+  
+    // setters
+    ..
   }
   
-  void createOrder(OrderRequest req) {
-    req.setAddress("바꾸면 안됳....");
+  void transfer(Money money) {
+    money.setAmount(123); // 바꾸면 안됳....
   }
   ```
 - Domain-driven vs Database-driven
