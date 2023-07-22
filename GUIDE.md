@@ -138,7 +138,7 @@ works. The only way to know this is to test it.
 - You Must Know It Works (Robert C. Martin, The Clean Coder, 2012, p46)
 ```
 
-## 1.4.2 Feel Comfortable 🙂
+## 1.4.2 Feel Comfortable 🫤
 ```
 A question many project teams I've been part of couldn't answer is how much testing we should do.
 Line coverage is a bad metric to measure test success.
@@ -154,8 +154,8 @@ If we trust the tests enough to ship after having executed them, we're good.
   - ☢️ 원자력발전소, 🏦 은행 ...
   - [토스ㅣSLASH 21 - 테스트 커버리지 100%](https://www.youtube.com/watch?v=jdlBu2vFv58)
 
-
-## 1.4.3 Domain Model (Business Logic)
+  
+## 1.4.3 The Most Important Parts of Your Code Base 🙂
 - Domain
   - [A domain is the targeted subject area of a computer program. (..) For example, a particular programming project might have had as a goal, the creation of a program for a particular hospital, and that hospital would be the domain.]((https://en.wikipedia.org/wiki/Domain_(software_engineering)))
 - Domain Model
