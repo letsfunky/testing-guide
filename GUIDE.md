@@ -150,10 +150,6 @@ If we trust the tests enough to ship after having executed them, we're good.
 
 - How Much Testing Is Enough? (Tom Hombergs, Get Your Hands Dirty on Clean Architecture, 2018, p68)
 ```
-- 💰 Test Costs vs 💸 Cost of Not Testing
-  - ☢️ 원자력발전소, 🏦 은행 ...
-  - [토스ㅣSLASH 21 - 테스트 커버리지 100%](https://www.youtube.com/watch?v=jdlBu2vFv58)
-
   
 ## 1.4.3 The Most Important Parts of Your Code Base 🙂
 - Domain
@@ -162,6 +158,10 @@ If we trust the tests enough to ship after having executed them, we're good.
   - [An object model of the domain that incorporates both behavior and data.](https://martinfowler.com/eaaCatalog/domainModel.html)
   - [Designing a microservice domain model](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model)
 <br/><br/>
+- 💰 Test Costs vs 💸 Cost of Not Testing
+  - ☢️ 원자력발전소, 🏦 은행 ...
+  - [토스ㅣSLASH 21 - 테스트 커버리지 100%](https://www.youtube.com/watch?v=jdlBu2vFv58)
+
 
 ## 1.4.3.1 Domain Model in Clean Architecture
 <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/clean-architecture.png" width="600"/><br/>
