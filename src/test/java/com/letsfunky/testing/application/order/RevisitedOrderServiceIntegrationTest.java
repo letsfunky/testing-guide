@@ -10,13 +10,13 @@ import com.letsfunky.testing.domain.member.Member;
 import com.letsfunky.testing.domain.member.MemberRepository;
 import com.letsfunky.testing.domain.order.OrderRepository;
 import com.letsfunky.testing.infrastructure.message.SmsService;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @Transactional

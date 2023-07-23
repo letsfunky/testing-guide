@@ -871,11 +871,9 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - If your test is `@Transactional`, it rolls back the transaction at the end of each test method by default. 
   - However, as using this arrangement with either `RANDOM_PORT` or `DEFINED_PORT` implicitly provides a real servlet environment, the HTTP client and server run in separate threads and, thus, in separate transactions. 
   - ️Any transaction initiated on the server does not roll back in this case.
-- Hands-on
+- Code
   - [RevisitedOrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/RevisitedOrderService.java)
   - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
-  - Create new test `주문이_성공하면_sms가_발송되고_주문정보를_반환한다()`
-
 
 ## 7.5 [Web Controller Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
 - By default, `@SpringBootTest` does not start the server but instead sets up a mock environment for testing web endpoints.
