@@ -37,7 +37,7 @@ public class RevisitedSmsApiDtoBuilder {
     }
 
     public static List<SmsResponse> generateResponses(boolean success, int count) {
-        return IntStream.rangeClosed(0, count)
+        return IntStream.range(0, count)
             .mapToObj(i -> generateResponse(success, i))
             .collect(Collectors.toUnmodifiableList());
     }
