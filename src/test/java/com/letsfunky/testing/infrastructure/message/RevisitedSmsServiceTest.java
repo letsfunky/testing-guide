@@ -28,7 +28,7 @@ class RevisitedSmsServiceTest {
         var phoneNumber = "phone-number";
         var smsMessage = "sms-message";
         when(smsApiClient.send(new SmsRequest(phoneNumber, smsMessage)))
-            .thenReturn(SmsApiDtoBuilder.generateResponse(true));
+            .thenReturn(RevisitedSmsApiDtoBuilder.generateResponse(true));
 
         var response = sut.send(phoneNumber, smsMessage);
 
@@ -40,7 +40,7 @@ class RevisitedSmsServiceTest {
         var phoneNumber = "phone-number";
         var smsMessage = "sms-message";
         when(smsApiClient.send(new SmsRequest(phoneNumber, smsMessage)))
-            .thenReturn(SmsApiDtoBuilder.generateResponse(false));
+            .thenReturn(RevisitedSmsApiDtoBuilder.generateResponse(false));
 
         assertThatThrownBy(() -> sut.send(phoneNumber, smsMessage))
             .isExactlyInstanceOf(RuntimeException.class)
