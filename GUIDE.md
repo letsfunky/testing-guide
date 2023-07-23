@@ -443,7 +443,9 @@ void stub() {
 ## 4.0 테스팅 프레임워크
 - [Spring Boot Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing)
 - [JUnit5](https://junit.org/junit5/docs/current/user-guide/)
+  - [xUnit](https://en.wikipedia.org/wiki/XUnit) 
 - [Mockito](https://site.mockito.org/)
+  - [Mockito Doc](https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html) 
 - [AssertJ](https://assertj.github.io/doc/)
 
 # 5 단위 테스트 잘 만들어보기
