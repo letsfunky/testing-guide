@@ -434,6 +434,7 @@ void stub() {
   - [Store.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/school/Store.java)
   - [Customer.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/school/Customer.java)
   - [CustomerTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/school/CustomerTest.java)
+  - [RevisitedCustomerTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/school/RevisitedCustomerTest.java)
 - Use test doubles for
   - Mockist: All but immutable dependencies
   - Classicist: Shared dependencies
