@@ -12,7 +12,7 @@ import static org.mockito.Mockito.verify;
 class RevisitedGiftEngineTest {
 
     // examine spy
-    // `Stub` gives out data that goes to the SUT
+    // `Spy`, there is the real object and you just spying or stubbing specific methods of it.
     @Test
     void 무료선물이_추가된다() {
         // todo: arrange
