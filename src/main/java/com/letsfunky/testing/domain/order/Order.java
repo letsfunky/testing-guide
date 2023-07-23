@@ -20,8 +20,28 @@ public class Order {
     @Column(length = 20)
     private String shippingAddress;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private OrderStatus status;
+
     public Order(long ordererId, String shippingAddress) {
         this.ordererId = ordererId;
         this.shippingAddress = shippingAddress;
+        this.status = OrderStatus.DRAFT;
+    }
+
+    public Order(long id, long ordererId, String shippingAddress) {
+        this.id = id;
+        this.ordererId = ordererId;
+        this.shippingAddress = shippingAddress;
+        this.status = OrderStatus.DRAFT;
+    }
+
+    public Order updateStatus(OrderStatus nextStatus) {
+        if (status.processable(nextStatus)) {
+            this.status = nextStatus;
+        }
+
+        return this;
     }
 }

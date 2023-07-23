@@ -660,6 +660,10 @@ void simple_iteration() {
 - Having that said, you need to watch out for assertion sections that grow too large
 
 ## 5.11 Avoid multiple arrange, act, and assert sections
+- Code
+  - [Order.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/order/Order.java)
+  - [OrderStatus.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/order/OrderStatus.java)
+  - [OrderStatusTest.java:주문상태가_변경된다()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderStatusTest.java) 
 ```
 // 아아 안됳. ... .
 @Test

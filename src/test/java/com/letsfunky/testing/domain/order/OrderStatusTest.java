@@ -2,13 +2,35 @@ package com.letsfunky.testing.domain.order;
 
 import org.junit.jupiter.api.Test;
 
+import static com.letsfunky.testing.domain.order.OrderStatus.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OrderStatusTest {
+    @Test
+    void 주문상태가_변경된다() {
+        // arrange
+        var order = new Order(1L, "address");
+        assertThat(order.getStatus()).isEqualTo(DRAFT);
+
+        // act
+        var orderdOrder = order.updateStatus(ORDERED);
+        // assert
+        assertThat(order.getStatus()).isEqualTo(ORDERED);
+
+        // act
+        var paidOrder = orderdOrder.updateStatus(PAYMENT_COMPLETED);
+        // assert
+        assertThat(order.getStatus()).isEqualTo(PAYMENT_COMPLETED);
+
+        // act
+        var shippedOrder = paidOrder.updateStatus(SHIPPED);
+        // assert
+        assertThat(order.getStatus()).isEqualTo(SHIPPED);
+    }
 
     @Test
     void OrderStatus가_DRAFT일때_ORDERED로_변경가능하다() {
-        assertThat(OrderStatus.DRAFT.processable(OrderStatus.ORDERED)).isTrue();
+        assertThat(DRAFT.processable(OrderStatus.ORDERED)).isTrue();
     }
 
     @Test
@@ -23,7 +45,7 @@ class OrderStatusTest {
 
     @Test
     void OrderStatus가_DRAFT일때_PAYMENT_COMPLETED로_변경가능하다() {
-        assertThat(OrderStatus.DRAFT.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
+        assertThat(DRAFT.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
     }
 
     @Test

@@ -40,7 +40,7 @@ class RevisitedCustomerTest {
 
         // todo: add mockist test
         @Test
-        void 구매가_성공하면_재고가_줄어든다2() {
+        void stub하지않아_실패한다_구매가_성공하면_재고가_줄어든다2() {
             // todo: arrange
             //  1. create Store mock
             //  2. return true when store.sell(..) invoked
