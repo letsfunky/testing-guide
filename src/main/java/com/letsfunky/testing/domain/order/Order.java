@@ -38,7 +38,7 @@ public class Order {
     }
 
     public Order updateStatus(OrderStatus nextStatus) {
-        if (status.processable(nextStatus)) {
+        if (status.processableTo(nextStatus)) {
             this.status = nextStatus;
         }
 

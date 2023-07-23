@@ -6,46 +6,25 @@ import static com.letsfunky.testing.domain.order.OrderStatus.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OrderStatusTest {
-    @Test
-    void 주문상태가_변경된다() {
-        // arrange
-        var order = new Order(1L, "address");
-        assertThat(order.getStatus()).isEqualTo(DRAFT);
-
-        // act
-        var orderdOrder = order.updateStatus(ORDERED);
-        // assert
-        assertThat(order.getStatus()).isEqualTo(ORDERED);
-
-        // act
-        var paidOrder = orderdOrder.updateStatus(PAYMENT_COMPLETED);
-        // assert
-        assertThat(order.getStatus()).isEqualTo(PAYMENT_COMPLETED);
-
-        // act
-        var shippedOrder = paidOrder.updateStatus(SHIPPED);
-        // assert
-        assertThat(order.getStatus()).isEqualTo(SHIPPED);
-    }
 
     @Test
     void OrderStatus가_DRAFT일때_ORDERED로_변경가능하다() {
-        assertThat(DRAFT.processable(OrderStatus.ORDERED)).isTrue();
+        assertThat(DRAFT.processableTo(OrderStatus.ORDERED)).isTrue();
     }
 
     @Test
     void ORDERED일때_PAYMENT_COMPLETED로_변경가능하다() {
-        assertThat(OrderStatus.ORDERED.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
+        assertThat(OrderStatus.ORDERED.processableTo(OrderStatus.PAYMENT_COMPLETED)).isTrue();
     }
 
     @Test
     void ORDERED일때_SHIPPED로_변경가능하다() {
-        assertThat(OrderStatus.ORDERED.processable(OrderStatus.SHIPPED)).isTrue();
+        assertThat(OrderStatus.ORDERED.processableTo(OrderStatus.SHIPPED)).isTrue();
     }
 
     @Test
     void OrderStatus가_DRAFT일때_PAYMENT_COMPLETED로_변경가능하다() {
-        assertThat(DRAFT.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
+        assertThat(DRAFT.processableTo(OrderStatus.PAYMENT_COMPLETED)).isTrue();
     }
 
     @Test

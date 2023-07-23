@@ -10,7 +10,7 @@ public enum OrderStatus {
     SHIPPED;
 
     // NOTE: 의미없는 dummy logic 입니다
-    public boolean processable(OrderStatus nextStatus) {
+    public boolean processableTo(OrderStatus nextStatus) {
         switch (this) {
             case DRAFT:
                 return Set.of(ORDERED, PAYMENT_COMPLETED).contains(nextStatus);

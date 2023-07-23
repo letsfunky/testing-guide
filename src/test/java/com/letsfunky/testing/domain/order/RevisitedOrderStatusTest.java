@@ -1,5 +1,6 @@
 package com.letsfunky.testing.domain.order;
 
+import static com.letsfunky.testing.domain.order.OrderStatus.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -14,12 +15,12 @@ class RevisitedOrderStatusTest {
     class DRAFT일때 {
         @Test
         void ORDERED로_변경가능하다() {
-            assertThat(OrderStatus.DRAFT.processable(OrderStatus.ORDERED)).isTrue();
+            assertThat(DRAFT.processableTo(ORDERED)).isTrue();
         }
 
         @Test
         void PAYMENT_COMPLETED로_변경가능하다() {
-            assertThat(OrderStatus.DRAFT.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
+            assertThat(DRAFT.processableTo(PAYMENT_COMPLETED)).isTrue();
         }
     }
 
@@ -27,12 +28,12 @@ class RevisitedOrderStatusTest {
     class ORDERED일때 {
         @Test
         void PAYMENT_COMPLETED로_변경가능하다() {
-            assertThat(OrderStatus.ORDERED.processable(OrderStatus.PAYMENT_COMPLETED)).isTrue();
+            assertThat(ORDERED.processableTo(PAYMENT_COMPLETED)).isTrue();
         }
 
         @Test
         void SHIPPED로_변경가능하다() {
-            assertThat(OrderStatus.ORDERED.processable(OrderStatus.SHIPPED)).isTrue();
+            assertThat(ORDERED.processableTo(SHIPPED)).isTrue();
         }
     }
 

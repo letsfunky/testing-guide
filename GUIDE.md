@@ -663,7 +663,7 @@ void simple_iteration() {
 - Code
   - [Order.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/order/Order.java)
   - [OrderStatus.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/order/OrderStatus.java)
-  - [OrderStatusTest.java:주문상태가_변경된다()](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderStatusTest.java) 
+  - [OrderTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/order/OrderTest.java) 
 ```
 // 아아 안됳. ... .
 @Test
