@@ -809,6 +809,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - Hands-on
   - [PriceEngine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/PriceEngine.java)
   - [PriceEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/PriceEngineTest.java)
+  - [RevisitedPriceEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/RevisitedPriceEngineTest.java)
   - Fill-up tests
 
 ## 6.2 State-based Testing
@@ -819,6 +820,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - Hands-on
   - [Order.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/Order.java)
   - [OrderTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/OrderTest.java)
+  - [RevisitedOrderTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/RevisitedOrderTest.java)
   - Fill-up tests
 
 ## 6.3 Communication-based Testing
@@ -826,6 +828,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - Hands-on
   - [GreetingService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testingstyle/GreetingService.java)
   - [GreetingServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/GreetingServiceTest.java)
+  - [RevisitedGreetingServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testingstyle/RevisitedGreetingServiceTest.java)
   - Fill-up tests
 
 ## 6.4 Observable Behavior (vs Implementation Detail)

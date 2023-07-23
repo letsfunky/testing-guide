@@ -77,4 +77,3 @@ class RevisitedOrderServiceTest {
         assertThat(orderDetail.getOrdererId()).isEqualTo(memberId);
     }
 }
-
