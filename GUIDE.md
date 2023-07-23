@@ -731,8 +731,9 @@ public void 재고가_충분하면_구매가_성공한다() {
   - [SmsApiDtoBuilder.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/SmsApiDtoBuilder.java)
   - [RevistedSmsServiceTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/RevisitedSmsServiceTest.java)
   - [RevisitedSmsApiDtoBuilder.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/infrastructure/message/RevisitedSmsApiDtoBuilder.java)
+    - create multiple dummies with helper 
   - Refactor `SmsServiceTest` with builder
-    - Extract method and delegate
+    - `Extract method` and `Move Members` to `SmsApiDtoBuilder`
   
 ## 5.16 Don’t assert interactions with stubs
 - Code
