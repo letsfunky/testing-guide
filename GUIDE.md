@@ -464,7 +464,6 @@ void stub() {
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
   - Add tests by `Cmd + Shift + T`
-    - Try failing test
 
 ## 5.2 Dropping the arrange, act, and assert comments from tests
 - It’s also important to differentiate the three sections from each other
@@ -482,44 +481,56 @@ void stub() {
   - Tests should act both as `Executable Specification` as well as `documentation`, which puts a lot of responsibility on the test. 
 
 ## 5.3.1 Derived Values
-- Hands-on
-  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
-  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 ```
 @Test
 void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_integers() {
     // arrange
-    int x = 11_235;
-    int y = 24_322;
+    var x = 11_235;
+    var y = 24_322;
+    var expectedDerived = x + y;
 
     // act
     var actual = Calculator.sum(x, y);
 
     // assert
-    int expected = x + y;
-    assertEquals(actual, expected);
+    assertEquals(actual, expectedDerived);
 }
 ```
+- Hands-on
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
+  - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
+  - Add tests of `Calculator.invert(..)`
+    - Test with "3.0"
+    - Test with "3.0abc"
+  - Add test of `Calculator.sum(..)`
+    - Test with x = `Integer.MAX_VALUE`, y = 1
 
 ## 5.3.2 Hard Coded Values
-- Hands-on
-  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
-  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 ```
 @Test
 void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_integers() {
     // arrange
-    int x = 11_235;
-    int y = 24_322;
+    var x = 11_235;
+    var y = 24_322;
+    var expected = 912_468;
 
     // act
     var actual = Calculator.sum(x, y);
 
     // assert
-    int expected = 912_468;
     assertEquals(actual, expected);
 }
 ```
+- Hands-on
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
+  - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
+  - Add tests of `Calculator.invert(..)`
+    - Test with "3.0"
+    - Test with "3.0abc"
+  - Add test of `Calculator.sum(..)`
+    - Test with x = `Integer.MAX_VALUE`, y = 1
 
 ## 5.3.3 Why Not Both?
 - Hands-on
@@ -529,17 +540,16 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
 @Test
 void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_integers() {
     // arrange
-    int x = 11_235;
-    int y = 24_322;
+    var x = 11_235;
+    var y = 24_322;
+    var derivedExpected = x + y;
+    int hardCodedExpected = 912_468;
 
     // act
     var actual = Calculator.sum(x, y);
 
     // assert
-    int derivedExpected = x + y;
     assertEquals(actual, derivedExpected);
-
-    int hardCodedExpected = 912_468;
     assertEquals(actual, hardCodedExpected);
 }
 ```
@@ -564,20 +574,17 @@ assertThat(actual).isEqualTo(expected);
 ```
 
 ## 5.6 Naming a unit test
-- Code
-  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
-  - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
 - One of the most prominent, and probably least helpful, is the following convention:
   - `[MethodUnderTest]_[Scenario]_[ExpectedResult]`
   - It’s unhelpful specifically because it encourages you to focus on implementation details instead of the behavior.
   - Don’t include the name of the SUT’s method in the test’s name.
 - Simple phrases in plain `한글` do a much better job
   ```
-  void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_integers()
+  void given_two_arbitrary_integers_when_sum_then_result_equals_to_the_sum_of_given_integers()
 
   vs
 
-  void 두개의_integer를_더한다()
+  void integer를_더한다()
   ```
 
 ## 5.7 Using `@DisplayName("...")` vs Test Method Name
@@ -592,7 +599,7 @@ class RevisitedCalculatorTest {
 
   @ParameterizedTest
   @Test
-  void 두개의_integer를_sum한다(int x, int y, long expected) { ... }
+  void integer를_sum한다(int x, int y, long expected) { ... }
 ```
 
 ## 5.8 Refactoring to parameterized tests

@@ -1,16 +1,25 @@
 package com.letsfunky.testing.domain.helper;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Nested;
 
 class CalculatorTest {
 
-    // todo: create tests
-    void 테스트_이름을_변경해주세요() {
-        // arrange (given)
+    @Nested
+    class invert테스트 {
 
-        // act (when)
+    }
 
-        // assert (then)
+    @Nested
+    class sum테스트 {
 
+        // todo: create tests
+        void 테스트_이름을_변경해주세요() {
+            // arrange (given)
+
+            // act (when)
+
+            // assert (then)
+
+        }
     }
 }
