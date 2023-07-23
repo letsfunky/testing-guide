@@ -3,11 +3,9 @@ package com.letsfunky.mock;
 import java.util.Map;
 
 public class GiftEngine {
-
-    public GiftEngine() {
-    }
+    public static final String GIFT = "free-snack";
 
     public void addGift(Map<String, Integer> productPrices) {
-        productPrices.put("free-snack", 0);
+        productPrices.put(GIFT, 0);
     }
 }

@@ -378,6 +378,7 @@ void mock() {
   - [Car.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/mock/Car.java)
   - [Engine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/mock/Engine.java)
   - [CarTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/mock/CarTest.java)
+  - [RevisitedCarTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/mock/RevisitedCarTest.java)
 
 ## 3.3 Spy
 ```
@@ -401,6 +402,7 @@ void spy() {
 - Hands-on
   - [GiftEngine.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/mock/GiftEngine.java)
   - [GiftEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/mock/GiftEngineTest.java)
+  - [RevisitedGiftEngineTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/mock/RevisitedGiftEngineTest.java)
 
 ## 3.4 Stub (+ Dummy, Fake)
 ```
