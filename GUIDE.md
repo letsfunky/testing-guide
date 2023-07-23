@@ -464,6 +464,7 @@ void stub() {
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
   - Add tests by `Cmd + Shift + T`
+    - Try failing test
 
 ## 5.2 Dropping the arrange, act, and assert comments from tests
 - It’s also important to differentiate the three sections from each other
@@ -481,7 +482,7 @@ void stub() {
   - Tests should act both as `Executable Specification` as well as `documentation`, which puts a lot of responsibility on the test. 
 
 ## 5.3.1 Derived Values
-- Code
+- Hands-on
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 ```
@@ -501,7 +502,7 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
 ```
 
 ## 5.3.2 Hard Coded Values
-- Code
+- Hands-on
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 ```
@@ -521,7 +522,7 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
 ```
 
 ## 5.3.3 Why Not Both?
-- Code
+- Hands-on
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 ```
@@ -544,7 +545,8 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
 ```
 
 ## 5.4 Happy path and Edge case (Boundary Condition)
-- Code
+- Hands-on
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 ```
 public static int sum(int x, int y) { ... }
