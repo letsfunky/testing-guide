@@ -462,16 +462,17 @@ void stub() {
   - assert (then)
 - Hands-on
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
-  - Create new test by `Cmd + Shift + T` and add tests
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
+  - Add tests by `Cmd + Shift + T`
 
 ## 5.2 Dropping the arrange, act, and assert comments from tests
-- Code
-  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
-  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 - It’s also important to differentiate the three sections from each other
   - One way to do that is to put `// Arrange, // Act, and // Assert` comments before the beginning of each section. 
   - Another way is to separate the sections with empty lines, as shown next.
 - It doesn’t work as well in large tests, though, where you may want to put additional empty lines inside the arrange section to differentiate between configuration stages. 
+- Hands-on
+  - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
+  - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
 
 ## 5.3 Assert by Derived Values vs Hard Coded Values
 - It's a controversial stance.
