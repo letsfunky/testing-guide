@@ -882,6 +882,7 @@ void 주문이_성공하면_inventory가_줄어든다() {
   - You can also auto-configure `MockMvc` in a non-`@WebMvcTest` (such as `@SpringBootTest`) by annotating it with `@AutoConfigureMockMvc`.
   - Use `@AutoConfigureMockMvc` to add a `MockMvc` instance to the application context.
 - `MockMvc` vs. [TestRestTemplate](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.utilities.test-rest-template)
+  - [RevisitedOrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderControllerIntegrationTest.java)
 - Hands-on
   - [OrderController.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/OrderController.java)
   - [OrderControllerIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/OrderControllerIntegrationTest.java)
@@ -1033,6 +1034,18 @@ Working Effectively with Legacy Code (Robert C. Martin Series) by Michael Feathe
 - ...
 
 # 11 마치며
+## 11.0 정리
+- Target only the most important parts of your code base
+- Check as many of the business scenario’s edge cases as possible with unit tests;
+  - use integration tests to 
+    - cover one happy path, 
+    - as well as any edge cases that can’t be covered by unit tests.
+- Introduce a separation between
+  - code that handles business logic (functional core)
+  - and code that incurs side effects. (imperative shell)
+- Verify the end result the code produces (its observable behavior) 
+  - and distance tests from implementation details as much as possible.
+
 ## 11.1 열린 마음으로 동료와 함께 성장하쟈
 - 팀보다 위대한 선수는 없다
   - 상이한 경험, 지식
