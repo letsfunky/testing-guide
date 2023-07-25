@@ -2,15 +2,11 @@ package com.letsfunky.testing.domain.helper;
 
 import org.junit.jupiter.api.Nested;
 
-class CalculatorTest {
+class
+CalculatorTest {
 
     @Nested
-    class invert테스트 {
-
-    }
-
-    @Nested
-    class sum테스트 {
+    class sum_테스트 {
 
         // todo: create tests
         void 테스트_이름을_변경해주세요() {
@@ -21,5 +17,10 @@ class CalculatorTest {
             // assert (then)
 
         }
+    }
+
+    @Nested
+    class invert_테스트 {
+
     }
 }

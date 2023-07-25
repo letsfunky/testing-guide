@@ -17,35 +17,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class RevisitedCalculatorTest {
 
     @Nested
-    class invert테스트 {
-
-        @Test
-        void double은_나눗셈한다() {
-            var doubleStr = "3.0";
-            var expectedStartsWith = "0.3333";
-            var expectedDerivedFrom = String.valueOf(1.0 / Double.parseDouble(doubleStr));
-
-            var result = Calculator.invert(doubleStr);
-
-            assertThat(result).isEqualTo(expectedDerivedFrom);
-            assertThat(result).contains(expectedStartsWith);
-        }
-
-        @Test
-        void double이_아니면_reverse한다() {
-            var doubleStr = "3.0abc";
-            var expectedReversed = "cba0.3";
-            var expectedDerivedFrom = new StringBuilder(doubleStr).reverse().toString();
-
-            var result = Calculator.invert(doubleStr);
-
-            assertThat(result).isEqualTo(expectedDerivedFrom);
-            assertThat(result).contains(expectedReversed);
-        }
-    }
-
-    @Nested
-    class sum테스트 {
+    class sum_테스트 {
 
         // @ParameterizedTest 사용
         @ParameterizedTest
@@ -79,6 +51,34 @@ class RevisitedCalculatorTest {
 
                 assertThat(actual).isEqualTo(expected);
             });
+        }
+    }
+
+    @Nested
+    class invert_테스트 {
+
+        @Test
+        void double은_나눗셈한다() {
+            var doubleStr = "3.0";
+            var expectedStartsWith = "0.3333";
+            var expectedDerivedFrom = String.valueOf(1.0 / Double.parseDouble(doubleStr));
+
+            var result = Calculator.invert(doubleStr);
+
+            assertThat(result).isEqualTo(expectedDerivedFrom);
+            assertThat(result).contains(expectedStartsWith);
+        }
+
+        @Test
+        void double이_아니면_reverse한다() {
+            var doubleStr = "3.0abc";
+            var expectedReversed = "cba0.3";
+            var expectedDerivedFrom = new StringBuilder(doubleStr).reverse().toString();
+
+            var result = Calculator.invert(doubleStr);
+
+            assertThat(result).isEqualTo(expectedDerivedFrom);
+            assertThat(result).contains(expectedReversed);
         }
     }
 }
