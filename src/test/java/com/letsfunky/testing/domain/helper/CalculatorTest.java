@@ -1,26 +1,32 @@
 package com.letsfunky.testing.domain.helper;
 
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
-class
-CalculatorTest {
+import static org.assertj.core.api.Assertions.assertThat;
+
+class CalculatorTest {
 
     @Nested
     class sum_테스트 {
 
-        // todo: create tests
-        void 테스트_이름을_변경해주세요() {
-            // arrange (given)
+        @Test
+        void add_two_integers() {
+            var x = 1;
+            var y = 2;
+            var expected = 3;
+            var derivedExpected = x + y;
 
-            // act (when)
+            var result = Calculator.sum(x, y);
 
-            // assert (then)
-
+            assertThat(result).isEqualTo(expected);
         }
     }
 
     @Nested
     class invert_테스트 {
 
+        @Test
+        void
     }
 }
