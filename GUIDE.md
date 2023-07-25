@@ -463,7 +463,7 @@ void stub() {
 - Hands-on
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
-  - Add tests by `Cmd + Shift + T`
+  - Add test of method `sum(..)` by `Cmd + Shift + T`
 
 ## 5.2 Dropping the arrange, act, and assert comments from tests
 - It’s also important to differentiate the three sections from each other
