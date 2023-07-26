@@ -78,7 +78,7 @@ class RevisitedCalculatorTest {
             var result = Calculator.invert(doubleStr);
 
             assertThat(result).isEqualTo(expectedDerivedFrom);
-            assertThat(result).contains(expectedReversed);
+            assertThat(result).startsWith(expectedReversed);
         }
     }
 }
