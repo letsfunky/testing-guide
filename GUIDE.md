@@ -500,11 +500,11 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
   - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
+  - Add test of `Calculator.sum(..)` with derived values
+    - Test with x = `2_147_483_647`, y = `1`
   - Add tests of `Calculator.invert(..)` with derived values
     - Test with "3.0"
     - Test with "3.0abc"
-  - Add test of `Calculator.sum(..)` with derived values
-    - Test with x = `2_147_483_648`, y = `1`
 
 ## 5.3.2 Hard Coded Values
 ```
@@ -526,11 +526,11 @@ void given_two_arbitrary_integers_then_sum_should_be_equal_to_the_sum_of_given_i
   - [Calculator.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/domain/helper/Calculator.java)
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
   - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
+  - Add assertion of `Calculator.sum(..)` with hardcoded values
+    - Test with x = `2_147_483_647`, y = `1`
   - Add assertions of `Calculator.invert(..)` with hardcoded values
     - Test with "3.0"
     - Test with "3.0abc"
-  - Add assertion of `Calculator.sum(..)` with hardcoded values
-    - Test with x = `2_147_483_648`, y = `1`
 
 ## 5.3.3 Why Not Both?
 - Hands-on
