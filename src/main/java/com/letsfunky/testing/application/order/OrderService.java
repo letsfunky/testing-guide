@@ -41,7 +41,6 @@ public class OrderService {
 
     @Transactional
     public OrderDetail createOrder(
-        // NOTE: too many params, need refactoring
         long memberId,
         String phoneNumber, String shippingAddress,
         String goods, int count
@@ -54,8 +53,8 @@ public class OrderService {
             var member = memberRepository.findById(memberId).get();
 
             smsService.send(phoneNumber, "order placed");
-
             log.info("order created. orderId={}", persistedOrder.getId());
+
             return OrderDetail.of(member, persistedOrder);
         } else {
             throw new RuntimeException("not enough inventory");
