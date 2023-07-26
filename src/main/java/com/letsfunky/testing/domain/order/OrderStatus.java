@@ -9,7 +9,6 @@ public enum OrderStatus {
     PAYMENT_COMPLETED,
     SHIPPED;
 
-    // NOTE: 의미없는 dummy logic 입니다
     public boolean processableTo(OrderStatus nextStatus) {
         switch (this) {
             case DRAFT:
