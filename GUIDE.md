@@ -194,8 +194,10 @@ Premature optimization is the root of all evil
 
 - [HumbleObject | Martin Fowler](https://martinfowler.com/bliki/HumbleObject.html)
   > move the logic into a separate element that is testable,\
-  > making the original object _**humble**_ 
-- [Refactoring - Humble Object Pattern | YouTube 백명석](https://youtu.be/JYhTjzp0ChU?t=135) 
+  > making the original object _**humble**_
+- 참고
+  - [Compose Method](https://wiki.c2.com/?ComposedMethod)
+  - [Refactoring - Humble Object Pattern | YouTube 백명석](https://youtu.be/JYhTjzp0ChU?t=135)
 
 ## 1.4.3.6 Functional Core & Imperative Shell
 - functional programming
@@ -864,6 +866,9 @@ void 주문이_성공하면_inventory가_줄어든다() {
 - Spring Boot includes a `@MockBean` annotation that can be used to define a Mockito `mock` for a bean inside your `ApplicationContext`.
 - Additionally, you can use `@SpyBean` to wrap any existing bean with a Mockito `spy`
 - While Spring’s test framework caches application contexts between tests and reuses a context for tests sharing the same configuration, the use of `@MockBean` or `@SpyBean` influences the cache key, which will most likely increase the number of contexts.
+- Code
+  - [RevisitedOrderService.java](https://github.com/letsfunky/testing-guide/blob/master/src/main/java/com/letsfunky/testing/application/order/RevisitedOrderService.java)
+  - [RevisitedOrderServiceIntegrationTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/application/order/RevisitedOrderServiceIntegrationTest.java)
 
 ## 7.4 [@SpringBootTest + @Transactional](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications)
 - `@SpringBootTest` tests are full integration tests and involve the entire application.
