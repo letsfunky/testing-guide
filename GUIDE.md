@@ -617,7 +617,7 @@ void 두개의_int를_더한다(int x, int y, long expected) {
 // @MethodSource defined
 static Stream<Arguments> sumIntegerSource() { // won't work, find why
   return Stream.of(
-    Arguments.of(..)
+    Arguments.of(1, 2, 3)
   );
 }
 
