@@ -164,7 +164,7 @@ If we trust the tests enough to ship after having executed them, we're good.
 
 
 ## 1.4.3.1 Domain Model in Clean Architecture
-<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/clean-architecture.png" width="600"/><br/>
+<img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/clean-architecture.png" width="800"/><br/>
 
 ## 1.4.3.2 Domain Model in Hexagonal Architecture
 <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/hexagonal-architecture.png" width="600"/><br/>
@@ -173,6 +173,7 @@ If we trust the tests enough to ship after having executed them, we're good.
 ## 1.4.3.3 Domain Model in DDD (vs Database-driven Design)
 <img src="https://raw.githubusercontent.com/letsfunky/testing-guide/master/images/ddd.png" width="600"/><br/>
 - [JPA DDD sample led by Eric Evans](https://github.com/citerus/dddsample-core)
+- [Design a DDD-oriented microservice | msdn](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice#layers-in-ddd-microservices)
 - 참고
   - [DDD entity vs JPA entity #1](https://twitter.com/bitboss/status/1005518596276187137?lang=en)
   - [DDD entity vs ORM entity #2](https://twitter.com/vlad_mihalcea/status/1005519964508442624?lang=en)
@@ -196,7 +197,7 @@ Premature optimization is the root of all evil
   > move the logic into a separate element that is testable,\
   > making the original object _**humble**_
 - 참고
-  - [Compose Method](https://wiki.c2.com/?ComposedMethod)
+  - [Composed Method](https://wiki.c2.com/?ComposedMethod)
   - [Refactoring - Humble Object Pattern | YouTube 백명석](https://youtu.be/JYhTjzp0ChU?t=135)
 
 ## 1.4.3.6 Functional Core & Imperative Shell
@@ -208,7 +209,8 @@ Premature optimization is the root of all evil
 
 ## 1.4.5 Happy Path vs Edge Case
 - check as many of the business scenario’s edge cases as possible with unit tests; 
-- use integration tests to cover one happy path, as well as any edge cases that can’t be covered by unit tests.
+- use integration tests to cover one happy path, 
+  - as well as any edge cases that can’t be covered by unit tests.
 
 ## 1.5 Code coverage metric
 - Formula
@@ -286,8 +288,10 @@ Premature optimization is the root of all evil
     int amount;
     Currency currency;
   
-    // setters
-    ..
+    // setter
+    public void setAmount(int amount) {
+      this.amount = amount;
+    }
   }
   
   void transfer(Money money) {
@@ -605,7 +609,7 @@ class RevisitedCalculatorTest {
 ```
 
 ## 5.8 Refactoring to parameterized tests
-- Code
+- Hands-on
   - [CalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/CalculatorTest.java)
   - [RevisitedCalculatorTest.java](https://github.com/letsfunky/testing-guide/blob/master/src/test/java/com/letsfunky/testing/domain/helper/RevisitedCalculatorTest.java)
 - [@ParameterizedTest](https://reflectoring.io/tutorial-junit5-parameterized-tests/) vs Simple Iteration
