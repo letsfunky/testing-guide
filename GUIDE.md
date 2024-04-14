@@ -43,6 +43,17 @@
   be********* (spring, kotest, 99.99% integration test)
   nh****** (spring, junit)
   ```
+## Growing Your Knowledge
+http://www.phdcomics.com/comics/archive/phd081508s.gif
+
+## Scaling Your Knowledge: You Always Have Something to Teach
+```
+Teaching is not limited to experts, nor is expertise a binary state in which you are either a novice or an expert.
+Expertise is a multidimensional vector of what you know: everyone has varying levels of expertise across different areas.
+
+- Software Engineering at Google: Lessons Learned From Programming Over Time
+```
+
 
 # 0 Software Engineering
 ## 0.1 정답은 없고, 정답에 가까운 길을 찾아갈 뿐
@@ -1033,8 +1044,24 @@ Working Effectively with Legacy Code (Robert C. Martin Series) by Michael Feathe
 ```
 
 ## 10.6 TDD 어떻게 하면 되나요?.?
-- [TDD is dead](https://dhh.dk/2014/tdd-is-dead-long-live-testing.html)
-- [RIP TDD](https://www.facebook.com/notes/kent-beck/rip-tdd/750840194948847)
+```
+1. Change the code as usual
+2. Write a test that only passes after the change
+3. Revert to before 1
+4. Type the test again (copy/paste is cheating & invalidates the warranty of the exercise)
+5. Make it compile by changing the code
+6. See it fail
+7. Change the code to make it pass
+
+- Kent Beck, https://x.com/KentBeck/status/1421257650113634304?s=20
+```
+- [Canon TDD (Kent Beck)](https://tidyfirst.substack.com/p/canon-tdd)
+- [TDD, Where Did It All Go Wrong (Ian Cooper)](https://www.youtube.com/watch?v=EZ05e7EMOLM)
+- [Test Driven Development (Martin Fowler)](https://martinfowler.com/bliki/TestDrivenDevelopment.html)
+
+
+- [TDD is dead (DHH)](https://dhh.dk/2014/tdd-is-dead-long-live-testing.html)
+- [RIP TDD (Kent Beck)](https://www.facebook.com/notes/kent-beck/rip-tdd/750840194948847)
 - [Mockists Are Dead. Long Live Classicists.](https://www.thoughtworks.com/insights/blog/mockists-are-dead-long-live-classicists)
 
 ## 10.7 다른 테스트 프레임워크/라이브러리
